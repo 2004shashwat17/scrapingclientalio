@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clientalio Lead Platform</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <h1>Clientalio Lead Platform</h1>
+      <p>Discover, crawl and qualify agency leads with automated enrichment.</p>
+    </header>
+
+    <section class="card">
+      <h2>Search & Discover</h2>
+      <form id="search-form">
+        <input id="query" placeholder="marketing agencies india" required />
+        <input id="industry" placeholder="Industry (optional)" />
+        <input id="country" placeholder="Country (optional)" />
+        <button type="submit">Discover Leads</button>
+      </form>
+      <div id="search-status"></div>
+    </section>
+
+    <section class="card">
+      <h2>Leads</h2>
+      <div class="toolbar">
+        <button id="refresh-btn">Refresh</button>
+        <button id="export-csv">Export CSV</button>
+        <button id="export-excel">Export Excel</button>
+      </div>
+      <div id="lead-list"></div>
+    </section>
+  </div>
+
+  <template id="lead-row-template">
+    <div class="lead-row">
+      <div class="lead-column lead-name"></div>
+      <div class="lead-column lead-website"></div>
+      <div class="lead-column lead-industry"></div>
+      <div class="lead-column lead-score"></div>
+      <div class="lead-column lead-priority"></div>
+      <button class="view-btn">Details</button>
+    </div>
+  </template>
+
+  <div id="detail-modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="close-btn">×</button>
+      <div id="detail-content"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

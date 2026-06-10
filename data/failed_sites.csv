@@ -1,0 +1,5 @@
+Website,Status,Message,CreatedDate
+https://digitalhexa.in,Failed,403 Client Error: Forbidden for url: https://digitalhexa.in/,2026-06-10T02:47:12.192037
+https://soravjain.com,Failed,"HTTPSConnectionPool(host='soravjain.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x10adebd90>, 'Connection to soravjain.com timed out. (connect timeout=15)'))",2026-06-10T02:47:57.407821
+https://creative-inc.in,Failed,"HTTPSConnectionPool(host='creative-inc.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x10adeb9d0>, 'Connection to creative-inc.in timed out. (connect timeout=15)'))",2026-06-10T02:48:56.078220
+https://sqroot.in,Failed,"HTTPSConnectionPool(host='sqroot.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x110068e10>, 'Connection to sqroot.in timed out. (connect timeout=15)'))",2026-06-10T02:50:41.763655
