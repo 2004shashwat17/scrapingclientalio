@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 from backend.crawlers.search_discovery import SearchDiscovery
 from backend.repositories.lead_repository import LeadRepository
 from backend.services.crawl_service import CrawlService
+from backend.utils.settings import settings
 
 logger = logging.getLogger("clientalio.search")
 DIRECTORY_DOMAINS = {
@@ -41,12 +42,19 @@ class SearchService:
         self.lead_repo = LeadRepository()
 
     def search_and_save(self, query: str, limit: int = 200, country: str | None = None, industry: str | None = None) -> list[dict]:
+        providers = []
+        if settings.serper_api_key:
+            providers.append("serper")
+        if settings.brave_search_api_key:
+            providers.append("brave")
+        providers.append("bing")
+
         domains = self.discovery.discover(
             query,
             limit=limit,
             country=country,
             industry=industry,
-            providers=["duckduckgo", "bing"],
+            providers=providers,
         )
         results: list[dict] = []
         for domain in domains:
@@ -54,12 +62,14 @@ class SearchService:
                 logger.info("Skipping directory listing site: %s", domain)
                 continue
 
+            print("FOUND DOMAIN:", domain)
             if self.lead_repo.find_duplicates(domain, None, domain) is not None:
                 logger.info("Skipping duplicate site: %s", domain)
                 continue
 
             try:
                 saved = self.crawl_service.execute_crawl(domain, industry=industry or query)
+                print("SAVED:", saved)
                 results.append({
                     "LeadId": saved["LeadId"],
                     "CompanyName": saved["CompanyName"],
@@ -69,5 +79,6 @@ class SearchService:
                     "Priority": saved["Priority"],
                 })
             except Exception as exc:
+                print("FAILED:", domain, exc)
                 logger.warning("Failed to crawl %s: %s", domain, exc)
         return results

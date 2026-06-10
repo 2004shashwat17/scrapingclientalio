@@ -1,5 +1,69 @@
 Website,Status,Message,CreatedDate
-https://digitalhexa.in,Failed,403 Client Error: Forbidden for url: https://digitalhexa.in/,2026-06-10T02:47:12.192037
-https://soravjain.com,Failed,"HTTPSConnectionPool(host='soravjain.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x10adebd90>, 'Connection to soravjain.com timed out. (connect timeout=15)'))",2026-06-10T02:47:57.407821
-https://creative-inc.in,Failed,"HTTPSConnectionPool(host='creative-inc.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x10adeb9d0>, 'Connection to creative-inc.in timed out. (connect timeout=15)'))",2026-06-10T02:48:56.078220
-https://sqroot.in,Failed,"HTTPSConnectionPool(host='sqroot.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x110068e10>, 'Connection to sqroot.in timed out. (connect timeout=15)'))",2026-06-10T02:50:41.763655
+https://digitalvidya.com,Failed,"HTTPSConnectionPool(host='digitalvidya.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, ""[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'digitalvidya.com'. (_ssl.c:1032)"")))",2026-06-10T15:04:51.032669
+https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T15:06:55.907458
+https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T15:06:58.358918
+https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T15:07:06.882263
+https://adobe.com,Failed,"HTTPSConnectionPool(host='www.adobe.com', port=443): Read timed out. (read timeout=15)",2026-06-10T15:11:59.405649
+https://creativemarket.com,Failed,403 Client Error: Forbidden for url: https://creativemarket.com/,2026-06-10T15:12:15.315624
+https://digitalgujarat.gov.in,Failed,"HTTPSConnectionPool(host='digitalgujarat.gov.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, ""[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'digitalgujarat.gov.in'. (_ssl.c:1032)"")))",2026-06-10T15:27:56.383834
+https://ndl.gov.in,Failed,"HTTPSConnectionPool(host='ndl.gov.in', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x11140cb90>: Failed to establish a new connection: [Errno 61] Connection refused'))",2026-06-10T15:28:43.737353
+https://digitalgujarat.gov.in,Failed,"HTTPSConnectionPool(host='digitalgujarat.gov.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, ""[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'digitalgujarat.gov.in'. (_ssl.c:1032)"")))",2026-06-10T15:29:34.977337
+https://ndl.gov.in,Failed,"HTTPSConnectionPool(host='ndl.gov.in', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x11140f4d0>: Failed to establish a new connection: [Errno 61] Connection refused'))",2026-06-10T15:30:20.272516
+https://vibasolutions.in,Failed,"HTTPSConnectionPool(host='vibasolutions.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1032)')))",2026-06-10T15:30:45.157246
+https://digibrood.in,Failed,"not enough values to unpack (expected 2, got 1)",2026-06-10T15:33:10.251368
+https://searchengineland.com,Failed,403 Client Error: Forbidden for url: https://searchengineland.com/,2026-06-10T15:36:39.578059
+https://searchengineland.com,Failed,403 Client Error: Forbidden for url: https://searchengineland.com/,2026-06-10T15:40:32.199351
+https://searchengineland.com,Failed,403 Client Error: Forbidden for url: https://searchengineland.com/,2026-06-10T15:43:50.792660
+https://searchengineland.com,Failed,403 Client Error: Forbidden for url: https://searchengineland.com/,2026-06-10T15:43:59.552942
+https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:05:12.235257
+https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:05:14.659335
+https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T16:05:16.154367
+https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:05:36.227970
+https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:05:38.196030
+https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T16:05:39.393608
+https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:05:47.968044
+https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:05:49.926537
+https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T16:05:51.107510
+https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:06:22.288882
+https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:06:24.220704
+https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T16:06:25.446830
+https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:06:34.456212
+https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:06:36.698822
+https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T16:06:37.873354
+https://techimply.com,Failed,403 Client Error: Forbidden for url: https://www.techimply.com/,2026-06-10T16:11:54.909997
+https://capterra.in,Failed,403 Client Error: Forbidden for url: https://capterra.in/,2026-06-10T16:12:33.396336
+https://nyggs.com,Failed,"HTTPSConnectionPool(host='nyggs.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))",2026-06-10T16:13:15.281324
+https://techimply.com,Failed,403 Client Error: Forbidden for url: https://www.techimply.com/,2026-06-10T16:14:52.457484
+https://sourceforge.net,Failed,403 Client Error: Forbidden for url: https://sourceforge.net/,2026-06-10T16:15:11.054522
+https://en.softonic.com,Failed,412 Client Error: Precondition failed for url: https://en.softonic.com/,2026-06-10T16:16:17.004552
+https://techspot.com,Failed,403 Client Error: Forbidden for url: https://techspot.com/,2026-06-10T16:16:31.729429
+https://companydetails.in,Failed,"HTTPSConnectionPool(host='www.companydetails.in', port=443): Read timed out. (read timeout=15)",2026-06-10T16:17:44.528182
+https://tradologie.com,Failed,"HTTPSConnectionPool(host='tradologie.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))",2026-06-10T16:17:47.311342
+https://business-standard.com,Failed,403 Client Error: Forbidden for url: https://www.business-standard.com/,2026-06-10T16:18:46.131005
+https://india.com,Failed,403 Client Error: Forbidden for url: https://www.india.com/,2026-06-10T16:18:47.399386
+https://startupindia.gov.in,Failed,"HTTPSConnectionPool(host='startupindia.gov.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))",2026-06-10T16:18:55.533138
+https://salescoachindia.com,Failed,403 Client Error: Forbidden for url: https://salescoachindia.com/,2026-06-10T16:19:23.169382
+https://justbaazaar.com,Failed,403 Client Error: Forbidden for url: https://justbaazaar.com/,2026-06-10T16:20:14.847631
+https://shantanaranng.com,Failed,"not enough values to unpack (expected 2, got 1)",2026-06-10T16:27:33.165945
+https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:35:03.574989
+https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:35:08.274901
+https://under30ceo.com,Failed,403 Client Error: Forbidden for url: https://under30ceo.com/,2026-06-10T16:35:34.707373
+https://freshworks.com,Failed,403 Client Error: Forbidden for url: https://www.freshworks.com/,2026-06-10T16:35:49.639483
+https://faceit.com,Failed,403 Client Error: Forbidden for url: https://www.faceit.com/,2026-06-10T16:37:42.804040
+https://therealreal.com,Failed,403 Client Error: Forbidden for url: https://www.therealreal.com/,2026-06-10T16:38:43.381968
+https://thefreedictionary.com,Failed,403 Client Error: Forbidden for url: https://thefreedictionary.com/,2026-06-10T16:38:48.307142
+https://en.softonic.com,Failed,412 Client Error: Precondition failed for url: https://en.softonic.com/,2026-06-10T16:42:10.918346
+https://techspot.com,Failed,403 Client Error: Forbidden for url: https://techspot.com/,2026-06-10T16:42:11.815706
+https://collinsdictionary.com,Failed,403 Client Error: Forbidden for url: https://collinsdictionary.com/,2026-06-10T16:44:09.549063
+https://bestbuy.com,Failed,"HTTPSConnectionPool(host='www.bestbuy.com', port=443): Read timed out. (read timeout=15)",2026-06-10T16:44:56.125167
+https://wordreference.com,Failed,418 Client Error:  for url: https://wordreference.com/,2026-06-10T16:44:57.704816
+https://tripadvisor.in,Failed,403 Client Error: Forbidden for url: https://www.tripadvisor.in/,2026-06-10T16:45:01.311376
+https://gadgets360.com,Failed,403 Client Error: Forbidden for url: https://gadgets360.com/,2026-06-10T16:45:02.303398
+https://meesho.com,Failed,403 Client Error: Forbidden for url: https://www.meesho.com:443/,2026-06-10T16:45:12.150709
+https://ajio.com,Failed,403 Client Error: Forbidden for url: https://www.ajio.com/,2026-06-10T16:45:13.480930
+https://www2.hm.com,Failed,403 Client Error: Forbidden for url: https://www2.hm.com/,2026-06-10T16:45:16.097890
+https://tripadvisor.in,Failed,403 Client Error: Forbidden for url: https://www.tripadvisor.in/,2026-06-10T16:45:19.066684
+https://meesho.com,Failed,403 Client Error: Forbidden for url: https://www.meesho.com:443/,2026-06-10T16:45:53.413760
+https://ajio.com,Failed,403 Client Error: Forbidden for url: https://www.ajio.com/,2026-06-10T16:45:54.764777
+https://www2.hm.com,Failed,403 Client Error: Forbidden for url: https://www2.hm.com/,2026-06-10T16:45:55.587533
+https://tripadvisor.in,Failed,403 Client Error: Forbidden for url: https://www.tripadvisor.in/,2026-06-10T16:45:58.353199
