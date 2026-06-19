@@ -7,7 +7,11 @@ class LeadBase(BaseModel):
     CompanyName: str
     Website: HttpUrl
     Industry: Optional[str] = None
+    Location: Optional[str] = None
+    DecisionMakerName: Optional[str] = None
+    Designation: Optional[str] = None
     Email: Optional[EmailStr] = None
+    EmailType: Optional[str] = None
     Phone: Optional[str] = None
     LinkedIn: Optional[HttpUrl] = None
     Facebook: Optional[HttpUrl] = None
@@ -15,6 +19,7 @@ class LeadBase(BaseModel):
     Twitter: Optional[HttpUrl] = None
     YouTube: Optional[HttpUrl] = None
     ContactPage: Optional[HttpUrl] = None
+    SourceKeyword: Optional[str] = None
     HasTestimonials: bool = False
     HasVideoTestimonials: bool = False
     HasCaseStudies: bool = False

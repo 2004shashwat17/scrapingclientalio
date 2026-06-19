@@ -1,494 +1,109 @@
 Website,Status,Message,CreatedDate
-
-https://bing.com,Success,Crawl completed,2026-06-10T13:46:19.213369
-https://upgrowth.in,Success,Crawl completed,2026-06-10T15:04:45.221740
-https://themediaant.com,Success,Crawl completed,2026-06-10T15:04:50.170313
-https://digitalvidya.com,Failed,"HTTPSConnectionPool(host='digitalvidya.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, ""[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'digitalvidya.com'. (_ssl.c:1032)"")))",2026-06-10T15:04:51.032669
-https://f6s.com,Success,Crawl completed,2026-06-10T15:04:51.985947
-https://techmagnate.com,Success,Crawl completed,2026-06-10T15:05:12.155624
-https://langoor.com,Success,Crawl completed,2026-06-10T15:05:17.371379
-https://soravjain.com,Success,Crawl completed,2026-06-10T15:05:18.914878
-https://brandloom.com,Success,Crawl completed,2026-06-10T15:05:23.137883
-https://itprofiles.com,Success,Crawl completed,2026-06-10T15:05:39.727126
-https://rankontechnologies.com,Success,Crawl completed,2026-06-10T15:05:46.047350
-https://seodiscovery.com,Success,Crawl completed,2026-06-10T15:05:49.113707
-https://pagetraffic.com,Success,Crawl completed,2026-06-10T15:06:07.942035
-https://repindia.com,Success,Crawl completed,2026-06-10T15:06:18.715994
-https://varmoto.com,Success,Crawl completed,2026-06-10T15:06:26.426063
-https://topdevelopers.co,Success,Crawl completed,2026-06-10T15:06:40.825311
-https://webspero.com,Success,Crawl completed,2026-06-10T15:06:46.940038
-https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T15:06:55.907458
-https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T15:06:58.358918
-https://web.telegram.org,Success,Crawl completed,2026-06-10T15:06:59.024081
-https://google.com,Success,Crawl completed,2026-06-10T15:07:05.150058
-https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T15:07:06.882263
-https://en.wikipedia.org,Success,Crawl completed,2026-06-10T15:07:08.182617
-https://w3schools.com,Success,Crawl completed,2026-06-10T15:07:12.461012
-https://techlicious.com,Success,Crawl completed,2026-06-10T15:07:37.472040
-https://chromewebstore.google.com,Success,Crawl completed,2026-06-10T15:07:52.257025
-https://appsrow.com,Success,Crawl completed,2026-06-10T15:08:51.670657
-https://acodez.in,Success,Crawl completed,2026-06-10T15:08:54.354439
-https://thewebflowagency.com,Success,Crawl completed,2026-06-10T15:09:36.469405
-https://webflow.com,Success,Crawl completed,2026-06-10T15:09:41.108377
-https://everything.design,Success,Crawl completed,2026-06-10T15:09:46.701963
-https://thethunderclap.com,Success,Crawl completed,2026-06-10T15:09:51.192294
-https://techtalkstoday.com,Success,Crawl completed,2026-06-10T15:09:53.028882
-https://wordpress.com,Success,Crawl completed,2026-06-10T15:10:01.784612
-https://wordpress.org,Success,Crawl completed,2026-06-10T15:10:05.293316
-https://get.wp.com,Success,Crawl completed,2026-06-10T15:10:08.008980
-https://geeksforgeeks.org,Success,Crawl completed,2026-06-10T15:10:11.012735
-https://wpbeginner.com,Success,Crawl completed,2026-06-10T15:10:15.702736
-https://tutorialspoint.com,Success,Crawl completed,2026-06-10T15:10:26.433021
-https://hostinger.com,Success,Crawl completed,2026-06-10T15:10:35.762439
-https://designerpeople.com,Success,Crawl completed,2026-06-10T15:10:52.884577
-https://outsourcefromindia.com,Success,Crawl completed,2026-06-10T15:10:59.435692
-https://brandfinity.in,Success,Crawl completed,2026-06-10T15:11:04.497837
-https://asia.creative.com,Success,Crawl completed,2026-06-10T15:11:13.238203
-https://adobe.com,Failed,"HTTPSConnectionPool(host='www.adobe.com', port=443): Read timed out. (read timeout=15)",2026-06-10T15:11:59.405649
-https://merriam-webster.com,Success,Crawl completed,2026-06-10T15:12:07.220896
-https://us.creative.com,Success,Crawl completed,2026-06-10T15:12:08.678231
-https://creativemarket.com,Failed,403 Client Error: Forbidden for url: https://creativemarket.com/,2026-06-10T15:12:15.315624
-https://gizmodo.com,Success,Crawl completed,2026-06-10T15:12:18.405068
-https://apps.microsoft.com,Success,Crawl completed,2026-06-10T15:12:19.448914
-https://toprankers.com,Success,Crawl completed,2026-06-10T15:12:22.245293
-https://india-creative.com,Success,Crawl completed,2026-06-10T15:12:24.334283
-https://digitalhexa.in,Success,Crawl completed,2026-06-10T15:23:08.984487
-https://webeesocial.com,Success,Crawl completed,2026-06-10T15:23:10.774726
-https://dignitasdigital.com,Success,Crawl completed,2026-06-10T15:23:28.290094
-https://digitalultras.com,Success,Crawl completed,2026-06-10T15:23:34.981668
-https://zeroado.com,Success,Crawl completed,2026-06-10T15:23:38.842450
-https://redcubedigital.com,Success,Crawl completed,2026-06-10T15:23:44.574245
-https://digitalflo.in,Success,Crawl completed,2026-06-10T15:23:48.770677
-https://digidir.com,Success,Crawl completed,2026-06-10T15:24:07.198827
-https://rightads.in,Success,Crawl completed,2026-06-10T15:24:16.159568
-https://sprintdigitech.com,Success,Crawl completed,2026-06-10T15:24:25.227428
-https://orangeglobal.in,Success,Crawl completed,2026-06-10T15:24:33.035541
-https://digitalmarketingnoida.agency,Success,Crawl completed,2026-06-10T15:24:34.769089
-https://conceptialmedia.in,Success,Crawl completed,2026-06-10T15:24:40.394868
-https://dndesigns.co.in,Success,Crawl completed,2026-06-10T15:24:41.412348
-https://thebrandbee.com,Success,Crawl completed,2026-06-10T15:24:53.543975
-https://brandstory.in,Success,Crawl completed,2026-06-10T15:24:54.864009
-https://iide.co,Success,Crawl completed,2026-06-10T15:24:56.935193
-https://vuilive.com,Success,Crawl completed,2026-06-10T15:25:07.983768
-https://optmumdigitalmarketing.com,Success,Crawl completed,2026-06-10T15:25:16.317810
-https://88gravity.com,Success,Crawl completed,2026-06-10T15:25:17.890832
-https://digitalhive.in,Success,Crawl completed,2026-06-10T15:25:28.173846
-https://fabulousmedia.in,Success,Crawl completed,2026-06-10T15:25:38.926134
-https://brandhype.in,Success,Crawl completed,2026-06-10T15:25:53.966443
-https://digimarkagency.com,Success,Crawl completed,2026-06-10T15:26:05.925145
-https://bestdigitalagency.in,Success,Crawl completed,2026-06-10T15:26:19.771063
-https://intellipaat.com,Success,Crawl completed,2026-06-10T15:26:32.522344
-https://creativenexus.in,Success,Crawl completed,2026-06-10T15:26:38.768932
-https://spintadigital.com,Success,Crawl completed,2026-06-10T15:26:47.902363
-https://monaqo.in,Success,Crawl completed,2026-06-10T15:26:52.893372
-https://firstlaunch.in,Success,Crawl completed,2026-06-10T15:26:53.721182
-https://mathewdigital.com,Success,Crawl completed,2026-06-10T15:26:56.502023
-https://digitalseva.csc.gov.in,Success,Crawl completed,2026-06-10T15:27:03.663801
-https://digitalindia.gov.in,Success,Crawl completed,2026-06-10T15:27:06.992947
-https://reliancedigital.in,Success,Crawl completed,2026-06-10T15:27:08.581129
-https://dic.gov.in,Success,Crawl completed,2026-06-10T15:27:10.801804
-https://digitalgujarat.gov.in,Failed,"HTTPSConnectionPool(host='digitalgujarat.gov.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, ""[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'digitalgujarat.gov.in'. (_ssl.c:1032)"")))",2026-06-10T15:27:56.383834
-https://bitspilani-digital.edu.in,Success,Crawl completed,2026-06-10T15:27:58.283226
-https://ndl.gov.in,Failed,"HTTPSConnectionPool(host='ndl.gov.in', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x11140cb90>: Failed to establish a new connection: [Errno 61] Connection refused'))",2026-06-10T15:28:43.737353
-https://digitalpolice.gov.in,Success,Crawl completed,2026-06-10T15:28:44.357175
-https://digitalgujarat.gov.in,Failed,"HTTPSConnectionPool(host='digitalgujarat.gov.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, ""[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'digitalgujarat.gov.in'. (_ssl.c:1032)"")))",2026-06-10T15:29:34.977337
-https://ndl.gov.in,Failed,"HTTPSConnectionPool(host='ndl.gov.in', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x11140f4d0>: Failed to establish a new connection: [Errno 61] Connection refused'))",2026-06-10T15:30:20.272516
-https://thedigitalmarketingexperts.com,Success,Crawl completed,2026-06-10T15:30:37.817447
-https://3dm.agency,Success,Crawl completed,2026-06-10T15:30:38.994929
-https://digitaladage.com,Success,Crawl completed,2026-06-10T15:30:43.372488
-https://skyhitmedia.com,Success,Crawl completed,2026-06-10T15:30:44.224486
-https://vibasolutions.in,Failed,"HTTPSConnectionPool(host='vibasolutions.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1032)')))",2026-06-10T15:30:45.157246
-https://digianalytic.in,Success,Crawl completed,2026-06-10T15:30:48.220498
-https://scioondigital.com,Success,Crawl completed,2026-06-10T15:31:19.477601
-https://digitali360.com,Success,Crawl completed,2026-06-10T15:31:20.623362
-https://digitalbow.in,Success,Crawl completed,2026-06-10T15:31:28.123451
-https://guvi.in,Success,Crawl completed,2026-06-10T15:31:46.023782
-https://weboin.com,Success,Crawl completed,2026-06-10T15:31:49.738550
-https://bleap.in,Success,Crawl completed,2026-06-10T15:31:51.232820
-https://ayatiworks.com,Success,Crawl completed,2026-06-10T15:32:01.221810
-https://orangedigitalmarketing.in,Success,Crawl completed,2026-06-10T15:32:12.004808
-https://demandsage.com,Success,Crawl completed,2026-06-10T15:32:24.042251
-https://thecreativestudios.in,Success,Crawl completed,2026-06-10T15:32:29.270967
-https://promotedge.com,Success,Crawl completed,2026-06-10T15:32:43.876609
-https://nicodigital.com,Success,Crawl completed,2026-06-10T15:32:48.226061
-https://meraqi.in,Success,Crawl completed,2026-06-10T15:32:49.859550
-https://kolkatadigital.in,Success,Crawl completed,2026-06-10T15:32:55.774621
-https://kolkataagency.com,Success,Crawl completed,2026-06-10T15:33:00.214320
-https://cloud9digital.in,Success,Crawl completed,2026-06-10T15:33:02.722184
-https://digibrood.in,Failed,"not enough values to unpack (expected 2, got 1)",2026-06-10T15:33:10.251368
-https://litmusbranding.com,Success,Crawl completed,2026-06-10T15:33:26.675373
-https://rioconn.in,Success,Crawl completed,2026-06-10T15:33:32.056643
-https://ikf.co.in,Success,Crawl completed,2026-06-10T15:33:50.262872
-https://kapturedigital.in,Success,Crawl completed,2026-06-10T15:33:59.499506
-https://digifinity.in,Success,Crawl completed,2026-06-10T15:34:04.604239
-https://branddigitalagency.com,Success,Crawl completed,2026-06-10T15:34:06.800400
-https://shoutnhike.com,Success,Crawl completed,2026-06-10T15:34:11.327140
-https://moz.com,Success,Crawl completed,2026-06-10T15:35:22.050545
-https://developers.google.com,Success,Crawl completed,2026-06-10T15:35:26.448650
-https://seo.com,Success,Crawl completed,2026-06-10T15:36:29.940894
-https://searchengineland.com,Failed,403 Client Error: Forbidden for url: https://searchengineland.com/,2026-06-10T15:36:39.578059
-https://ahrefs.com,Success,Crawl completed,2026-06-10T15:37:08.860748
-https://naukri.com,Success,Crawl completed,2026-06-10T15:37:09.880369
-https://neilpatel.com,Success,Crawl completed,2026-06-10T15:38:34.370856
-https://guidelines.india.gov.in,Success,Crawl completed,2026-06-10T15:38:36.033445
-https://superbcompanies.com,Success,Crawl completed,2026-06-10T15:39:42.017508
-https://rankingbyseo.in,Success,Crawl completed,2026-06-10T15:39:42.812440
-https://brainpulse.com,Success,Crawl completed,2026-06-10T15:39:46.691950
-https://noseberry.com,Success,Crawl completed,2026-06-10T15:40:14.777224
-https://seoanalyst.in,Success,Crawl completed,2026-06-10T15:40:26.565343
-https://searchengineland.com,Failed,403 Client Error: Forbidden for url: https://searchengineland.com/,2026-06-10T15:40:32.199351
-https://seobangalore.in,Success,Crawl completed,2026-06-10T15:40:45.928307
-https://seodigitz.com,Success,Crawl completed,2026-06-10T15:40:58.508285
-https://infidigit.com,Success,Crawl completed,2026-06-10T15:41:22.288003
-https://bangaloreseo.com,Success,Crawl completed,2026-06-10T15:41:28.262366
-https://laukika.com,Success,Crawl completed,2026-06-10T15:41:40.217183
-https://webcraftindia.com,Success,Crawl completed,2026-06-10T15:41:55.019133
-https://agencies.semrush.com,Success,Crawl completed,2026-06-10T15:41:58.611075
-https://puneseocompany.com,Success,Crawl completed,2026-06-10T15:42:14.740004
-https://evonix.co,Success,Crawl completed,2026-06-10T15:42:20.183290
-https://brandpillars.in,Success,Crawl completed,2026-06-10T15:42:23.140214
-https://osumare.com,Success,Crawl completed,2026-06-10T15:42:31.781080
-https://brainminetech.com,Success,Crawl completed,2026-06-10T15:42:34.768745
-https://betopseo.com,Success,Crawl completed,2026-06-10T15:42:53.894360
-https://quadrilite.com,Success,Crawl completed,2026-06-10T15:43:05.438817
-https://seohyderabad.com,Success,Crawl completed,2026-06-10T15:43:07.865318
-https://10seos.com,Success,Crawl completed,2026-06-10T15:43:19.313254
-https://digitalzap.in,Success,Crawl completed,2026-06-10T15:43:21.882007
-https://yash-host.in,Success,Crawl completed,2026-06-10T15:43:23.926777
-https://searchengineland.com,Failed,403 Client Error: Forbidden for url: https://searchengineland.com/,2026-06-10T15:43:50.792660
-https://searchengineland.com,Failed,403 Client Error: Forbidden for url: https://searchengineland.com/,2026-06-10T15:43:59.552942
-https://prettifycreative.com,Success,Crawl completed,2026-06-10T16:04:25.683609
-https://duplextech.com,Success,Crawl completed,2026-06-10T16:04:27.041118
-https://rightfirms.co,Success,Crawl completed,2026-06-10T16:04:38.454396
-https://edvido.com,Success,Crawl completed,2026-06-10T16:04:49.242094
-https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:05:12.235257
-https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:05:14.659335
-https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T16:05:16.154367
-https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:05:36.227970
-https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:05:38.196030
-https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T16:05:39.393608
-https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:05:47.968044
-https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:05:49.926537
-https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T16:05:51.107510
-https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:06:22.288882
-https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:06:24.220704
-https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T16:06:25.446830
-https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:06:34.456212
-https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:06:36.698822
-https://whatsapp.com,Failed,400 Client Error: Bad Request for url: https://www.whatsapp.com/,2026-06-10T16:06:37.873354
-https://ques.noirandblanco.com,Success,Crawl completed,2026-06-10T16:06:52.591907
-https://hovodigital.com,Success,Crawl completed,2026-06-10T16:06:56.141701
-https://mmbo.in,Success,Crawl completed,2026-06-10T16:07:00.148615
-https://unbundl.com,Success,Crawl completed,2026-06-10T16:07:03.553533
-https://highhorse.in,Success,Crawl completed,2026-06-10T16:07:07.229763
-https://cyberworx.in,Success,Crawl completed,2026-06-10T16:07:10.535647
-https://jhango.in,Success,Crawl completed,2026-06-10T16:07:14.249549
-https://sorted.agency,Success,Crawl completed,2026-06-10T16:07:27.978402
-https://aimnlaunch.com,Success,Crawl completed,2026-06-10T16:07:29.354752
-https://magetrue.in,Success,Crawl completed,2026-06-10T16:07:32.534160
-https://serviceninjas.in,Success,Crawl completed,2026-06-10T16:07:33.774082
-https://noirandblanco.com,Success,Crawl completed,2026-06-10T16:07:36.308871
-https://futuregenapps.com,Success,Crawl completed,2026-06-10T16:07:44.331192
-https://500.marketing,Success,Crawl completed,2026-06-10T16:07:47.812497
-https://creativeorion.com,Success,Crawl completed,2026-06-10T16:07:51.369833
-https://roihunt.in,Success,Crawl completed,2026-06-10T16:07:54.040958
-https://shopify.com,Success,Crawl completed,2026-06-10T16:08:02.138169
-https://try-shopify.com,Success,Crawl completed,2026-06-10T16:08:03.947331
-https://shopify-online.com,Success,Crawl completed,2026-06-10T16:08:05.970087
-https://shopify.dev,Success,Crawl completed,2026-06-10T16:08:07.692114
-https://play.google.com,Success,Crawl completed,2026-06-10T16:08:13.266725
-https://startshopify.com,Success,Crawl completed,2026-06-10T16:08:14.547303
-https://shopifyacademy.com,Success,Crawl completed,2026-06-10T16:08:32.457932
-https://forbes.com,Success,Crawl completed,2026-06-10T16:08:36.110575
-https://themeisle.com,Success,Crawl completed,2026-06-10T16:08:38.303675
-https://webshark.in,Success,Crawl completed,2026-06-10T16:08:52.056805
-https://thriftizer.com,Success,Crawl completed,2026-06-10T16:08:53.101201
-https://baclinc.com,Success,Crawl completed,2026-06-10T16:08:57.656573
-https://digitalheroes.co.in,Success,Crawl completed,2026-06-10T16:09:07.075792
-https://flowtrix.co,Success,Crawl completed,2026-06-10T16:09:51.853723
-https://unfoldmart.com,Success,Crawl completed,2026-06-10T16:09:56.225319
-https://webyansh.com,Success,Crawl completed,2026-06-10T16:09:58.410461
-https://thealien.design,Success,Crawl completed,2026-06-10T16:10:02.578469
-https://victorflow.com,Success,Crawl completed,2026-06-10T16:10:03.924138
-https://brandemic.in,Success,Crawl completed,2026-06-10T16:10:15.620096
-https://blushush.co.uk,Success,Crawl completed,2026-06-10T16:10:43.075886
-https://1729digital.com,Success,Crawl completed,2026-06-10T16:10:58.576737
-https://everythingflow.agency,Success,Crawl completed,2026-06-10T16:11:02.664430
-https://emergedigital.co,Success,Crawl completed,2026-06-10T16:11:20.714776
-https://investopedia.com,Success,Crawl completed,2026-06-10T16:11:33.597564
-https://ibm.com,Success,Crawl completed,2026-06-10T16:11:39.084757
-https://aws.amazon.com,Success,Crawl completed,2026-06-10T16:11:42.188239
-https://builtin.com,Success,Crawl completed,2026-06-10T16:11:47.085046
-https://elementor.com,Success,Crawl completed,2026-06-10T16:11:52.645379
-https://techimply.com,Failed,403 Client Error: Forbidden for url: https://www.techimply.com/,2026-06-10T16:11:54.909997
-https://leadsquared.com,Success,Crawl completed,2026-06-10T16:12:23.339849
-https://inventiva.co.in,Success,Crawl completed,2026-06-10T16:12:26.528457
-https://telecrm.in,Success,Crawl completed,2026-06-10T16:12:27.623811
-https://edesy.in,Success,Crawl completed,2026-06-10T16:12:32.593150
-https://capterra.in,Failed,403 Client Error: Forbidden for url: https://capterra.in/,2026-06-10T16:12:33.396336
-https://groweon.com,Success,Crawl completed,2026-06-10T16:12:36.174971
-https://indiacrm.in,Success,Crawl completed,2026-06-10T16:12:36.780379
-https://techjockey.com,Success,Crawl completed,2026-06-10T16:12:39.309879
-https://pockethrms.com,Success,Crawl completed,2026-06-10T16:12:59.997053
-https://pazcare.com,Success,Crawl completed,2026-06-10T16:13:06.989785
-https://greythr.com,Success,Crawl completed,2026-06-10T16:13:09.888857
-https://tigihr.com,Success,Crawl completed,2026-06-10T16:13:11.013016
-https://internshala.com,Success,Crawl completed,2026-06-10T16:13:14.625935
-https://nyggs.com,Failed,"HTTPSConnectionPool(host='nyggs.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))",2026-06-10T16:13:15.281324
-https://sutrahr.com,Success,Crawl completed,2026-06-10T16:13:21.310431
-https://zinghr.com,Success,Crawl completed,2026-06-10T16:13:26.417270
-https://phiedge.co.in,Success,Crawl completed,2026-06-10T16:13:33.407887
-https://ensun.io,Success,Crawl completed,2026-06-10T16:13:47.844690
-https://technologycounter.com,Success,Crawl completed,2026-06-10T16:13:54.461867
-https://softwareworld.co,Success,Crawl completed,2026-06-10T16:14:03.244966
-https://wmtips.com,Success,Crawl completed,2026-06-10T16:14:08.712370
-https://sagesoftware.co.in,Success,Crawl completed,2026-06-10T16:14:14.524111
-https://softwaredekho.in,Success,Crawl completed,2026-06-10T16:14:50.292939
-https://techimply.com,Failed,403 Client Error: Forbidden for url: https://www.techimply.com/,2026-06-10T16:14:52.457484
-https://saleson.co.in,Success,Crawl completed,2026-06-10T16:14:53.419683
-https://salesnayak.com,Success,Crawl completed,2026-06-10T16:14:54.480811
-https://blog.happisales.com,Success,Crawl completed,2026-06-10T16:14:55.587864
-https://tracxn.com,Success,Crawl completed,2026-06-10T16:15:09.834076
-https://sourceforge.net,Failed,403 Client Error: Forbidden for url: https://sourceforge.net/,2026-06-10T16:15:11.054522
-https://ai-startups.pro,Success,Crawl completed,2026-06-10T16:15:25.551965
-https://indiaai.gov.in,Success,Crawl completed,2026-06-10T16:15:44.476195
-https://timesofstartups.com,Success,Crawl completed,2026-06-10T16:15:48.951133
-https://beststartup.in,Success,Crawl completed,2026-06-10T16:15:50.497423
-https://zinnov.com,Success,Crawl completed,2026-06-10T16:16:05.454309
-https://inc42.com,Success,Crawl completed,2026-06-10T16:16:07.701423
-https://indiaspora.org,Success,Crawl completed,2026-06-10T16:16:09.041897
-https://en.softonic.com,Failed,412 Client Error: Precondition failed for url: https://en.softonic.com/,2026-06-10T16:16:17.004552
-https://techtarget.com,Success,Crawl completed,2026-06-10T16:16:21.846533
-https://britannica.com,Success,Crawl completed,2026-06-10T16:16:26.733855
-https://simplilearn.com,Success,Crawl completed,2026-06-10T16:16:30.870497
-https://techspot.com,Failed,403 Client Error: Forbidden for url: https://techspot.com/,2026-06-10T16:16:31.729429
-https://filehippo.com,Success,Crawl completed,2026-06-10T16:16:36.447018
-https://danone.in,Success,Crawl completed,2026-06-10T16:16:55.088186
-https://companydetails.in,Failed,"HTTPSConnectionPool(host='www.companydetails.in', port=443): Read timed out. (read timeout=15)",2026-06-10T16:17:44.528182
-https://gkgigs.com,Success,Crawl completed,2026-06-10T16:17:46.272817
-https://tradologie.com,Failed,"HTTPSConnectionPool(host='tradologie.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))",2026-06-10T16:17:47.311342
-https://failory.com,Success,Crawl completed,2026-06-10T16:17:49.660817
-https://cooperpharma.com,Success,Crawl completed,2026-06-10T16:17:51.867827
-https://3mindia.in,Success,Crawl completed,2026-06-10T16:18:00.735886
-https://bestbusinesscoachindia.com,Success,Crawl completed,2026-06-10T16:18:17.130666
-https://businesscoachingindia.com,Success,Crawl completed,2026-06-10T16:18:23.126096
-https://saurabhkaushik.com,Success,Crawl completed,2026-06-10T16:18:24.785872
-https://rahulmalodia.com,Success,Crawl completed,2026-06-10T16:18:26.298766
-https://businessworld.in,Success,Crawl completed,2026-06-10T16:18:30.368520
-https://indiatoday.in,Success,Crawl completed,2026-06-10T16:18:37.559224
-https://noomii.com,Success,Crawl completed,2026-06-10T16:18:44.842442
-https://business-standard.com,Failed,403 Client Error: Forbidden for url: https://www.business-standard.com/,2026-06-10T16:18:46.131005
-https://india.com,Failed,403 Client Error: Forbidden for url: https://www.india.com/,2026-06-10T16:18:47.399386
-https://startupindia.gov.in,Failed,"HTTPSConnectionPool(host='startupindia.gov.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))",2026-06-10T16:18:55.533138
-https://e-startupindia.com,Success,Crawl completed,2026-06-10T16:18:57.960385
-https://india.co.in,Success,Crawl completed,2026-06-10T16:18:59.345644
-https://startuppedia.in,Success,Crawl completed,2026-06-10T16:19:01.160767
-https://yourstory.com,Success,Crawl completed,2026-06-10T16:19:02.932311
-https://startuptimes.in,Success,Crawl completed,2026-06-10T16:19:06.704419
-https://startupsindia.in,Success,Crawl completed,2026-06-10T16:19:10.850160
-https://salescoachindia.com,Failed,403 Client Error: Forbidden for url: https://salescoachindia.com/,2026-06-10T16:19:23.169382
-https://grovaleulers.com,Success,Crawl completed,2026-06-10T16:20:14.205674
-https://justbaazaar.com,Failed,403 Client Error: Forbidden for url: https://justbaazaar.com/,2026-06-10T16:20:14.847631
-https://10xcoachindia.com,Success,Crawl completed,2026-06-10T16:20:45.722314
-https://gowin.in,Success,Crawl completed,2026-06-10T16:20:47.386724
-https://pitchperfectindia.com,Success,Crawl completed,2026-06-10T16:20:48.635923
-https://anandmunshi.com,Success,Crawl completed,2026-06-10T16:20:50.057100
-https://anmoldhamija.com,Success,Crawl completed,2026-06-10T16:21:11.069175
-https://rainsalestraining.com,Success,Crawl completed,2026-06-10T16:21:16.831140
-https://consult4sales.com,Success,Crawl completed,2026-06-10T16:21:17.777711
-https://support.google.com,Success,Crawl completed,2026-06-10T16:21:34.913880
-https://zhihu.com,Success,Crawl completed,2026-06-10T16:21:38.743691
-https://kraftshala.com,Success,Crawl completed,2026-06-10T16:22:08.834967
-https://about.me,Success,Crawl completed,2026-06-10T16:22:14.493896
-https://pranavjha.com,Success,Crawl completed,2026-06-10T16:22:18.760597
-https://economictimes.indiatimes.com,Success,Crawl completed,2026-06-10T16:22:20.905417
-https://ikonmarket.com,Success,Crawl completed,2026-06-10T16:22:25.547826
-https://ipeccoaching.com,Success,Crawl completed,2026-06-10T16:22:31.033263
-https://collab.anchors.in,Success,Crawl completed,2026-06-10T16:22:43.858931
-https://ceoinsightsindia.com,Success,Crawl completed,2026-06-10T16:22:47.119347
-https://orgs.noomii.com,Success,Crawl completed,2026-06-10T16:22:49.246045
-https://coachkshitij.com,Success,Crawl completed,2026-06-10T16:22:53.774435
-https://asiabusinessoutlook.com,Success,Crawl completed,2026-06-10T16:22:55.592072
-https://consultancy.in,Success,Crawl completed,2026-06-10T16:23:07.970695
-https://theceo.in,Success,Crawl completed,2026-06-10T16:26:01.416260
-https://kpmg.com,Success,Crawl completed,2026-06-10T16:26:05.013329
-https://solutionbuggy.com,Success,Crawl completed,2026-06-10T16:26:05.968666
-https://bizconsultancy.iid.org.in,Success,Crawl completed,2026-06-10T16:26:12.705437
-https://sganalytics.com,Success,Crawl completed,2026-06-10T16:26:25.212446
-https://geektonight.com,Success,Crawl completed,2026-06-10T16:26:38.594848
-https://mbaskool.com,Success,Crawl completed,2026-06-10T16:26:43.956916
-https://ama.org,Success,Crawl completed,2026-06-10T16:26:57.489474
-https://coursera.org,Success,Crawl completed,2026-06-10T16:27:05.510779
-https://blog.hubspot.com,Success,Crawl completed,2026-06-10T16:27:08.870631
-https://pankajkumarseo.com,Success,Crawl completed,2026-06-10T16:27:27.051299
-https://ankitchauhanseo.com,Success,Crawl completed,2026-06-10T16:27:30.063318
-https://shantanaranng.com,Failed,"not enough values to unpack (expected 2, got 1)",2026-06-10T16:27:33.165945
-https://groww.in,Success,Crawl completed,2026-06-10T16:27:40.484166
-https://dictionary.cambridge.org,Success,Crawl completed,2026-06-10T16:27:42.067858
-https://biologyonline.com,Success,Crawl completed,2026-06-10T16:27:45.988945
-https://vajiramandravi.com,Success,Crawl completed,2026-06-10T16:27:46.985529
-https://en.m.wikipedia.org,Success,Crawl completed,2026-06-10T16:27:49.083263
-https://vedantu.com,Success,Crawl completed,2026-06-10T16:27:51.628070
-https://brandconsultants.in,Success,Crawl completed,2026-06-10T16:28:07.666294
-https://wbrcorp.org,Success,Crawl completed,2026-06-10T16:28:14.316271
-https://chlorophyll.in,Success,Crawl completed,2026-06-10T16:28:16.298630
-https://perpetual.co.in,Success,Crawl completed,2026-06-10T16:28:25.879487
-https://stratrich.com,Success,Crawl completed,2026-06-10T16:28:39.662088
-https://masterbrains.co.in,Success,Crawl completed,2026-06-10T16:28:43.517584
-https://neusourcestartup.com,Success,Crawl completed,2026-06-10T16:28:45.118318
-https://startuptiger.in,Success,Crawl completed,2026-06-10T16:28:49.300842
-https://startupmentor.co.in,Success,Crawl completed,2026-06-10T16:28:50.431690
-https://startly.in,Success,Crawl completed,2026-06-10T16:28:51.583017
-https://startupindiaconsultants.com,Success,Crawl completed,2026-06-10T16:28:54.900531
-https://salesprofit.in,Success,Crawl completed,2026-06-10T16:29:07.877215
-https://salesdesign.co.in,Success,Crawl completed,2026-06-10T16:29:22.661365
-https://dir.indiamart.com,Success,Crawl completed,2026-06-10T16:29:24.307408
-https://famewall.io,Success,Crawl completed,2026-06-10T16:29:45.553864
-https://om.agency,Success,Crawl completed,2026-06-10T16:29:51.599236
-https://adsangle.in,Success,Crawl completed,2026-06-10T16:30:00.429228
-https://cleartailmarketing.com,Success,Crawl completed,2026-06-10T16:30:03.805220
-https://digitalrhetoric.in,Success,Crawl completed,2026-06-10T16:30:06.965330
-https://brandingmarketingagency.com,Success,Crawl completed,2026-06-10T16:30:19.587461
-https://marketmindscreative.com,Success,Crawl completed,2026-06-10T16:30:24.170054
-https://trinityp3.com,Success,Crawl completed,2026-06-10T16:30:26.843285
-https://gosalesandmarketing.com,Success,Crawl completed,2026-06-10T16:30:34.818964
-https://seotransformer.com,Success,Crawl completed,2026-06-10T16:31:05.566810
-https://seomarketing.agency,Success,Crawl completed,2026-06-10T16:31:09.916216
-https://testimonial.to,Success,Crawl completed,2026-06-10T16:31:22.188461
-https://webdevelopmentartistry.com,Success,Crawl completed,2026-06-10T16:31:30.038447
-https://htmlburger.com,Success,Crawl completed,2026-06-10T16:31:33.345277
-https://glivera-team.com,Success,Crawl completed,2026-06-10T16:31:40.308240
-https://warrenchandler.com,Success,Crawl completed,2026-06-10T16:31:54.106290
-https://gurugraminfo.com,Success,Crawl completed,2026-06-10T16:31:54.846232
-https://ai.google,Success,Crawl completed,2026-06-10T16:32:20.509101
-https://blog.google,Success,Crawl completed,2026-06-10T16:32:23.365502
-https://search.google,Success,Crawl completed,2026-06-10T16:32:28.623943
-https://about.google,Success,Crawl completed,2026-06-10T16:32:29.984432
-https://accounts.google.com,Success,Crawl completed,2026-06-10T16:32:37.576540
-https://en.wikipedia.org,Success,Crawl completed,2026-06-10T16:32:39.192239
-https://google.co.uk,Success,Crawl completed,2026-06-10T16:32:45.027049
-https://apps.apple.com,Success,Crawl completed,2026-06-10T16:32:46.823569
-https://creativebrief.com,Success,Crawl completed,2026-06-10T16:33:02.963599
-https://themarketingagency.ca,Success,Crawl completed,2026-06-10T16:33:11.479070
-https://ampagency.com,Success,Crawl completed,2026-06-10T16:33:14.567074
-https://amraandelma.com,Success,Crawl completed,2026-06-10T16:33:20.506346
-https://twelverays.agency,Success,Crawl completed,2026-06-10T16:33:23.327069
-https://bizsage.io,Success,Crawl completed,2026-06-10T16:33:27.338228
-https://ga.agency,Success,Crawl completed,2026-06-10T16:33:33.687997
-https://twipla.com,Success,Crawl completed,2026-06-10T16:33:43.489828
-https://digitaldefynd.com,Success,Crawl completed,2026-06-10T16:33:45.949604
-https://surferseo.com,Success,Crawl completed,2026-06-10T16:33:58.338320
-https://hawksem.com,Success,Crawl completed,2026-06-10T16:34:00.606590
-https://aioseo.com,Success,Crawl completed,2026-06-10T16:34:05.893379
-https://rebusadvertising.com,Success,Crawl completed,2026-06-10T16:34:23.351291
-https://trafficthinktank.com,Success,Crawl completed,2026-06-10T16:34:25.493849
-https://seohubagency.com,Success,Crawl completed,2026-06-10T16:34:39.019512
-https://coalitiontechnologies.com,Success,Crawl completed,2026-06-10T16:34:43.647072
-https://frasatali.com,Success,Crawl completed,2026-06-10T16:34:54.711618
-https://web.whatsapp.com,Failed,400 Client Error: Bad Request for url: https://web.whatsapp.com/,2026-06-10T16:35:03.574989
-https://saccess.nic.in,Success,Crawl completed,2026-06-10T16:35:03.952352
-https://snapchat.com,Success,Crawl completed,2026-06-10T16:35:05.841067
-https://wa.me,Failed,400 Client Error: Bad Request for url: https://api.whatsapp.com/,2026-06-10T16:35:08.274901
-https://microsoft.com,Success,Crawl completed,2026-06-10T16:35:20.386146
-https://testigather.com,Success,Crawl completed,2026-06-10T16:35:24.121062
-https://salesforce.com,Success,Crawl completed,2026-06-10T16:35:32.480914
-https://under30ceo.com,Failed,403 Client Error: Forbidden for url: https://under30ceo.com/,2026-06-10T16:35:34.707373
-https://slideteam.net,Success,Crawl completed,2026-06-10T16:35:48.648901
-https://freshworks.com,Failed,403 Client Error: Forbidden for url: https://www.freshworks.com/,2026-06-10T16:35:49.639483
-https://loyaltysurf.io,Success,Crawl completed,2026-06-10T16:35:52.906738
-https://drip.com,Success,Crawl completed,2026-06-10T16:36:09.439043
-https://rigorousthemes.com,Success,Crawl completed,2026-06-10T16:36:17.498010
-https://wordstream.com,Success,Crawl completed,2026-06-10T16:36:25.767581
-https://zendesk.com,Success,Crawl completed,2026-06-10T16:36:29.590536
-https://shoutjar.com,Success,Crawl completed,2026-06-10T16:36:39.255854
-https://leafclient.com,Success,Crawl completed,2026-06-10T16:37:32.036319
-https://meteorclient.com,Success,Crawl completed,2026-06-10T16:37:33.641229
-https://alpineclient.com,Success,Crawl completed,2026-06-10T16:37:35.139879
-https://cm-pack.pl,Success,Crawl completed,2026-06-10T16:37:38.341068
-https://lunarclient.com,Success,Crawl completed,2026-06-10T16:37:40.700866
-https://playvalorant.com,Success,Crawl completed,2026-06-10T16:37:41.885940
-https://faceit.com,Failed,403 Client Error: Forbidden for url: https://www.faceit.com/,2026-06-10T16:37:42.804040
-https://thestrive.co,Success,Crawl completed,2026-06-10T16:37:51.768241
-https://thebetterindia.com,Success,Crawl completed,2026-06-10T16:37:52.904548
-https://21kschool.com,Success,Crawl completed,2026-06-10T16:38:07.254092
-https://cheggindia.com,Success,Crawl completed,2026-06-10T16:38:10.055692
-https://developgoodhabits.com,Success,Crawl completed,2026-06-10T16:38:16.325268
-https://medium.com,Success,Crawl completed,2026-06-10T16:38:17.752587
-https://icar.org.in,Success,Crawl completed,2026-06-10T16:38:19.276980
-https://indiafilings.com,Success,Crawl completed,2026-06-10T16:38:21.042403
-https://jonathanmpham.com,Success,Crawl completed,2026-06-10T16:38:26.369840
-https://realmadrid.com,Success,Crawl completed,2026-06-10T16:38:40.099924
-https://therealreal.com,Failed,403 Client Error: Forbidden for url: https://www.therealreal.com/,2026-06-10T16:38:43.381968
-https://en.m.wikipedia.org,Success,Crawl completed,2026-06-10T16:38:45.636914
-https://realme.com,Success,Crawl completed,2026-06-10T16:38:47.666706
-https://thefreedictionary.com,Failed,403 Client Error: Forbidden for url: https://thefreedictionary.com/,2026-06-10T16:38:48.307142
-https://dabur.com,Success,Crawl completed,2026-06-10T16:38:51.619304
-https://oxfordlearnersdictionaries.com,Success,Crawl completed,2026-06-10T16:38:55.055307
-https://dgt.gov.in,Success,Crawl completed,2026-06-10T16:39:36.040980
-https://collegedekho.com,Success,Crawl completed,2026-06-10T16:39:39.413429
-https://istd.in,Success,Crawl completed,2026-06-10T16:39:46.521081
-https://acte.in,Success,Crawl completed,2026-06-10T16:39:48.947867
-https://niit.com,Success,Crawl completed,2026-06-10T16:39:51.701615
-https://nctaindia.in,Success,Crawl completed,2026-06-10T16:39:52.784739
-https://nsdcindia.org,Success,Crawl completed,2026-06-10T16:39:54.098642
-https://ducatindia.com,Success,Crawl completed,2026-06-10T16:40:33.158651
-https://npti.gov.in,Success,Crawl completed,2026-06-10T16:40:36.710225
-https://hrassociationindia.com,Success,Crawl completed,2026-06-10T16:40:51.162594
-https://kaushikmahapatra.com,Success,Crawl completed,2026-06-10T16:40:56.660341
-https://glassdoor.co.in,Success,Crawl completed,2026-06-10T16:41:03.735091
-https://akashgautam.com,Success,Crawl completed,2026-06-10T16:41:05.016266
-https://bookatrainer.in,Success,Crawl completed,2026-06-10T16:41:06.364983
-https://edstellar.com,Success,Crawl completed,2026-06-10T16:41:10.262673
-https://teamleasetrainers.com,Success,Crawl completed,2026-06-10T16:41:12.593531
-https://indianleadershipacademy.com,Success,Crawl completed,2026-06-10T16:41:15.461504
-https://innovationm.com,Success,Crawl completed,2026-06-10T16:41:29.404800
-https://imgglobalinfotech.com,Success,Crawl completed,2026-06-10T16:41:32.886320
-https://infowindtech.com,Success,Crawl completed,2026-06-10T16:41:40.701256
-https://theninehertz.com,Success,Crawl completed,2026-06-10T16:41:45.509406
-https://businessofapps.com,Success,Crawl completed,2026-06-10T16:41:52.550418
-https://appwrk.com,Success,Crawl completed,2026-06-10T16:41:59.331762
-https://wpwebelite.com,Success,Crawl completed,2026-06-10T16:42:02.447339
-https://en.wikipedia.org,Success,Crawl completed,2026-06-10T16:42:10.121514
-https://en.softonic.com,Failed,412 Client Error: Precondition failed for url: https://en.softonic.com/,2026-06-10T16:42:10.918346
-https://techspot.com,Failed,403 Client Error: Forbidden for url: https://techspot.com/,2026-06-10T16:42:11.815706
-https://futurefactory.in,Success,Crawl completed,2026-06-10T16:42:40.162850
-https://analogydesign.co,Success,Crawl completed,2026-06-10T16:42:45.443578
-https://obvious.in,Success,Crawl completed,2026-06-10T16:42:48.352856
-https://talentelgia.com,Success,Crawl completed,2026-06-10T16:42:54.424903
-https://esparkinfo.com,Success,Crawl completed,2026-06-10T16:43:10.709780
-https://blog.synarionit.com,Success,Crawl completed,2026-06-10T16:43:14.137467
-https://softlabsgroup.com,Success,Crawl completed,2026-06-10T16:43:25.641446
-https://helixbeat.com,Success,Crawl completed,2026-06-10T16:43:47.219262
-https://orangemantra.com,Success,Crawl completed,2026-06-10T16:43:55.629592
-https://aeologic.com,Success,Crawl completed,2026-06-10T16:43:57.018977
-https://bestundertaking.net,Success,Crawl completed,2026-06-10T16:44:04.956927
-https://bestundertaking.com,Success,Crawl completed,2026-06-10T16:44:08.706230
-https://collinsdictionary.com,Failed,403 Client Error: Forbidden for url: https://collinsdictionary.com/,2026-06-10T16:44:09.549063
-https://bestbuy.com,Failed,"HTTPSConnectionPool(host='www.bestbuy.com', port=443): Read timed out. (read timeout=15)",2026-06-10T16:44:56.125167
-https://wordreference.com,Failed,418 Client Error:  for url: https://wordreference.com/,2026-06-10T16:44:57.704816
-https://tripadvisor.in,Failed,403 Client Error: Forbidden for url: https://www.tripadvisor.in/,2026-06-10T16:45:01.311376
-https://gadgets360.com,Failed,403 Client Error: Forbidden for url: https://gadgets360.com/,2026-06-10T16:45:02.303398
-https://myntra.com,Success,Crawl completed,2026-06-10T16:45:10.838586
-https://meesho.com,Failed,403 Client Error: Forbidden for url: https://www.meesho.com:443/,2026-06-10T16:45:12.150709
-https://ajio.com,Failed,403 Client Error: Forbidden for url: https://www.ajio.com/,2026-06-10T16:45:13.480930
-https://zara.com,Success,Crawl completed,2026-06-10T16:45:15.285314
-https://www2.hm.com,Failed,403 Client Error: Forbidden for url: https://www2.hm.com/,2026-06-10T16:45:16.097890
-https://tripadvisor.in,Failed,403 Client Error: Forbidden for url: https://www.tripadvisor.in/,2026-06-10T16:45:19.066684
-https://incredibleindia.gov.in,Success,Crawl completed,2026-06-10T16:45:22.146211
-https://topstockresearch.com,Success,Crawl completed,2026-06-10T16:45:23.386105
-https://holidify.com,Success,Crawl completed,2026-06-10T16:45:26.985375
-https://webinmarketing.com,Success,Crawl completed,2026-06-10T16:45:44.051771
-https://meesho.com,Failed,403 Client Error: Forbidden for url: https://www.meesho.com:443/,2026-06-10T16:45:53.413760
-https://ajio.com,Failed,403 Client Error: Forbidden for url: https://www.ajio.com/,2026-06-10T16:45:54.764777
-https://www2.hm.com,Failed,403 Client Error: Forbidden for url: https://www2.hm.com/,2026-06-10T16:45:55.587533
-https://tripadvisor.in,Failed,403 Client Error: Forbidden for url: https://www.tripadvisor.in/,2026-06-10T16:45:58.353199
-https://analyticsinsight.net,Success,Crawl completed,2026-06-10T16:46:12.651925
-https://feedbax.ai,Success,Crawl completed,2026-06-10T16:46:19.581718
-https://techeasify.com,Success,Crawl completed,2026-06-10T16:46:35.158708
-https://bdir.in,Success,Crawl completed,2026-06-10T16:46:55.261233
-https://placementindia.com,Success,Crawl completed,2026-06-10T16:46:57.731318
-https://threebestrated.in,Success,Crawl completed,2026-06-10T16:46:59.660893
-https://motionminds.in,Success,Crawl completed,2026-06-10T16:47:03.433485
-https://randstad.in,Success,Crawl completed,2026-06-10T16:47:08.350631
-https://bizdir24.com,Success,Crawl completed,2026-06-10T16:47:09.130542
-https://prindore.com,Success,Crawl completed,2026-06-10T16:47:11.985933
+https://www.outfoxsocial.com/,Success,Crawl completed,2026-06-19T16:34:58.442025
+https://www.outfoxsocial.com/,Success,Crawl completed,2026-06-19T16:44:25.358431
+https://www.outfoxsocial.com/,Success,Crawl completed,2026-06-19T16:53:52.893336
+https://www.outfoxsocial.com/,Success,Crawl completed,2026-06-19T17:17:08.050711
+https://www.outfoxsocial.com/,Success,Crawl completed,2026-06-19T17:25:57.558060
+https://www.outfoxsocial.com/,Success,Crawl completed,2026-06-19T17:58:57.952019
+http://www.digitalmarketingplayers.com/,Success,Crawl completed,2026-06-19T17:59:06.708728
+http://www.centdigital.in/,Success,Crawl completed,2026-06-19T17:59:17.681055
+https://needawebsitedeveloper.com/,Failed,Website does not appear to be a valid business website,2026-06-19T17:59:23.564344
+https://www.promfly.com/,Success,Crawl completed,2026-06-19T17:59:27.587076
+https://ramniwasadvertising.com/,Failed,Website does not appear to be a valid business website,2026-06-19T17:59:29.872666
+https://soham.showcasingportfolio.com/,Failed,"HTTPSConnectionPool(host='soham.showcasingportfolio.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-19T17:59:30.652379
+https://www.tracepresence.in/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-19T17:59:33.731669
+https://harshitkr.com/,Success,Crawl completed,2026-06-19T17:59:39.621453
+https://delhimarketing.in/,Success,Crawl completed,2026-06-19T17:59:40.259668
+https://sites.google.com/view/cleareachmediadigitalmarketing,Success,Crawl completed,2026-06-19T17:59:42.884702
+https://www.mise-en-place.co/services/?utm_source=GMB&utm_medium=gmb&utm_campaign=GMB,Success,Crawl completed,2026-06-19T17:59:45.305645
+https://www.techadsmediaa.com/,Success,Crawl completed,2026-06-19T18:00:10.826899
+https://www.digitallyhappens.com/,Failed,"HTTPSConnectionPool(host='www.digitallyhappens.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x109b8efd0>: Failed to resolve 'www.digitallyhappens.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-19T18:00:11.223599
+http://ysadigitalmedia.com/,Success,Crawl completed,2026-06-19T18:00:16.079153
+https://hobo.video/,Success,Crawl completed,2026-06-19T18:00:21.949351
+https://yoandmo.com/,Success,Crawl completed,2026-06-19T18:00:32.053757
+https://growthhubmedia.com/,Success,Crawl completed,2026-06-19T18:00:40.589156
+https://www.excelrange.com/,Success,Crawl completed,2026-06-19T18:01:05.920749
+https://360p.co/,Failed,Website does not appear to be a valid business website,2026-06-19T18:01:09.832225
+https://wdmservice.com/,Success,Crawl completed,2026-06-19T18:01:13.746405
+https://www.letsdigitalmarketing.com/,Success,Crawl completed,2026-06-19T18:01:16.626716
+https://digitalmarketingagency.digidzn.com/,Success,Crawl completed,2026-06-19T18:01:17.478725
+https://valvmedia.in/,Success,Crawl completed,2026-06-19T18:01:22.749681
+https://marketingvenue.in/,Failed,"HTTPSConnectionPool(host='marketingvenue.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x109f7ead0>: Failed to resolve 'marketingvenue.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-19T18:01:22.878587
+https://mysolution360.com/,Success,Crawl completed,2026-06-19T18:01:39.378699
+https://aidigitalmarketingagency.co.in/best-digital-marketing-agency-for-spine-surgeons-in-india/,Success,Crawl completed,2026-06-19T18:01:41.174098
+https://skillindiaprogram.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:01:43.566591
+https://www.digitechelites.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:01:48.265089
+http://digitalghost.in/,Failed,"HTTPConnectionPool(host='digitalghost.in', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x109f4fdf0>: Failed to resolve 'digitalghost.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-19T18:01:48.301722
+https://www.furiousdigitalmarketers.com/,Success,Crawl completed,2026-06-19T18:01:49.945445
+https://brozmedia.co.in/,Success,Crawl completed,2026-06-19T18:01:56.358741
+https://digitalmaking.in/,Success,Crawl completed,2026-06-19T18:01:57.154210
+https://lines-digital.com/,Success,Crawl completed,2026-06-19T18:02:01.656171
+http://www.businessmarketingindia.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:02:02.893948
+http://www.givemepublicity.com/,Success,Crawl completed,2026-06-19T18:02:04.653401
+https://www.bigwigmediadigital.com/,Success,Crawl completed,2026-06-19T18:02:09.744376
+https://www.oddloopagency.com/,Success,Crawl completed,2026-06-19T18:02:11.370815
+https://aradhya-advertising.grexa.site/,Success,Crawl completed,2026-06-19T18:02:13.139283
+https://www.diginock.com/,Failed,500 Server Error: Internal Server Error for url: https://www.diginock.com/,2026-06-19T18:02:14.870484
+https://www.google.co.in/intl/en/about/products?tab=lh,Success,Crawl completed,2026-06-19T18:02:19.266687
+https://www.oxpromedia.com/,Success,Crawl completed,2026-06-19T18:02:20.555280
+https://www.haedigital.com/,Success,Crawl completed,2026-06-19T18:02:38.350276
+http://muff.media/,Failed,"HTTPConnectionPool(host='muff.media', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x109f4f350>: Failed to resolve 'muff.media' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-19T18:02:38.386806
+http://digitalrajat.io/,Success,Crawl completed,2026-06-19T18:02:46.786694
+http://businessvolunteers.online/,Failed,Website does not appear to be a valid business website,2026-06-19T18:02:51.142858
+http://digitalsoull.in/,Success,Crawl completed,2026-06-19T18:02:56.874303
+https://lotussocialworld.com/,Success,Crawl completed,2026-06-19T18:03:00.884139
+https://techwebmaster.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:03:04.103296
+https://scale-nova-technologies.grexa.site/,Success,Crawl completed,2026-06-19T18:03:07.257898
+https://www.mediabindingrelations.com/,Failed,"HTTPSConnectionPool(host='www.mediabindingrelations.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10fa94910>: Failed to resolve 'www.mediabindingrelations.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-19T18:03:13.170624
+https://www.redcrossdigital.com/,Success,Crawl completed,2026-06-19T18:03:18.502974
+https://any2digital.com/,Success,Crawl completed,2026-06-19T18:03:26.065874
+https://www.adbez.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:03:28.102442
+https://www.adlaxy.in/,Success,Crawl completed,2026-06-19T18:03:31.840242
+https://skillsify.in/,Success,Crawl completed,2026-06-19T18:03:33.192765
+https://lifeshow.in/,Success,Crawl completed,2026-06-19T18:03:33.817824
+https://kanhaserviceshub.blogspot.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:03:36.708988
+http://www.digirankmedia.com/,Failed,"HTTPConnectionPool(host='www.digirankmedia.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x10a723350>: Failed to resolve 'www.digirankmedia.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-19T18:03:37.055440
+https://7seamarketing.com/,Success,Crawl completed,2026-06-19T18:03:42.381360
+https://digitalcrave.com/,Failed,403 Client Error: Forbidden for url: https://www.atom.com/name/DigitalCrave,2026-06-19T18:03:44.406724
+https://digitalshukla.com/,Success,Crawl completed,2026-06-19T18:03:49.630262
+https://digitaljankari.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:03:50.544046
+https://me2digital.in/,Success,Crawl completed,2026-06-19T18:03:53.567285
+http://www.barkhacollection.in/,Success,Crawl completed,2026-06-19T18:03:54.830973
+https://aashishvats.in/,Failed,"HTTPSConnectionPool(host='aashishvats.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x111179450>: Failed to resolve 'aashishvats.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-19T18:03:54.865597
+https://toprankmedia.breakingworldtimes.com/,Failed,"HTTPSConnectionPool(host='toprankmedia.breakingworldtimes.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x111178a50>: Failed to resolve 'toprankmedia.breakingworldtimes.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-19T18:03:55.182803
+http://www.digitalmarketingclue.com/,Success,Crawl completed,2026-06-19T18:04:00.885764
+https://digitalmarketingking.in/,Success,Crawl completed,2026-06-19T18:04:03.583693
+https://admomenta.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:04:04.627815
+http://www.glideup.in/,Success,Crawl completed,2026-06-19T18:04:07.252054
+https://syeddanishali.com/,Failed,unhashable type: 'list',2026-06-19T18:04:16.225728
+https://advaana.co/,Success,Crawl completed,2026-06-19T18:04:23.170345
+https://webesters.in/,Success,Crawl completed,2026-06-19T18:04:25.718331
+https://digitalmarketingservicesindia.in/,Success,Crawl completed,2026-06-19T18:04:36.446618
+http://realgraphix.in/,Success,Crawl completed,2026-06-19T18:04:57.520444
+http://www.digitalclinch.com/,Success,Crawl completed,2026-06-19T18:05:04.519285
+https://webzpapa.com/seo-company-delhi.html,Success,Crawl completed,2026-06-19T18:05:12.755326
+https://www.mgiwebzone.com/,Success,Crawl completed,2026-06-19T18:05:42.134091
+https://newzensolution.com/,Success,Crawl completed,2026-06-19T18:05:43.654653
+http://kayradigitalsolution.com/,Failed,"HTTPConnectionPool(host='kayradigitalsolution.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x109abae00>: Failed to resolve 'kayradigitalsolution.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-19T18:05:43.941822
+https://brandholic.in/,Failed,"HTTPSConnectionPool(host='brandholic.in', port=443): Read timed out. (read timeout=15)",2026-06-19T18:06:29.558844
+https://gdbharat.netlify.app/,Success,Crawl completed,2026-06-19T18:06:31.980747
+https://www.naiyadot.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:06:35.722967
+https://www.javedakhter.com/,Success,Crawl completed,2026-06-19T18:06:37.565213
+https://adzorra.com/,Success,Crawl completed,2026-06-19T18:06:39.463130
+http://www.designhost.in/,Success,Crawl completed,2026-06-19T18:06:39.812861
+https://digizebra.in/,Success,Crawl completed,2026-06-19T18:06:52.569928
+https://www.paradigminfoweb.com/,Failed,403 Client Error: Forbidden for url: https://www.paradigminfoweb.com/,2026-06-19T18:06:53.344201
+http://adstalento.com/,Success,Crawl completed,2026-06-19T18:06:57.680087
+http://brandgrowthmedia.com/,Failed,"HTTPConnectionPool(host='brandgrowthmedia.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x110b55d00>: Failed to resolve 'brandgrowthmedia.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-19T18:06:57.856821
+https://profitbyppc.com/,Success,Crawl completed,2026-06-19T18:06:59.385909
+https://ajdigitalmarketer.in/,Failed,"HTTPSConnectionPool(host='ajdigitalmarketer.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-19T18:06:59.934743
+https://digitisementmedia.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:07:00.633189
+https://risearnmedia.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:07:01.274974
+https://www.bd.agency/,Success,Crawl completed,2026-06-19T18:07:06.130378
+https://www.agencyofsuccess.com/,Failed,"HTTPSConnectionPool(host='www.agencyofsuccess.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x111ac5590>: Failed to resolve 'www.agencyofsuccess.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-19T18:07:07.539758
+https://nitaienterprises.com/,Success,Crawl completed,2026-06-19T18:07:08.364551
+http://www.klmtmedia.in/,Success,Crawl completed,2026-06-19T18:07:12.576082
+https://digitalmachao.com/,Success,Crawl completed,2026-06-19T18:07:15.469979
+https://forms.gle/zLNERRaBphec5Pyk9,Failed,Website does not appear to be a valid business website,2026-06-19T18:07:19.525505
+https://www.kadvtg.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:07:26.673305
+https://www.priyalaxmipromotions.com/,Failed,"HTTPSConnectionPool(host='www.priyalaxmipromotions.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))",2026-06-19T18:07:29.072911

@@ -45,3 +45,12 @@ This MVP stores leads and crawl logs in CSV files for fast setup and Excel-nativ
 - Selenium is available only when JavaScript rendering is needed
 - Duplicate detection is based on domain, email, and company name
 - Error handling includes retries, timeouts, and crawl logging
+
+cd /Users/shashwatsaxena/Desktop/SCRAPINGCLIENTALIO
+python3 process_leads.py
+
+cd /Users/shashwatsaxena/Desktop/SCRAPINGCLIENTALIO
+python3 generate_email_list.py  # generates email_list.csv
+
+python3 run_search_csv.py                         
+

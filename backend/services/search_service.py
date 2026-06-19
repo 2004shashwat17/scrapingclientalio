@@ -2,6 +2,7 @@ import logging
 from urllib.parse import urlparse
 
 from backend.crawlers.search_discovery import SearchDiscovery
+from backend.crawlers.utils import is_blacklisted_domain, parse_domain
 from backend.repositories.lead_repository import LeadRepository
 from backend.services.crawl_service import CrawlService
 from backend.utils.settings import settings
@@ -42,43 +43,58 @@ class SearchService:
         self.lead_repo = LeadRepository()
 
     def search_and_save(self, query: str, limit: int = 200, country: str | None = None, industry: str | None = None) -> list[dict]:
-        providers = []
-        if settings.serper_api_key:
-            providers.append("serper")
-        if settings.brave_search_api_key:
-            providers.append("brave")
-        providers.append("bing")
-
-        domains = self.discovery.discover(
+        businesses = self.discovery.discover(
             query,
             limit=limit,
             country=country,
             industry=industry,
-            providers=providers,
         )
         results: list[dict] = []
-        for domain in domains:
-            if is_directory_site(domain):
-                logger.info("Skipping directory listing site: %s", domain)
+        visited: set[str] = set()
+        for business in businesses:
+            website = business.get("Website")
+            if not website:
+                continue
+            domain = parse_domain(website)
+            if domain in visited:
+                continue
+            visited.add(domain)
+            if is_directory_site(website):
+                logger.info("Skipping directory listing site: %s", website)
+                continue
+            if is_blacklisted_domain(website):
+                logger.info("Skipping blacklisted domain: %s", website)
                 continue
 
-            print("FOUND DOMAIN:", domain)
-            if self.lead_repo.find_duplicates(domain, None, domain) is not None:
-                logger.info("Skipping duplicate site: %s", domain)
+            print("FOUND BUSINESS:", business.get("CompanyName"), website)
+            if self.lead_repo.find_duplicates(website, None, business.get("CompanyName", "")) is not None:
+                logger.info("Skipping duplicate site: %s", website)
                 continue
 
             try:
-                saved = self.crawl_service.execute_crawl(domain, industry=industry or query)
+                saved = self.crawl_service.execute_crawl(
+                    website,
+                    industry=industry or query,
+                    source_keyword=query,
+                    address=business.get("Address", ""),
+                )
                 print("SAVED:", saved)
                 results.append({
                     "LeadId": saved["LeadId"],
                     "CompanyName": saved["CompanyName"],
                     "Website": saved["Website"],
                     "Industry": saved["Industry"],
-                    "LeadScore": saved["LeadScore"],
+                    "Location": saved.get("Location", ""),
+                    "Address": saved.get("Address", ""),
+                    "DecisionMakerName": saved.get("DecisionMakerName", ""),
+                    "Designation": saved.get("Designation", ""),
+                    "Email": saved.get("Email", ""),
+                    "EmailType": saved.get("EmailType", ""),
+                    "Phone": saved.get("Phone", ""),
+                    "LinkedIn": saved.get("LinkedIn", ""),
                     "Priority": saved["Priority"],
                 })
             except Exception as exc:
-                print("FAILED:", domain, exc)
-                logger.warning("Failed to crawl %s: %s", domain, exc)
+                print("FAILED:", website, exc)
+                logger.warning("Failed to crawl %s: %s", website, exc)
         return results

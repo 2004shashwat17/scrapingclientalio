@@ -17,9 +17,14 @@ FAILED_SITES_FILE = DATA_DIR / "failed_sites.csv"
 LEAD_FIELDS = [
     "LeadId",
     "CompanyName",
-    "Website",
     "Industry",
+    "Website",
+    "Location",
+    "Address",
+    "DecisionMakerName",
+    "Designation",
     "Email",
+    "EmailType",
     "Phone",
     "LinkedIn",
     "Facebook",
@@ -27,6 +32,7 @@ LEAD_FIELDS = [
     "Twitter",
     "YouTube",
     "ContactPage",
+    "SourceKeyword",
     "HasTestimonials",
     "HasVideoTestimonials",
     "HasCaseStudies",
@@ -51,6 +57,27 @@ def _ensure_data_files() -> None:
             with path.open("w", newline="", encoding="utf-8") as handle:
                 writer = csv.DictWriter(handle, fieldnames=headers)
                 writer.writeheader()
+            continue
+
+        with path.open("r", newline="", encoding="utf-8") as handle:
+            reader = csv.reader(handle)
+            existing_header = next(reader, None)
+
+        if existing_header is None:
+            with path.open("w", newline="", encoding="utf-8") as handle:
+                writer = csv.DictWriter(handle, fieldnames=headers)
+                writer.writeheader()
+            continue
+
+        if existing_header != headers:
+            with path.open("r", newline="", encoding="utf-8") as handle:
+                reader = csv.DictReader(handle, fieldnames=existing_header)
+                rows = [row for row in reader]
+            with path.open("w", newline="", encoding="utf-8") as handle:
+                writer = csv.DictWriter(handle, fieldnames=headers)
+                writer.writeheader()
+                for row in rows:
+                    writer.writerow({field: row.get(field, "") for field in headers})
 
 
 def _parse_bool(value: Any) -> bool:
@@ -72,9 +99,14 @@ def _parse_row(row: dict[str, str]) -> dict[str, Any]:
     return {
         "LeadId": _parse_int(row.get("LeadId")),
         "CompanyName": row.get("CompanyName", ""),
-        "Website": row.get("Website", ""),
         "Industry": row.get("Industry", ""),
+        "Website": row.get("Website", ""),
+        "Location": row.get("Location", ""),
+        "Address": row.get("Address", ""),
+        "DecisionMakerName": row.get("DecisionMakerName", ""),
+        "Designation": row.get("Designation", ""),
         "Email": row.get("Email", ""),
+        "EmailType": row.get("EmailType", ""),
         "Phone": row.get("Phone", ""),
         "LinkedIn": row.get("LinkedIn", ""),
         "Facebook": row.get("Facebook", ""),
@@ -82,6 +114,7 @@ def _parse_row(row: dict[str, str]) -> dict[str, Any]:
         "Twitter": row.get("Twitter", ""),
         "YouTube": row.get("YouTube", ""),
         "ContactPage": row.get("ContactPage", ""),
+        "SourceKeyword": row.get("SourceKeyword", ""),
         "HasTestimonials": _parse_bool(row.get("HasTestimonials")),
         "HasVideoTestimonials": _parse_bool(row.get("HasVideoTestimonials")),
         "HasCaseStudies": _parse_bool(row.get("HasCaseStudies")),
@@ -168,9 +201,14 @@ class LeadStore:
         lead = {
             "LeadId": next_id,
             "CompanyName": payload.get("CompanyName", ""),
-            "Website": payload.get("Website", ""),
             "Industry": payload.get("Industry", ""),
+            "Website": payload.get("Website", ""),
+            "Location": payload.get("Location", ""),
+            "Address": payload.get("Address", ""),
+            "DecisionMakerName": payload.get("DecisionMakerName", ""),
+            "Designation": payload.get("Designation", ""),
             "Email": payload.get("Email", ""),
+            "EmailType": payload.get("EmailType", ""),
             "Phone": payload.get("Phone", ""),
             "LinkedIn": payload.get("LinkedIn", ""),
             "Facebook": payload.get("Facebook", ""),
@@ -178,6 +216,7 @@ class LeadStore:
             "Twitter": payload.get("Twitter", ""),
             "YouTube": payload.get("YouTube", ""),
             "ContactPage": payload.get("ContactPage", ""),
+            "SourceKeyword": payload.get("SourceKeyword", ""),
             "HasTestimonials": payload.get("HasTestimonials", False),
             "HasVideoTestimonials": payload.get("HasVideoTestimonials", False),
             "HasCaseStudies": payload.get("HasCaseStudies", False),
@@ -194,9 +233,14 @@ def _serialize_lead(row: dict[str, Any]) -> dict[str, Any]:
     return {
         "LeadId": row.get("LeadId", ""),
         "CompanyName": row.get("CompanyName", ""),
-        "Website": row.get("Website", ""),
         "Industry": row.get("Industry", ""),
+        "Website": row.get("Website", ""),
+        "Location": row.get("Location", ""),
+        "Address": row.get("Address", ""),
+        "DecisionMakerName": row.get("DecisionMakerName", ""),
+        "Designation": row.get("Designation", ""),
         "Email": row.get("Email", ""),
+        "EmailType": row.get("EmailType", ""),
         "Phone": row.get("Phone", ""),
         "LinkedIn": row.get("LinkedIn", ""),
         "Facebook": row.get("Facebook", ""),
@@ -204,6 +248,7 @@ def _serialize_lead(row: dict[str, Any]) -> dict[str, Any]:
         "Twitter": row.get("Twitter", ""),
         "YouTube": row.get("YouTube", ""),
         "ContactPage": row.get("ContactPage", ""),
+        "SourceKeyword": row.get("SourceKeyword", ""),
         "HasTestimonials": bool(row.get("HasTestimonials", False)),
         "HasVideoTestimonials": bool(row.get("HasVideoTestimonials", False)),
         "HasCaseStudies": bool(row.get("HasCaseStudies", False)),

@@ -12,7 +12,7 @@ INDUSTRY_SCORES = {
 
 
 def calculate_lead_score(industry: str | None, flags: Dict[str, bool]) -> int:
-    score = 0
+    score = 70
     if industry:
         normalized = industry.strip().lower()
         for key, value in INDUSTRY_SCORES.items():
@@ -20,14 +20,12 @@ def calculate_lead_score(industry: str | None, flags: Dict[str, bool]) -> int:
                 score += value
     if flags.get("HasTestimonials"):
         score += 20
-    if flags.get("HasVideoTestimonials"):
-        score += 20
     if flags.get("HasCaseStudies"):
         score += 10
     if flags.get("HasGoogleReviews"):
-        score += 10
-    if not flags.get("HasTestimonials"):
-        score -= 20
+        score += 5
+    if flags.get("HasVideoTestimonials"):
+        score -= 15
     return max(0, min(score, 100))
 
 

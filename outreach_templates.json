@@ -1,0 +1,109 @@
+{
+  "TEMPLATE_1_AGENCIES": "# 1. Agencies\n\nHi {{Name}},\n\nQuick question.\n\nHow do you currently collect client testimonials?\n\nMost agencies I've spoken with are still using WhatsApp, email, or Google Forms, which often means great client feedback gets lost or never gets collected.\n\nWe've built Clientalio to simplify the process:\n\n1️⃣ Create a testimonial template\n\n2️⃣ Generate a branded invite link\n\n3️⃣ Send it to your client\n\n4️⃣ Clients can submit:\n\n🎥 Video Testimonials\n\n🖥️ Screen + Webcam Reviews\n\n✍️ Text Testimonials\n\n5️⃣ Manage everything from one dashboard and publish it to your website\n\nWe're currently offering free early access to our first users and would love feedback from agency owners.\n\nInterested in taking a look?\n\n🌐 [clientalio.com](http://clientalio.com)",
+  "TEMPLATE_2_CEOS_FOUNDERS": "# 3. CEOs / Founders\n\nHi {{Name}},\n\nQuick question.\n\nHow do you currently collect customer testimonials?\n\nMany businesses have happy customers but very few testimonials that actually make it onto their website.\n\nWe've built Clientalio to make testimonial collection simple.\n\nCreate a branded testimonial page, send a single link, and customers can submit:\n\n🎥 Video Testimonials\n\n🖥️ Screen + Webcam Reviews\n\n✍️ Text Testimonials\n\nEverything is managed in one place and can be showcased on your website through widgets and Wall of Love pages.\n\nWe're currently offering free early access and would love to hear how you're currently handling testimonials and see if Clientalio could help.\n\nInterested?\n\n🌐 [clientalio.com](http://clientalio.com)",
+  "TEMPLATE_3_FREELANCERS_CREATORS": "Hi {{Name}},\n\nQuick question.\n\nHow do you currently collect testimonials from your clients?\n\nMany freelancers and service providers deliver great work, but client feedback often stays buried in WhatsApp chats, emails, or LinkedIn messages.\n\nWe've built Clientalio to make it easy to collect and showcase social proof.\n\nSimply create a testimonial page, share a link, and clients can submit:\n\n🎥 Video Testimonials\n\n🖥️ Screen + Webcam Reviews\n\n✍️ Text Testimonials\n\nEverything is organized in one dashboard and can be displayed on your portfolio, website, or landing pages.\n\nWe're currently offering free early access and would love your feedback.\n\nInterested?\n\n🌐 [clientalio.com](http://clientalio.com)",
+  "CATEGORY_RULES": {
+    "AGENCIES": {
+      "examples": [
+        "Marketing Agency",
+        "Digital Agency",
+        "SEO Agency",
+        "Branding Agency",
+        "Web Development Agency",
+        "Shopify Agency",
+        "Advertising Agency",
+        "Creative Agency"
+      ],
+      "template": "TEMPLATE_1_AGENCIES",
+      "priority": {
+        "P1": "Founder / CEO",
+        "P2": "Director / Co-Founder",
+        "P3": "Employee"
+      }
+    },
+    "CEOS_FOUNDERS": {
+      "examples": [
+        "Founder",
+        "Co-Founder",
+        "CEO",
+        "Managing Director",
+        "Startup Founder",
+        "SaaS Founder",
+        "Entrepreneur",
+        "Business Owner"
+      ],
+      "template": "TEMPLATE_2_CEOS_FOUNDERS",
+      "priority": {
+        "P1": "Founder/CEO of active company",
+        "P2": "Co-Founder/Director",
+        "P3": "Other leadership"
+      }
+    },
+    "FREELANCERS_CREATORS": {
+      "examples": [
+        "Freelancer",
+        "Web Developer",
+        "Designer",
+        "UI/UX Designer",
+        "Copywriter",
+        "Consultant",
+        "Coach",
+        "Marketer",
+        "Personal Brand Consultant"
+      ],
+      "template": "TEMPLATE_3_FREELANCERS_CREATORS",
+      "priority": {
+        "P1": "Owns business/freelance brand",
+        "P2": "Senior professional",
+        "P3": "Junior professional"
+      }
+    }
+  },
+  "PERSONALIZATION_RULES": {
+    "company_website": "Mention company name if available.",
+    "agency": "Looks like you're helping brands grow through digital marketing and client services.",
+    "founder": "Looks like you're building {{CompanyName}} and growing the business.",
+    "freelancer": "Looks like you're helping clients through your expertise and services.",
+    "max_sentence": "Use one sentence only."
+  },
+  "PRIORITY_SCORING": {
+    "P1": 100,
+    "P2": 70,
+    "P3": 40,
+    "website_exists": 10,
+    "linkedin_exists": 10,
+    "instagram_exists": 5,
+    "has_active_business": 15,
+    "final_score_ranges": {
+      "HOT_LEAD": "90+",
+      "WARM_LEAD": "70-89",
+      "NORMAL_LEAD": "40-69",
+      "LOW_PRIORITY": "Below 40"
+    }
+  },
+  "OUTREACH_AUTOMATION": [
+    "Send Email",
+    "Visit LinkedIn",
+    "Follow LinkedIn Profile",
+    "Send LinkedIn Connection Request",
+    "Follow Instagram Account (if available)",
+    "Save CRM Entry",
+    "Wait 5 Days",
+    "If No Reply: Send Follow-Up Email",
+    "Wait 7 Days",
+    "If No Reply: Send Final Follow-Up"
+  ],
+  "OUTPUT_FORMAT": {
+    "name": "",
+    "company": "",
+    "category": "",
+    "priority": "",
+    "lead_score": "",
+    "email_template": "",
+    "personalized_intro": "",
+    "linkedin_follow": true,
+    "linkedin_connect": true,
+    "instagram_follow": true,
+    "send_email": true
+  }
+}

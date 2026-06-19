@@ -14,6 +14,8 @@ class Settings(BaseSettings):
     search_retry_backoff: float = 2.0
     serper_api_key: str | None = Field(default=None, env="SERPER_API_KEY")
     brave_search_api_key: str | None = Field(default=None, env="BRAVE_SEARCH_API_KEY")
+    serpapi_api_key: str | None = Field(default=None, env="SERPAPI_API_KEY")
+    google_maps_api_key: str | None = Field(default=None, env="GOOGLE_MAPS_API_KEY")
     user_agent: str = Field(default="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                                "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36")
     max_crawl_retries: int = 2
