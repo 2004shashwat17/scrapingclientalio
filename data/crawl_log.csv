@@ -107,3 +107,963 @@ https://digitalmachao.com/,Success,Crawl completed,2026-06-19T18:07:15.469979
 https://forms.gle/zLNERRaBphec5Pyk9,Failed,Website does not appear to be a valid business website,2026-06-19T18:07:19.525505
 https://www.kadvtg.com/,Failed,Website does not appear to be a valid business website,2026-06-19T18:07:26.673305
 https://www.priyalaxmipromotions.com/,Failed,"HTTPSConnectionPool(host='www.priyalaxmipromotions.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))",2026-06-19T18:07:29.072911
+https://www.outfoxsocial.com/,Success,Crawl completed,2026-06-20T03:15:38.732713
+http://www.digitalmarketingplayers.com/,Success,Crawl completed,2026-06-20T03:15:47.648344
+http://www.centdigital.in/,Success,Crawl completed,2026-06-20T03:15:50.207299
+https://needawebsitedeveloper.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:15:59.051066
+https://www.promfly.com/,Success,Crawl completed,2026-06-20T03:16:00.678718
+https://www.tracepresence.in/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-20T03:16:03.481015
+https://ramniwasadvertising.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:16:05.788828
+https://soham.showcasingportfolio.com/,Failed,"HTTPSConnectionPool(host='soham.showcasingportfolio.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-20T03:16:06.575098
+https://sites.google.com/view/cleareachmediadigitalmarketing,Success,Crawl completed,2026-06-20T03:16:09.095169
+https://delhimarketing.in/,Success,Crawl completed,2026-06-20T03:16:09.724728
+https://harshitkr.com/,Success,Crawl completed,2026-06-20T03:16:12.634894
+https://www.mise-en-place.co/services/?utm_source=GMB&utm_medium=gmb&utm_campaign=GMB,Success,Crawl completed,2026-06-20T03:16:16.626651
+https://www.digitallyhappens.com/,Failed,"HTTPSConnectionPool(host='www.digitallyhappens.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10b892710>: Failed to resolve 'www.digitallyhappens.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-20T03:16:16.963841
+https://www.techadsmediaa.com/,Success,Crawl completed,2026-06-20T03:16:32.870789
+https://growthhubmedia.com/,Success,Crawl completed,2026-06-20T03:16:38.807436
+https://yoandmo.com/,Success,Crawl completed,2026-06-20T03:16:46.813595
+https://hobo.video/,Success,Crawl completed,2026-06-20T03:16:51.873673
+https://www.excelrange.com/,Success,Crawl completed,2026-06-20T03:16:57.248676
+https://www.furiousdigitalmarketers.com/,Success,Crawl completed,2026-06-20T03:16:59.948848
+http://ysadigitalmedia.com/,Success,Crawl completed,2026-06-20T03:17:04.410394
+https://aiadvertisement.in/,Success,Crawl completed,2026-06-20T03:17:06.745668
+https://digitalmarketingagency.digidzn.com/,Success,Crawl completed,2026-06-20T03:17:07.043728
+https://wdmservice.com/,Success,Crawl completed,2026-06-20T03:17:09.081920
+https://www.letsdigitalmarketing.com/,Success,Crawl completed,2026-06-20T03:17:10.117285
+http://www.givemepublicity.com/,Success,Crawl completed,2026-06-20T03:17:11.689866
+https://valvmedia.in/,Success,Crawl completed,2026-06-20T03:17:13.736330
+http://digitalghost.in/,Failed,"HTTPConnectionPool(host='digitalghost.in', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x11161f450>: Failed to resolve 'digitalghost.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-20T03:17:13.781958
+https://mysolution360.com/,Success,Crawl completed,2026-06-20T03:17:27.118691
+https://aidigitalmarketingagency.co.in/best-digital-marketing-agency-for-spine-surgeons-in-india/,Success,Crawl completed,2026-06-20T03:17:31.846077
+https://marketingvenue.in/,Failed,"HTTPSConnectionPool(host='marketingvenue.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10bdd3890>: Failed to resolve 'marketingvenue.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-20T03:17:31.890374
+https://skillindiaprogram.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:17:35.276604
+http://businessvolunteers.online/,Failed,Website does not appear to be a valid business website,2026-06-20T03:17:36.898771
+https://www.digitechelites.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:17:41.586809
+https://lines-digital.com/,Success,Crawl completed,2026-06-20T03:17:46.446704
+https://webesters.in/,Success,Crawl completed,2026-06-20T03:17:48.933770
+https://brozmedia.co.in/,Success,Crawl completed,2026-06-20T03:17:52.598782
+http://www.businessmarketingindia.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:17:53.669862
+https://aashishvats.in/,Failed,"HTTPSConnectionPool(host='aashishvats.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10bdd2fd0>: Failed to resolve 'aashishvats.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-20T03:17:53.791955
+https://digitalmaking.in/,Success,Crawl completed,2026-06-20T03:17:54.581745
+https://www.diginock.com/,Failed,503 Server Error: Service Unavailable for url: https://www.diginock.com/,2026-06-20T03:17:57.756536
+https://www.oddloopagency.com/,Success,Crawl completed,2026-06-20T03:18:00.818537
+https://aradhya-advertising.grexa.site/,Success,Crawl completed,2026-06-20T03:18:02.162399
+https://www.bigwigmediadigital.com/,Success,Crawl completed,2026-06-20T03:18:03.956658
+https://lotussocialworld.com/,Success,Crawl completed,2026-06-20T03:18:05.578591
+https://www.oxpromedia.com/,Success,Crawl completed,2026-06-20T03:18:06.731082
+http://digitalrajat.io/,Success,Crawl completed,2026-06-20T03:18:08.295622
+http://itsdigimark.com/,Success,Crawl completed,2026-06-20T03:18:10.848308
+http://digitalsoull.in/,Success,Crawl completed,2026-06-20T03:18:17.847185
+https://www.haedigital.com/,Success,Crawl completed,2026-06-20T03:18:39.929394
+http://www.barkhacollection.in/,Success,Crawl completed,2026-06-20T03:18:42.741501
+http://www.digirankmedia.com/,Failed,"HTTPConnectionPool(host='www.digirankmedia.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x111134f50>: Failed to resolve 'www.digirankmedia.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-20T03:18:45.760167
+https://toprankmedia.breakingworldtimes.com/,Failed,"HTTPSConnectionPool(host='toprankmedia.breakingworldtimes.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x11111d090>: Failed to resolve 'toprankmedia.breakingworldtimes.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-20T03:18:47.789932
+https://any2digital.com/,Success,Crawl completed,2026-06-20T03:18:53.419619
+https://www.mediabindingrelations.com/,Failed,"HTTPSConnectionPool(host='www.mediabindingrelations.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10bdd1e50>: Failed to resolve 'www.mediabindingrelations.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-20T03:18:54.143169
+https://techwebmaster.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:19:06.115864
+https://skillsify.in/,Success,Crawl completed,2026-06-20T03:19:07.389760
+https://7seamarketing.com/,Success,Crawl completed,2026-06-20T03:19:14.179852
+https://lifeshow.in/,Success,Crawl completed,2026-06-20T03:19:14.712374
+http://muff.media/,Failed,"HTTPConnectionPool(host='muff.media', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x111137d50>: Failed to resolve 'muff.media' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-20T03:19:15.589239
+https://www.adlaxy.in/,Success,Crawl completed,2026-06-20T03:19:19.418537
+https://kanhaserviceshub.blogspot.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:19:21.402854
+https://www.adbez.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:19:22.715480
+https://digitalmarketingservicesindia.in/,Success,Crawl completed,2026-06-20T03:19:33.057297
+https://boostra.in/,Success,Crawl completed,2026-06-20T03:19:38.637167
+https://www.redcrossdigital.com/,Success,Crawl completed,2026-06-20T03:19:42.525079
+https://www.google.co.in/intl/en/about/products?tab=lh,Success,Crawl completed,2026-06-20T03:19:47.539699
+https://scale-nova-technologies.grexa.site/,Success,Crawl completed,2026-06-20T03:19:49.062250
+https://digitalshukla.com/,Success,Crawl completed,2026-06-20T03:19:57.482401
+https://digitalcrave.com/,Failed,403 Client Error: Forbidden for url: https://www.atom.com/name/DigitalCrave,2026-06-20T03:19:59.939968
+https://digitaljankari.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:20:02.299564
+http://www.digitalmarketingclue.com/,Success,Crawl completed,2026-06-20T03:20:05.613853
+https://me2digital.in/,Success,Crawl completed,2026-06-20T03:20:09.081840
+https://advaana.co/,Success,Crawl completed,2026-06-20T03:20:15.403703
+http://www.glideup.in/,Success,Crawl completed,2026-06-20T03:20:18.466896
+https://digitalmarketingking.in/,Success,Crawl completed,2026-06-20T03:20:20.309589
+https://admomenta.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:20:22.078530
+http://realgraphix.in/,Success,Crawl completed,2026-06-20T03:20:31.692596
+http://adstalento.com/,Success,Crawl completed,2026-06-20T03:20:35.943231
+https://syeddanishali.com/,Failed,unhashable type: 'list',2026-06-20T03:20:43.292190
+https://www.mgiwebzone.com/,Success,Crawl completed,2026-06-20T03:20:46.308714
+https://webzpapa.com/seo-company-delhi.html,Success,Crawl completed,2026-06-20T03:20:51.327850
+https://brandholic.in/,Failed,Website does not appear to be a valid business website,2026-06-20T03:20:56.606455
+http://brandgrowthmedia.com/,Failed,"HTTPConnectionPool(host='brandgrowthmedia.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x10b89bd50>: Failed to resolve 'brandgrowthmedia.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-20T03:20:56.895435
+https://digizebra.in/,Success,Crawl completed,2026-06-20T03:21:08.883535
+http://www.digitalclinch.com/,Success,Crawl completed,2026-06-20T03:21:13.578678
+http://www.designhost.in/,Success,Crawl completed,2026-06-20T03:21:13.858547
+https://risearnmedia.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:21:14.644419
+https://profitbyppc.com/,Success,Crawl completed,2026-06-20T03:21:16.320028
+https://newzensolution.com/,Success,Crawl completed,2026-06-20T03:21:17.775525
+http://kayradigitalsolution.com/,Failed,"HTTPConnectionPool(host='kayradigitalsolution.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x111cb4150>: Failed to resolve 'kayradigitalsolution.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-20T03:21:18.074716
+http://www.dnpcreative.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-20T03:21:21.235747
+https://www.javedakhter.com/,Success,Crawl completed,2026-06-20T03:21:22.836129
+https://www.paradigminfoweb.com/,Failed,403 Client Error: Forbidden for url: https://www.paradigminfoweb.com/,2026-06-20T03:21:23.603900
+https://ajdigitalmarketer.in/,Failed,"HTTPSConnectionPool(host='ajdigitalmarketer.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-20T03:21:24.117173
+https://therankhq.com/,Success,Crawl completed,2026-06-20T03:21:35.390447
+https://adzorra.com/,Success,Crawl completed,2026-06-20T03:21:36.934942
+https://www.naiyadot.com/,Failed,Website does not appear to be a valid business website,2026-06-20T03:21:41.495610
+https://www.mahiradigital.com/,Success,Crawl completed,2026-06-20T03:21:49.478797
+http://www.klmtmedia.in/,Success,Crawl completed,2026-06-20T03:21:53.877352
+https://www.agencyofsuccess.com/,Failed,"HTTPSConnectionPool(host='www.agencyofsuccess.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x112cb5950>: Failed to resolve 'www.agencyofsuccess.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-20T03:21:53.985848
+https://www.bd.agency/,Success,Crawl completed,2026-06-20T03:21:55.797743
+https://digitspider.com/blog/,Success,Crawl completed,2026-06-20T03:21:58.759662
+https://www.anubhavadvertiser.in/,Success,Crawl completed,2026-06-20T03:22:05.008577
+http://www.centdigital.in/,Success,Crawl completed,2026-06-22T09:28:34.272185
+http://www.digitalmarketingplayers.com/,Success,Crawl completed,2026-06-22T09:28:44.096460
+https://www.mahiradigital.com/,Success,Crawl completed,2026-06-22T09:28:53.500828
+https://digitalmarketingagency.digidzn.com/,Success,Crawl completed,2026-06-22T09:28:54.073418
+https://www.letsdigitalmarketing.com/,Success,Crawl completed,2026-06-22T09:28:55.137838
+https://kishansoni.com/,Failed,Website does not appear to be a valid business website,2026-06-22T09:28:59.135481
+https://www.reddashmedia.com/,Success,Crawl completed,2026-06-22T09:29:00.432198
+https://www.mise-en-place.co/services/?utm_source=GMB&utm_medium=gmb&utm_campaign=GMB,Success,Crawl completed,2026-06-22T09:29:04.053537
+http://ysadigitalmedia.com/,Success,Crawl completed,2026-06-22T09:29:08.746876
+https://wdmservice.com/,Success,Crawl completed,2026-06-22T09:29:14.110729
+https://www.techadsmediaa.com/,Success,Crawl completed,2026-06-22T09:29:33.303820
+https://harshitkr.com/,Success,Crawl completed,2026-06-22T09:29:45.045193
+https://360p.co/,Failed,Website does not appear to be a valid business website,2026-06-22T09:29:48.229575
+https://aiadvertisement.in/,Success,Crawl completed,2026-06-22T09:29:49.573465
+https://www.promfly.com/,Success,Crawl completed,2026-06-22T09:29:52.946975
+https://divinedigitalmarketing.in/,Success,Crawl completed,2026-06-22T09:29:59.215311
+https://brandlogies.com/,Success,Crawl completed,2026-06-22T09:30:03.305596
+https://www.redcrossdigital.com/,Success,Crawl completed,2026-06-22T09:30:17.492322
+https://kanhaserviceshub.blogspot.com/,Failed,Website does not appear to be a valid business website,2026-06-22T09:30:19.388260
+https://digitalmaking.in/,Success,Crawl completed,2026-06-22T09:30:20.072022
+https://www.risealive.in/,Failed,Website does not appear to be a valid business website,2026-06-22T09:30:21.814845
+https://www.digitechelites.com/,Failed,Website does not appear to be a valid business website,2026-06-22T09:30:26.480698
+https://eworldlife.com/,Success,Crawl completed,2026-06-22T09:30:31.759915
+https://www.outfoxsocial.com/,Success,Crawl completed,2026-06-22T09:30:34.853207
+http://digitalghost.in/,Failed,"HTTPConnectionPool(host='digitalghost.in', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x10c469370>: Failed to resolve 'digitalghost.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-22T09:30:34.891027
+https://www.excelrange.com/,Success,Crawl completed,2026-06-22T09:30:56.451296
+http://businessvolunteers.online/,Success,Crawl completed,2026-06-22T09:30:58.368997
+https://gdbharat.netlify.app/,Success,Crawl completed,2026-06-22T09:31:00.708284
+http://kayradigitalsolution.com/,Failed,"HTTPConnectionPool(host='kayradigitalsolution.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x10c4688d0>: Failed to resolve 'kayradigitalsolution.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-22T09:31:00.878887
+https://lotussocialworld.com/,Success,Crawl completed,2026-06-22T09:31:01.917215
+https://risearnmedia.com/,Failed,Website does not appear to be a valid business website,2026-06-22T09:31:02.534990
+https://www.naiyadot.com/,Failed,Website does not appear to be a valid business website,2026-06-22T09:31:06.128859
+https://hovodigital.com/,Success,Crawl completed,2026-06-22T09:31:11.552033
+https://delhimarketing.in/,Success,Crawl completed,2026-06-22T09:31:13.216945
+https://boostra.in/,Success,Crawl completed,2026-06-22T09:31:18.981222
+https://expertdigitalindia.com/,Success,Crawl completed,2026-06-22T09:31:21.603327
+https://brozmedia.co.in/,Success,Crawl completed,2026-06-22T09:31:27.026299
+http://www.vibrantmediatek.com/,Success,Crawl completed,2026-06-22T09:31:31.764444
+http://digitalsoull.in/,Success,Crawl completed,2026-06-22T09:31:37.120274
+https://skillindiaprogram.com/,Failed,Website does not appear to be a valid business website,2026-06-22T09:31:41.444760
+http://www.mediatrendz.co.in/,Success,Crawl completed,2026-06-22T09:31:49.196030
+https://www.bigwigmediadigital.com/,Success,Crawl completed,2026-06-22T09:31:55.515709
+https://digitaljankari.com/,Failed,Website does not appear to be a valid business website,2026-06-22T09:31:57.530432
+https://www.furiousdigitalmarketers.com/,Success,Crawl completed,2026-06-22T09:31:59.119449
+https://valvmedia.in/,Success,Crawl completed,2026-06-22T09:32:11.461195
+https://www.google.co.in/intl/en/about/products?tab=lh,Success,Crawl completed,2026-06-22T09:32:15.865465
+https://www.agencyofsuccess.com/,Failed,"HTTPSConnectionPool(host='www.agencyofsuccess.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c08ead0>: Failed to resolve 'www.agencyofsuccess.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-22T09:32:16.291806
+http://www.klmtmedia.in/,Success,Crawl completed,2026-06-22T09:32:18.153005
+https://digitalultras.com/,Success,Crawl completed,2026-06-22T09:32:21.997702
+http://digitalrajat.io/,Success,Crawl completed,2026-06-22T09:32:26.257898
+https://any2digital.com/,Success,Crawl completed,2026-06-22T09:32:30.789646
+http://www.mediaadvertising.co.in/,Failed,"HTTPConnectionPool(host='www.mediaadvertising.co.in', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x10c46b020>: Failed to resolve 'www.mediaadvertising.co.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-22T09:32:40.838882
+http://muff.media/,Failed,"HTTPConnectionPool(host='muff.media', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x113995bf0>: Failed to resolve 'muff.media' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-22T09:32:44.334458
+https://www.tricewebsolutions.com/,Success,Crawl completed,2026-06-22T09:32:49.271964
+https://me2digital.in/,Success,Crawl completed,2026-06-22T09:32:53.991170
+https://www.digitallyhappens.com/,Failed,"HTTPSConnectionPool(host='www.digitallyhappens.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c587610>: Failed to resolve 'www.digitallyhappens.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-22T09:32:54.303368
+https://digitalmarketingking.in/,Success,Crawl completed,2026-06-22T09:32:55.650501
+https://digitalmarketingservicesindia.in/,Success,Crawl completed,2026-06-22T09:33:08.473554
+https://digitalshukla.com/,Success,Crawl completed,2026-06-22T09:33:16.096878
+https://syeddanishali.com/,Failed,unhashable type: 'list',2026-06-22T09:33:22.652680
+https://aashishvats.in/,Failed,"HTTPSConnectionPool(host='aashishvats.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c08e350>: Failed to resolve 'aashishvats.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-22T09:33:22.685662
+https://www.kingofdigitalmarketing.com/,Success,Crawl completed,2026-06-22T09:33:24.382407
+http://www.exopicmedia.com/,Success,Crawl completed,2026-06-22T09:33:27.767485
+https://www.dartdigitalagency.com/services/,Success,Crawl completed,2026-06-22T09:33:29.066542
+https://skillsify.in/,Success,Crawl completed,2026-06-22T09:33:30.092092
+https://creativeroom.in/,Success,Crawl completed,2026-06-22T09:33:30.983367
+https://digitspider.com/blog/,Success,Crawl completed,2026-06-22T09:33:36.578659
+https://egadgetportal.com/,Failed,unhashable type: 'list',2026-06-22T09:33:39.719642
+https://www.digitalmarketershive.com/,Success,Crawl completed,2026-06-22T09:33:40.976831
+https://digiclawmedia.com/,Success,Crawl completed,2026-06-22T09:33:56.801628
+https://wa.me/9650339402,Success,Crawl completed,2026-06-22T09:34:00.683944
+http://www.designhost.in/,Success,Crawl completed,2026-06-22T09:34:00.908112
+https://thewebgross.com/,Success,Crawl completed,2026-06-22T09:34:02.724011
+https://profitbyppc.com/,Success,Crawl completed,2026-06-22T09:34:04.254323
+https://inklik.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb,Success,Crawl completed,2026-06-22T09:34:08.666376
+https://www.tzsdigital.com/,Success,Crawl completed,2026-06-22T09:34:12.125214
+https://www.vipin-kumar.com/,Success,Crawl completed,2026-06-22T09:34:21.178856
+http://itsdigimark.com/,Success,Crawl completed,2026-06-22T09:34:23.854797
+https://www.metasite.in/,Success,Crawl completed,2026-06-22T09:34:24.241198
+https://www.viraladsmedia.com/,Success,Crawl completed,2026-06-22T09:34:26.370224
+https://www.paradigminfoweb.com/,Failed,Website does not appear to be a valid business website,2026-06-22T09:34:28.988859
+https://www.mgiwebzone.com/,Success,Crawl completed,2026-06-22T09:34:50.714115
+https://substanceads.com/,Success,Crawl completed,2026-06-22T09:34:51.545132
+https://brandvisage.com/,Success,Crawl completed,2026-06-22T09:34:56.952927
+https://ajdigitalmarketer.in/,Failed,"HTTPSConnectionPool(host='ajdigitalmarketer.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-22T09:34:57.399916
+http://www.digitalclinch.com/,Success,Crawl completed,2026-06-22T09:35:01.449515
+https://quanta-blaze-254288737928.asia-southeast1.run.app/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-22T09:35:03.817735
+https://digitalfy.in/,Success,Crawl completed,2026-06-22T09:35:09.345308
+https://digikajal.com/,Failed,"HTTPSConnectionPool(host='digikajal.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x114672c10>: Failed to resolve 'digikajal.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-22T09:35:09.516935
+https://digisuccess.us/,Failed,"HTTPSConnectionPool(host='digisuccess.us', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c08ed50>: Failed to resolve 'digisuccess.us' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-22T09:35:09.553476
+https://digizebra.in/,Success,Crawl completed,2026-06-22T09:35:17.477409
+https://www.digitalrenu.com/,Success,Crawl completed,2026-06-22T09:35:22.687329
+https://digitalmarketinginindia.in/,Success,Crawl completed,2026-06-22T09:35:27.559253
+https://sites.google.com/view/harshal-vij/project-page,Failed,Website does not appear to be a valid business website,2026-06-22T09:35:28.713774
+https://forms.gle/zLNERRaBphec5Pyk9,Failed,Website does not appear to be a valid business website,2026-06-22T09:35:31.492193
+https://www.marketingmasala.com/,Failed,"HTTPSConnectionPool(host='www.marketingmasala.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, ""[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.marketingmasala.com'. (_ssl.c:1032)"")))",2026-06-22T09:35:32.134063
+https://brandhype.in/,Success,Crawl completed,2026-06-22T09:35:38.303711
+https://www.adlaxy.in/,Success,Crawl completed,2026-06-22T09:35:39.075468
+http://brandgrowthmedia.com/,Failed,"HTTPConnectionPool(host='brandgrowthmedia.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x10c46bbd0>: Failed to resolve 'brandgrowthmedia.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-22T09:35:39.258671
+https://alvo.chat/75FM,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T06:58:14.135184
+https://needawebsitedeveloper.com/,Failed,Website does not appear to be a valid business website,2026-06-23T06:58:20.868361
+https://is-digital-marketing.localo.site/,Failed,Website does not appear to be a valid business website,2026-06-23T06:58:22.995238
+https://webzpapa.com/seo-company-delhi.html,Success,Crawl completed,2026-06-23T06:58:28.380380
+https://toprankmedia.breakingworldtimes.com/,Failed,"HTTPSConnectionPool(host='toprankmedia.breakingworldtimes.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10cd64190>: Failed to resolve 'toprankmedia.breakingworldtimes.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T06:58:28.962773
+https://www.imrakesh.com/,Failed,"HTTPSConnectionPool(host='www.imrakesh.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10cd64b90>: Failed to resolve 'www.imrakesh.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T06:58:29.334105
+https://seoshades.co.in/,Success,Crawl completed,2026-06-23T06:58:29.932381
+http://www.seoindiahigherup.com/,Success,Crawl completed,2026-06-23T06:58:39.631485
+https://www.gmbitsolution.com/,Success,Crawl completed,2026-06-23T06:58:52.471298
+http://www.digitalmarketingplayers.com/,Success,Crawl completed,2026-06-23T06:59:06.225203
+https://digitalshukla.com/,Success,Crawl completed,2026-06-23T06:59:17.309056
+https://aniketgupta.in/,Success,Crawl completed,2026-06-23T06:59:24.760897
+https://www.onerank.in/contact-us/,Success,Crawl completed,2026-06-23T06:59:33.150474
+http://digitalsoull.in/,Success,Crawl completed,2026-06-23T06:59:40.046876
+https://vmsit.net/,Success,Crawl completed,2026-06-23T06:59:48.616895
+https://www.letsdigitalmarketing.com/,Success,Crawl completed,2026-06-23T06:59:51.538585
+https://forms.gle/zLNERRaBphec5Pyk9,Failed,Website does not appear to be a valid business website,2026-06-23T06:59:54.546372
+https://www.redcrossdigital.com/,Success,Crawl completed,2026-06-23T07:00:11.112671
+https://www.outfoxsocial.com/,Success,Crawl completed,2026-06-23T07:00:19.766893
+https://toprankachiever.wordpress.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:00:21.119962
+https://www.seoservicedelhi.in/,Success,Crawl completed,2026-06-23T07:00:25.559191
+https://hubwelt.com/,Success,Crawl completed,2026-06-23T07:00:28.042367
+https://wa.me/9650339402,Success,Crawl completed,2026-06-23T07:00:31.821758
+https://soham.showcasingportfolio.com/,Failed,"HTTPSConnectionPool(host='soham.showcasingportfolio.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-23T07:00:32.680218
+https://sites.google.com/view/cleareachmediadigitalmarketing,Success,Crawl completed,2026-06-23T07:00:35.540783
+http://businessvolunteers.online/,Success,Crawl completed,2026-06-23T07:00:39.115945
+http://www.centdigital.in/,Success,Crawl completed,2026-06-23T07:00:41.642298
+http://brandgrowthmedia.com/,Failed,"HTTPConnectionPool(host='brandgrowthmedia.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x114403240>: Failed to resolve 'brandgrowthmedia.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:00:41.822708
+https://evosag.com/,Success,Crawl completed,2026-06-23T07:00:43.987984
+https://www.readpdf.in/,Success,Crawl completed,2026-06-23T07:00:53.836372
+https://www.mahiradigital.com/,Success,Crawl completed,2026-06-23T07:01:04.947734
+https://www.amitguptaseo.com/,Success,Crawl completed,2026-06-23T07:01:08.950811
+https://nishantmittalseo.com/,Success,Crawl completed,2026-06-23T07:01:11.327479
+https://www.mise-en-place.co/services/seo-services/,Success,Crawl completed,2026-06-23T07:01:15.638020
+https://bestdigitalcompany.com/,Success,Crawl completed,2026-06-23T07:01:21.275671
+http://brandoptimizers.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:01:24.539358
+https://delhimarketing.in/,Failed,Website does not appear to be a valid business website,2026-06-23T07:01:24.956866
+https://creativeplayer.in/best-seo-freelancer-in-delhi-ncr.php,Success,Crawl completed,2026-06-23T07:01:28.550437
+https://aiadvertisement.in/,Success,Crawl completed,2026-06-23T07:01:30.251800
+https://www.digitallyhappens.com/,Failed,"HTTPSConnectionPool(host='www.digitallyhappens.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c700cd0>: Failed to resolve 'www.digitallyhappens.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:01:32.537497
+https://www.ezrankings.com/,Success,Crawl completed,2026-06-23T07:01:37.963510
+https://www.theseoguy.in/,Success,Crawl completed,2026-06-23T07:01:53.017612
+https://www.digiustad.com/,Success,Crawl completed,2026-06-23T07:02:06.371167
+https://www.technicalindia.com/,Success,Crawl completed,2026-06-23T07:02:11.890471
+https://digizebra.in/,Success,Crawl completed,2026-06-23T07:02:24.570814
+https://www.seo4buz.com/,Success,Crawl completed,2026-06-23T07:02:30.164993
+http://www.atonetechnologies.com/,Success,Crawl completed,2026-06-23T07:02:40.721916
+https://www.rankprodigy.in/,Success,Crawl completed,2026-06-23T07:02:47.341447
+https://seoservicedelhi.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T07:02:48.005355
+https://www.edtech.in/,Success,Crawl completed,2026-06-23T07:02:50.161087
+https://www.seoind.com/,Success,Crawl completed,2026-06-23T07:03:23.924571
+https://gmbseowala.com/,Success,Crawl completed,2026-06-23T07:03:33.470619
+https://www.digitalsunil.co.in/,Success,Crawl completed,2026-06-23T07:03:39.720315
+https://digisuggest.com/,Success,Crawl completed,2026-06-23T07:03:50.907606
+https://expertdigitalindia.com/,Success,Crawl completed,2026-06-23T07:03:54.996624
+https://scale-nova-technologies.grexa.site/,Success,Crawl completed,2026-06-23T07:03:56.967615
+https://www.rankingbyseo.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T07:03:58.873909
+http://seoindia.co/,Success,Crawl completed,2026-06-23T07:04:05.472126
+https://www.acsius.com/,Success,Crawl completed,2026-06-23T07:04:26.257804
+https://www.google.co.in/intl/en/about/products?tab=lh,Success,Crawl completed,2026-06-23T07:04:30.354280
+https://www.samyakonline.net/,Success,Crawl completed,2026-06-23T07:04:36.493431
+http://webz.co.in/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T07:04:37.204420
+https://www.ecoseoexperts.com/,Success,Crawl completed,2026-06-23T07:04:42.633769
+https://rohitdigitalmarketingservices.com/,Success,Crawl completed,2026-06-23T07:04:49.709574
+https://www.pagetraffic.in/,Success,Crawl completed,2026-06-23T07:04:52.353602
+https://www.webcrewl.com/,Success,Crawl completed,2026-06-23T07:05:02.112825
+https://www.obiyaninfotech.com/seo-services/,Success,Crawl completed,2026-06-23T07:05:20.075786
+https://digitalseorank.wordpress.com/,Success,Crawl completed,2026-06-23T07:05:23.704140
+https://panasys.in/,Success,Crawl completed,2026-06-23T07:05:28.951892
+http://adstalento.com/,Success,Crawl completed,2026-06-23T07:05:33.234835
+https://www.shanuquraishi.com/digital-marketing-course-in-delhi,Failed,Website does not appear to be a valid business website,2026-06-23T07:05:35.577143
+https://sathilab.com/,Success,Crawl completed,2026-06-23T07:05:42.041272
+https://seodoses.com/,Failed,"HTTPSConnectionPool(host='seodoses.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c269950>: Failed to resolve 'seodoses.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:05:42.242479
+http://onemarketingtek.com/,Success,Crawl completed,2026-06-23T07:05:55.431608
+https://www.digitaldigigrow.in/,Failed,unhashable type: 'list',2026-06-23T07:05:58.153303
+https://www.socialgo.in/,Success,Crawl completed,2026-06-23T07:06:05.946302
+https://therankhq.com/,Success,Crawl completed,2026-06-23T07:06:17.465079
+https://www.seodiscovery.com/,Success,Crawl completed,2026-06-23T07:06:21.718090
+https://egadgetportal.com/,Failed,unhashable type: 'list',2026-06-23T07:06:23.583213
+https://solefreelancer.com/,Success,Crawl completed,2026-06-23T07:06:38.097707
+https://www.rankupwebs.com/,Success,Crawl completed,2026-06-23T07:06:46.203472
+https://drritabakshi.in/,Success,Crawl completed,2026-06-23T07:06:59.992672
+https://scaleupseo.in/,Success,Crawl completed,2026-06-23T07:07:04.065068
+https://www.4seohelp.com/seo-expert/,Success,Crawl completed,2026-06-23T07:07:09.541647
+https://www.seostartup.in/,Success,Crawl completed,2026-06-23T07:07:18.233137
+https://www.sriramsoft.com/,Success,Crawl completed,2026-06-23T07:07:22.320637
+https://www.searchnation.co/,Failed,Website does not appear to be a valid business website,2026-06-23T07:07:25.731427
+https://seopathshala.com/services/local-seo-services-delhi-ncr/,Success,Crawl completed,2026-06-23T07:07:28.513770
+https://whitebunnie.com/,Success,Crawl completed,2026-06-23T07:07:33.810498
+https://bizranko.com/,Success,Crawl completed,2026-06-23T07:07:36.835243
+https://braincube.in/,Success,Crawl completed,2026-06-23T07:07:39.002165
+https://linktr.ee/ishak_ahmed,Failed,"HTTPSConnectionPool(host='linktr.ee', port=443): Max retries exceeded with url: /ishak_ahmed (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x1137e3750>, 'Connection to linktr.ee timed out. (connect timeout=15)'))",2026-06-23T07:08:24.215719
+https://www.digiinfoexpert.com/,Success,Crawl completed,2026-06-23T07:08:29.103962
+https://www.digitalmarkitors.com/,Success,Crawl completed,2026-06-23T07:08:31.571342
+http://www.techusu.com/,Success,Crawl completed,2026-06-23T07:08:35.437080
+https://www.folksydigital.com/,Success,Crawl completed,2026-06-23T07:08:40.152235
+https://www.kenovate.com/,Success,Crawl completed,2026-06-23T07:08:44.615926
+https://www.softsolvate.com/search-engine-optimization/,Success,Crawl completed,2026-06-23T07:08:51.926285
+https://www.damshool.com/,Success,Crawl completed,2026-06-23T07:08:55.941325
+https://www.seocompany.asia/,Failed,500 Server Error: Internal Server Error for url: https://www.seocompany.asia/,2026-06-23T07:08:56.433301
+https://ppcstud.io/,Failed,Website does not appear to be a valid business website,2026-06-23T07:14:36.714253
+https://profitbyppc.com/,Success,Crawl completed,2026-06-23T07:14:39.013675
+https://www.thesovereignindia.com/,Success,Crawl completed,2026-06-23T07:14:40.233298
+https://www.e2webservices.com/seo-company-noida.php,Success,Crawl completed,2026-06-23T07:14:43.825150
+https://www.ppcseomarketing.com/,Success,Crawl completed,2026-06-23T07:14:49.228502
+https://adsdad.com/,Success,Crawl completed,2026-06-23T07:14:55.789526
+https://toprankmedia.breakingworldtimes.com/,Failed,"HTTPSConnectionPool(host='toprankmedia.breakingworldtimes.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c4039d0>: Failed to resolve 'toprankmedia.breakingworldtimes.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:14:56.350091
+https://www.trueseohelp.com/contact/contact.html,Failed,Website does not appear to be a valid business website,2026-06-23T07:14:58.953461
+https://www.tracepresence.in/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T07:15:01.740774
+https://boostrankers.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:15:04.695371
+https://www.appsplusweb.com/seo-company-delhi/,Success,Crawl completed,2026-06-23T07:15:11.303405
+https://growdigitalsolution.com/,Success,Crawl completed,2026-06-23T07:15:13.200163
+https://anirup.com/,Failed,429 Client Error: Too Many Requests for url: https://anirup.com/,2026-06-23T07:15:14.576096
+http://ppcexpertindia.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:15:19.114098
+https://www.adbez.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:15:20.389157
+https://www.seo70.net/,Success,Crawl completed,2026-06-23T07:15:40.810132
+https://ppcadvertisementexpert.blogspot.com/,Failed,404 Client Error: Not Found for url: https://ppcadvertisementexpert.blogspot.com/,2026-06-23T07:15:43.554722
+https://soham.showcasingportfolio.com/,Failed,"HTTPSConnectionPool(host='soham.showcasingportfolio.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-23T07:15:43.993177
+https://www.getmerank.com/,Success,Crawl completed,2026-06-23T07:15:54.417941
+https://digitalgyanibaba.com/,Success,Crawl completed,2026-06-23T07:15:56.678918
+https://www.brainworkindia.net/,Success,Crawl completed,2026-06-23T07:16:03.688212
+https://starsearchmarketing.lovable.app/,Success,Crawl completed,2026-06-23T07:16:13.808481
+https://digitalultras.com/,Success,Crawl completed,2026-06-23T07:16:24.033373
+https://akglobaltechnologies.com/,Success,Crawl completed,2026-06-23T07:16:30.757754
+https://digitalwebzones.in/,Success,Crawl completed,2026-06-23T07:16:48.682453
+https://www.insidethedigital.com/#utm_source=Google+&utm_medium=GMB+-+Traffic&utm_campaign=GMB+-+Traffic,Success,Crawl completed,2026-06-23T07:16:55.160150
+https://www.brandburp.com/,Success,Crawl completed,2026-06-23T07:17:07.030925
+https://syncsoftsolution.com/,Success,Crawl completed,2026-06-23T07:17:09.552129
+https://growthhubmedia.com/,Success,Crawl completed,2026-06-23T07:17:17.207721
+https://www.digitallyhappens.com/,Failed,"HTTPSConnectionPool(host='www.digitallyhappens.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x113e32fd0>: Failed to resolve 'www.digitallyhappens.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:17:17.219818
+https://www.marketozz.com/,Success,Crawl completed,2026-06-23T07:17:24.968368
+https://designandrank.com/,Success,Crawl completed,2026-06-23T07:17:35.775318
+https://mmdigitaltechmkt.com/,Success,Crawl completed,2026-06-23T07:17:37.170110
+https://www.hannanhashmi.in/,Failed,"HTTPSConnectionPool(host='www.hannanhashmi.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c4002d0>: Failed to resolve 'www.hannanhashmi.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:17:37.210884
+https://bookmyadvertising.com/,Success,Crawl completed,2026-06-23T07:17:50.034812
+http://grohitic.com/,Success,Crawl completed,2026-06-23T07:17:53.228355
+https://pranatdigitals.com/,Failed,"HTTPSConnectionPool(host='pranatdigitals.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c4016d0>: Failed to resolve 'pranatdigitals.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:17:58.227556
+https://altogetherdigital.in/,Failed,"HTTPSConnectionPool(host='altogetherdigital.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c403c50>: Failed to resolve 'altogetherdigital.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:17:58.430936
+https://www.javedakhter.com/,Success,Crawl completed,2026-06-23T07:18:00.388373
+https://webiantdigitalindia.com/,Success,Crawl completed,2026-06-23T07:18:04.375932
+https://dmteservices.com/,Success,Crawl completed,2026-06-23T07:18:12.424944
+https://brightminddigital.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:18:18.447413
+https://pulseppc.lovable.app/,Failed,Website does not appear to be a valid business website,2026-06-23T07:18:21.762955
+http://ppcwithpro.com/,Success,Crawl completed,2026-06-23T07:18:33.153733
+http://www.exopicmedia.com/,Success,Crawl completed,2026-06-23T07:18:36.295063
+https://advaana.co/,Success,Crawl completed,2026-06-23T07:18:42.259085
+https://theprimedigital.site/,Success,Crawl completed,2026-06-23T07:18:42.995625
+https://wdmservice.com/,Success,Crawl completed,2026-06-23T07:18:44.771452
+https://www.digitechelites.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:18:48.606934
+https://digitspider.com/,Success,Crawl completed,2026-06-23T07:18:55.779045
+http://www.tntpads.com/,Failed,503 Server Error: Service Temporarily Unavailable for url: https://www.tntpads.com/,2026-06-23T07:19:02.897399
+https://calendly.com/growthadsmarketing/15min,Failed,Website does not appear to be a valid business website,2026-06-23T07:19:03.555095
+https://www.bigwigmediadigital.com/,Success,Crawl completed,2026-06-23T07:19:08.736116
+http://www.flagsdigital.com/online-campaign-management.html,Failed,"HTTPSConnectionPool(host='www.flagsdigital.com', port=443): Max retries exceeded with url: /online-campaign-management.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1032)')))",2026-06-23T07:19:11.889424
+http://brandgrowthmedia.com/,Failed,"HTTPConnectionPool(host='brandgrowthmedia.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x113258380>: Failed to resolve 'brandgrowthmedia.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:19:11.905005
+https://adverlabs.com/,Success,Crawl completed,2026-06-23T07:19:21.248630
+https://www.reddashmedia.com/,Success,Crawl completed,2026-06-23T07:19:29.508792
+https://prashantji.com/,Success,Crawl completed,2026-06-23T07:20:03.849548
+https://www.adonwebs.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:20:05.442970
+https://ppcadsindia.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:20:08.506747
+http://orientsem.com/,Success,Crawl completed,2026-06-23T07:20:12.103202
+http://jeeshant.com/,Success,Crawl completed,2026-06-23T07:20:15.238932
+https://www.curvearro.com/in/locations/delhi/,Success,Crawl completed,2026-06-23T07:20:18.226477
+http://impeccableads.com/,Success,Crawl completed,2026-06-23T07:20:24.349092
+http://itsdigimark.com/,Success,Crawl completed,2026-06-23T07:27:17.536834
+https://www.oddloopagency.com/,Success,Crawl completed,2026-06-23T07:27:21.698668
+https://vedacraftmedia.in/,Success,Crawl completed,2026-06-23T07:27:22.582029
+https://www.techadsmediaa.com/,Success,Crawl completed,2026-06-23T07:27:39.848750
+https://www.tracepresence.in/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T07:27:42.363321
+https://alvo.chat/75FM,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T07:27:44.295725
+https://creativemindsfactory.in/creative-minds-factory-logo-design-branding-studio/,Success,Crawl completed,2026-06-23T07:27:50.648589
+https://www.behance.net/pbworld21,Failed,403 Client Error: Forbidden for url: https://www.behance.net/pbworld21,2026-06-23T07:27:50.823478
+https://brandholic.in/,Failed,Website does not appear to be a valid business website,2026-06-23T07:27:57.685002
+https://koanmarketingagency.com/,Success,Crawl completed,2026-06-23T07:27:59.226360
+http://www.brandmakerz.in/,Failed,"HTTPConnectionPool(host='www.brandmakerz.in', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x113259260>: Failed to resolve 'www.brandmakerz.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:27:59.289858
+https://monthlybranding.com/,Success,Crawl completed,2026-06-23T07:28:02.612287
+https://rediscoverdeals.com/,Success,Crawl completed,2026-06-23T07:28:08.450082
+https://www.adlaxy.in/,Success,Crawl completed,2026-06-23T07:28:09.510339
+https://brozmedia.co.in/,Success,Crawl completed,2026-06-23T07:28:13.977204
+https://dndesigns.co.in/,Success,Crawl completed,2026-06-23T07:28:15.083873
+https://brandbajade.com/,Success,Crawl completed,2026-06-23T07:28:17.313989
+http://www.letsbuildbrands.com/,Success,Crawl completed,2026-06-23T07:28:22.755033
+https://www.promfly.com/,Success,Crawl completed,2026-06-23T07:28:25.764597
+http://www.businessmarketingindia.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:28:26.749518
+https://www.mediabindingrelations.com/,Failed,"HTTPSConnectionPool(host='www.mediabindingrelations.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x113e32210>: Failed to resolve 'www.mediabindingrelations.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:28:26.904403
+https://www.branddhara.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T07:28:27.260642
+https://brandlogies.com/,Success,Crawl completed,2026-06-23T07:28:31.701683
+https://www.unboxfame.com/,Success,Crawl completed,2026-06-23T07:28:41.552347
+https://www.brandiet.in/,Success,Crawl completed,2026-06-23T07:28:46.324455
+http://www.unzaptech.com/,Success,Crawl completed,2026-06-23T07:28:51.610340
+https://www.brandcatapult.in/?utm_source=organic&utm_medium=gmblisting&utm_campaign=gmblisting,Success,Crawl completed,2026-06-23T07:28:53.243168
+https://brightminddigital.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:28:55.225816
+http://digitalghost.in/,Failed,"HTTPConnectionPool(host='digitalghost.in', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x11325ae00>: Failed to resolve 'digitalghost.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:28:55.269987
+http://brandgrowthmedia.com/,Failed,"HTTPConnectionPool(host='brandgrowthmedia.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x11453ef10>: Failed to resolve 'brandgrowthmedia.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:28:55.283640
+http://www.ministryofmarketing.in/,Success,Crawl completed,2026-06-23T07:28:59.813836
+https://harshitkr.com/,Success,Crawl completed,2026-06-23T07:29:02.252687
+https://skillindiaprogram.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:29:06.440674
+http://www.redrealm.co.in/,Success,Crawl completed,2026-06-23T07:29:11.946054
+http://brandingidiots.com/,Success,Crawl completed,2026-06-23T07:29:13.124494
+https://zenwir.sbs/,Failed,Website does not appear to be a valid business website,2026-06-23T07:29:17.445159
+https://brandorbit360.com/,Success,Crawl completed,2026-06-23T07:29:22.488988
+https://parichayad.com/,Success,Crawl completed,2026-06-23T07:29:28.120876
+https://brandvisage.com/,Success,Crawl completed,2026-06-23T07:29:36.268056
+http://www.glideup.in/,Success,Crawl completed,2026-06-23T07:29:38.898483
+https://risingkee.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:29:39.380649
+https://substanceads.com/,Success,Crawl completed,2026-06-23T07:29:40.231586
+https://digitalcrave.com/,Failed,403 Client Error: Forbidden for url: https://www.atom.com/name/DigitalCrave,2026-06-23T07:29:42.389942
+http://www.brandingwall.in/,Failed,503 Server Error: Service Unavailable for url: https://www.brandingwall.in/,2026-06-23T07:29:44.897084
+https://vabinorwebitservice.com/,Success,Crawl completed,2026-06-23T07:30:13.393203
+https://ajdigitalmarketer.in/,Failed,"HTTPSConnectionPool(host='ajdigitalmarketer.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-23T07:30:13.951760
+https://www.infotechagency.com/,Success,Crawl completed,2026-06-23T07:30:31.211365
+https://brandhype.in/,Success,Crawl completed,2026-06-23T07:30:51.234626
+http://www.dezitek.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:31:04.177044
+http://www.superadventuremedia.in/,Failed,"HTTPConnectionPool(host='www.superadventuremedia.in', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x1132598c0>: Failed to resolve 'www.superadventuremedia.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:31:05.285005
+https://brandlane.in/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T07:31:07.907302
+https://brandingjunction.com/,Success,Crawl completed,2026-06-23T07:31:54.992939
+https://digisuggest.com/,Success,Crawl completed,2026-06-23T07:32:06.927516
+https://www.adbez.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:32:12.802793
+https://www.bd.agency/,Success,Crawl completed,2026-06-23T07:32:17.165244
+https://flashbuildmarketinggroup.com/,Success,Crawl completed,2026-06-23T07:32:21.070126
+https://promozionebranding.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T07:32:22.042038
+https://enyowebservices.com/,Success,Crawl completed,2026-06-23T07:32:38.988649
+https://www.brandsmartini.com/,Success,Crawl completed,2026-06-23T07:32:57.775328
+https://brandforyou.in/,Success,Crawl completed,2026-06-23T07:33:07.961090
+https://7seamarketing.com/,Success,Crawl completed,2026-06-23T07:33:17.312815
+http://muff.media/,Failed,"HTTPConnectionPool(host='muff.media', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x112cff240>: Failed to resolve 'muff.media' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:33:17.531979
+https://soham.showcasingportfolio.com/,Failed,"HTTPSConnectionPool(host='soham.showcasingportfolio.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-23T07:33:19.449177
+http://www.wishabrand.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:33:25.890763
+http://www.digitalmazic.com/,Success,Crawl completed,2026-06-23T07:33:37.962704
+https://www.brandsbud.co.in/,Failed,"HTTPSConnectionPool(host='www.brandsbud.co.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))",2026-06-23T07:33:40.096219
+https://360p.co/,Success,Crawl completed,2026-06-23T07:34:22.472786
+https://brandemic.in/,Failed,unhashable type: 'list',2026-06-23T07:34:32.294452
+http://www.goseen.in/,Success,Crawl completed,2026-06-23T07:34:50.989053
+https://www.expandbuzz.com/,Success,Crawl completed,2026-06-23T07:34:54.902076
+https://brandenhanced.com/,Success,Crawl completed,2026-06-23T07:34:57.950158
+https://digitalbrandingstudio.com/,Success,Crawl completed,2026-06-23T07:35:12.146383
+http://mediax.co.in/,Failed,Website does not appear to be a valid business website,2026-06-23T07:35:34.013315
+https://boostrankers.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:35:38.324489
+https://www.veborra.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T07:35:42.551161
+https://brandontop.in/,Success,Crawl completed,2026-06-23T07:35:51.355938
+https://designerbro.in/,Success,Crawl completed,2026-06-23T07:35:54.656684
+https://www.kadvtg.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:36:01.154691
+https://treasurecreatives.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-23T07:36:02.114689
+https://brandmiz.com/,Success,Crawl completed,2026-06-23T07:36:12.938224
+https://www.blanky.in/,Success,Crawl completed,2026-06-23T07:36:20.381769
+http://kayradigitalsolution.com/,Failed,"HTTPConnectionPool(host='kayradigitalsolution.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x10c640af0>: Failed to resolve 'kayradigitalsolution.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-23T07:36:21.742166
+http://www.filgy.com/,Failed,Website does not appear to be a valid business website,2026-06-23T07:36:23.768778
+https://catlistmedia.com/,Success,Crawl completed,2026-06-23T07:36:31.479008
+https://brandtozz.com/,Success,Crawl completed,2026-06-27T03:58:16.638346
+https://www.techadsmediaa.com/,Success,Crawl completed,2026-06-27T03:58:43.514723
+https://creativemindsfactory.in/creative-minds-factory-logo-design-branding-studio/,Success,Crawl completed,2026-06-27T03:58:52.810883
+http://www.digitalmarketingplayers.com/,Success,Crawl completed,2026-06-27T03:59:04.600168
+https://needawebsitedeveloper.com/,Failed,Website does not appear to be a valid business website,2026-06-27T03:59:16.729751
+https://www.oddloopagency.com/,Success,Crawl completed,2026-06-27T03:59:24.804414
+http://www.unzaptech.com/,Success,Crawl completed,2026-06-27T03:59:36.122913
+https://www.behance.net/pbworld21,Failed,403 Client Error: Forbidden for url: https://www.behance.net/pbworld21,2026-06-27T03:59:36.550140
+https://koanmarketingagency.com/,Success,Crawl completed,2026-06-27T03:59:39.360499
+https://www.creativephy.com/,Success,Crawl completed,2026-06-27T03:59:44.140614
+https://graphic-bureau.grexa.site/,Success,Crawl completed,2026-06-27T03:59:47.669860
+https://www.tracepresence.in/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-27T03:59:54.377189
+https://ramniwasadvertising.com/,Failed,Website does not appear to be a valid business website,2026-06-27T03:59:56.696351
+https://vabinorwebitservice.com/,Success,Crawl completed,2026-06-27T04:00:25.751765
+http://itsdigimark.com/,Success,Crawl completed,2026-06-27T04:00:27.951011
+https://adbridgeindia.com/,Success,Crawl completed,2026-06-27T04:00:31.736981
+https://www.anyawebsolution.in/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-27T04:00:34.435437
+https://www.bubnaadvertising.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:00:36.445280
+https://sites.google.com/view/design-alchemy-marketing/home,Failed,Website does not appear to be a valid business website,2026-06-27T04:00:38.353606
+http://www.mediaadvertising.co.in/,Failed,"HTTPConnectionPool(host='www.mediaadvertising.co.in', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x110a89010>: Failed to resolve 'www.mediaadvertising.co.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-27T04:00:48.662554
+https://rediscoverdeals.com/,Success,Crawl completed,2026-06-27T04:00:55.010896
+http://www.creativeedgeco.com/,Success,Crawl completed,2026-06-27T04:01:11.333069
+https://www.meesho.com/JKTRADER94837?_ms=3.0.1,Failed,403 Client Error: Forbidden for url: https://www.meesho.com/JKTRADER94837?_ms=3.0.1,2026-06-27T04:01:12.506412
+https://gateeman.com/,Failed,"HTTPSConnectionPool(host='gateeman.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, ""[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'gateeman.com'. (_ssl.c:1032)"")))",2026-06-27T04:01:16.718139
+http://businessvolunteers.online/,Success,Crawl completed,2026-06-27T04:01:19.444160
+https://www.google.co.in/intl/en/about/products?tab=lh,Success,Crawl completed,2026-06-27T04:01:28.438837
+https://www.mise-en-place.co/services/?utm_source=GMB&utm_medium=gmb&utm_campaign=GMB,Success,Crawl completed,2026-06-27T04:01:34.568402
+https://creativeroom.in/,Success,Crawl completed,2026-06-27T04:01:37.894617
+https://godigitalagency.in/,Failed,"HTTPSConnectionPool(host='godigitalagency.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-27T04:01:38.238233
+https://www.outfoxsocial.com/,Success,Crawl completed,2026-06-27T04:01:46.823758
+https://www.mediabindingrelations.com/,Failed,"HTTPSConnectionPool(host='www.mediabindingrelations.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x110bb65d0>: Failed to resolve 'www.mediabindingrelations.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-27T04:01:47.254019
+https://graphisads.com/,Failed,"not enough values to unpack (expected 2, got 1)",2026-06-27T04:01:51.426110
+https://makemyconversion.com/,Success,Crawl completed,2026-06-27T04:01:58.084625
+https://www.adbez.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:01:59.977613
+http://www.shunyaank.in/,Failed,"HTTPConnectionPool(host='www.shunyaank.in', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x110ce6140>: Failed to resolve 'www.shunyaank.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-27T04:02:00.041515
+https://ajdigitalmarketer.in/,Failed,"HTTPSConnectionPool(host='ajdigitalmarketer.in', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-27T04:02:00.655243
+https://admomenta.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:02:02.328082
+https://boostra.in/,Success,Crawl completed,2026-06-27T04:02:08.809798
+https://growthhubmedia.com/,Success,Crawl completed,2026-06-27T04:02:20.361133
+http://www.creative-inc.in/,Success,Crawl completed,2026-06-27T04:02:24.072682
+http://www.givemepublicity.com/,Success,Crawl completed,2026-06-27T04:02:25.998625
+https://seowebfly.com/,Success,Crawl completed,2026-06-27T04:02:27.724682
+https://artdrawnstudio.com/,Success,Crawl completed,2026-06-27T04:02:35.961128
+https://kccreativeworks.com/,Success,Crawl completed,2026-06-27T04:02:42.201353
+https://www.kadvtg.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:02:46.662444
+https://smartcraftindia.co.in/,Failed,Website does not appear to be a valid business website,2026-06-27T04:02:48.380035
+https://coffeeandcreative.in/,Success,Crawl completed,2026-06-27T04:02:50.619616
+https://princegoswami.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:02:52.598858
+http://buffalosoldiersdigital.com/?UTM_source=GMB_listing&UTM_medium=organic,Success,Crawl completed,2026-06-27T04:03:00.790285
+https://www.gmbitsolution.com/,Success,Crawl completed,2026-06-27T04:03:08.611819
+http://www.sharadadvertising.com/,Success,Crawl completed,2026-06-27T04:03:30.495029
+http://admarketadvertising.com/,Failed,500 Server Error: Internal Server Error for url: https://admarketadvertising.com/,2026-06-27T04:03:31.624484
+https://harshitkr.com/,Success,Crawl completed,2026-06-27T04:03:40.328921
+https://www.logixila.com/,Success,Crawl completed,2026-06-27T04:03:45.523527
+https://evosag.com/,Success,Crawl completed,2026-06-27T04:03:48.534645
+http://www.delhiadvertisingagency.com/,Success,Crawl completed,2026-06-27T04:03:54.681186
+https://brandbajade.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:03:55.321509
+https://www.designlyhub.xyz/,Success,Crawl completed,2026-06-27T04:04:02.587822
+http://www.logosaylove.com/,Success,Crawl completed,2026-06-27T04:04:08.565247
+http://www.elivatr.com/,Success,Crawl completed,2026-06-27T04:04:12.145017
+https://digisuggest.com/,Success,Crawl completed,2026-06-27T04:04:22.024661
+http://www.glideup.in/,Success,Crawl completed,2026-06-27T04:04:25.769732
+http://www.neonlivesofficial.in/,Success,Crawl completed,2026-06-27T04:04:28.094037
+https://aiadvertisement.in/,Success,Crawl completed,2026-06-27T04:04:31.331422
+http://www.aarchwiin.com/,Success,Crawl completed,2026-06-27T04:04:38.130145
+https://7seamarketing.com/,Success,Crawl completed,2026-06-27T04:04:44.265878
+https://wa.me/9337226047,Success,Crawl completed,2026-06-27T04:04:47.910043
+http://www.cinestreet.in/,Success,Crawl completed,2026-06-27T04:04:49.254515
+http://www.wortham.in/,Success,Crawl completed,2026-06-27T04:04:53.936568
+https://dartcreatives.com/,Success,Crawl completed,2026-06-27T04:05:00.448154
+http://www.exopicmedia.com/,Success,Crawl completed,2026-06-27T04:05:05.084060
+https://treasurecreatives.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-27T04:05:05.605442
+http://www.creeativebassta.com/,Success,Crawl completed,2026-06-27T04:05:08.281146
+https://telloramedia.online/,Success,Crawl completed,2026-06-27T04:05:09.959944
+https://creative-planet.grexa.site/,Success,Crawl completed,2026-06-27T04:05:12.575613
+https://creativeicon.in/,Failed,"HTTPSConnectionPool(host='creativeicon.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x1106b2350>: Failed to resolve 'creativeicon.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-27T04:05:12.620587
+https://digisuccess.us/,Failed,"HTTPSConnectionPool(host='digisuccess.us', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x111614a50>: Failed to resolve 'digisuccess.us' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-27T04:05:12.654258
+https://sathilab.com/,Success,Crawl completed,2026-06-27T04:05:18.760508
+https://www.webkaro.in/,Success,Crawl completed,2026-06-27T04:05:25.430266
+https://acmemedia.in/,Success,Crawl completed,2026-06-27T04:05:29.371987
+https://www.sriramsoft.com/,Success,Crawl completed,2026-06-27T04:05:33.632428
+http://mediax.co.in/,Failed,Website does not appear to be a valid business website,2026-06-27T04:05:34.334887
+https://profitbyppc.com/,Success,Crawl completed,2026-06-27T04:05:36.418539
+https://www.flagscommunications.com/,Success,Crawl completed,2026-06-27T04:05:40.157165
+https://any2digital.com/,Success,Crawl completed,2026-06-27T04:05:43.507266
+http://www.dezitek.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:05:49.146068
+http://www.trendyonlinesolution.in/,Failed,403 Client Error: Forbidden for url: https://www.trendyonlinesolution.in/,2026-06-27T04:05:49.618951
+https://commaddesign.com/,Success,Crawl completed,2026-06-27T04:05:52.106075
+https://www.syntaxworlddigital.com/,Success,Crawl completed,2026-06-27T04:05:53.649911
+https://needawebsitedeveloper.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:12:28.805911
+https://www.sriramtrade.com/,Success,Crawl completed,2026-06-27T04:12:42.109840
+https://www.cssfounder.com/website-designing-company-in-delhi/,Success,Crawl completed,2026-06-27T04:12:45.236551
+https://www.dakshajawebsolutions.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:12:56.971051
+https://www.digitallybird.com/,Success,Crawl completed,2026-06-27T04:13:02.404311
+https://gdbharat.netlify.app/,Success,Crawl completed,2026-06-27T04:13:05.457492
+https://www.web4u.in/,Success,Crawl completed,2026-06-27T04:13:07.025259
+https://www.futuregenapps.com/website-design-company-in-ghaziabad,Success,Crawl completed,2026-06-27T04:13:48.595403
+https://www.edtech.in/,Success,Crawl completed,2026-06-27T04:13:50.685206
+https://www.imrakesh.com/,Failed,"HTTPSConnectionPool(host='www.imrakesh.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10a55b750>: Failed to resolve 'www.imrakesh.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-27T04:13:51.000426
+https://creativeplayer.in/best-seo-freelancer-in-delhi-ncr.php,Success,Crawl completed,2026-06-27T04:13:52.283762
+https://www.shivwebsindia.com/,Success,Crawl completed,2026-06-27T04:14:02.858117
+https://www.b2binfosoft.com/,Failed,"not enough values to unpack (expected 2, got 1)",2026-06-27T04:14:09.656625
+http://digitalsoull.in/,Success,Crawl completed,2026-06-27T04:14:15.511529
+https://www.webbraininfotech.com/,Success,Crawl completed,2026-06-27T04:14:18.743547
+https://www.anyawebsolution.in/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-27T04:14:25.669661
+https://www.webclickindia.com/,Failed,403 Client Error: Forbidden for url: https://www.webclickindia.com/,2026-06-27T04:14:40.200827
+https://www.website99.net/,Success,Crawl completed,2026-06-27T04:14:48.472476
+http://www.sixsoftmedia.com/services/web-design-services/e-commerce-web-designing/,Failed,404 Client Error: Not Found for url: https://sixsoftmedia.com/services/web-design-services/e-commerce-web-designing/,2026-06-27T04:14:51.805139
+https://sites.google.com/view/webxcircle/home,Success,Crawl completed,2026-06-27T04:14:53.791279
+https://inlandmart.in/inland-ai-website-builder/,Success,Crawl completed,2026-06-27T04:14:56.002813
+https://dishainfotech.co.in/,Success,Crawl completed,2026-06-27T04:14:56.932464
+https://skillindiaprogram.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:15:00.273117
+http://auswebagency.com/,Success,Crawl completed,2026-06-27T04:15:10.519979
+https://www.rankpal.in/,Failed,Website does not appear to be a valid business website,2026-06-27T04:15:11.548393
+https://codemonkstudio.com/,Success,Crawl completed,2026-06-27T04:15:18.516454
+https://www.gleamsoftech.com/,Success,Crawl completed,2026-06-27T04:15:20.409966
+https://www.madhavdigitalservices.com/,Failed,"HTTPSConnectionPool(host='www.madhavdigitalservices.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x109ff7610>: Failed to resolve 'www.madhavdigitalservices.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-27T04:15:20.733418
+https://www.matebiz.com/,Success,Crawl completed,2026-06-27T04:15:28.974431
+http://www.vipinwebdesigner.in/,Success,Crawl completed,2026-06-27T04:15:36.186109
+http://agd.agency/,Success,Crawl completed,2026-06-27T04:15:38.560321
+https://phinzustudio.com/,Success,Crawl completed,2026-06-27T04:15:49.410403
+https://www.websitedesignghaziabad.com/enquiry.html,Success,Crawl completed,2026-06-27T04:15:50.233574
+https://apnadigitalsolution.com/,Success,Crawl completed,2026-06-27T04:15:52.014673
+https://webtechs.in/,Success,Crawl completed,2026-06-27T04:15:53.648069
+http://websintech.com/,Success,Crawl completed,2026-06-27T04:15:59.598681
+https://shamscreative.in/,Success,Crawl completed,2026-06-27T04:16:00.006538
+https://www.sbetatechnology.com/,Success,Crawl completed,2026-06-27T04:16:07.414798
+https://brightminddigital.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:16:10.200342
+https://www.acsius.com/,Success,Crawl completed,2026-06-27T04:16:24.018668
+http://brandoptimizers.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:16:28.828357
+https://panasys.in/,Success,Crawl completed,2026-06-27T04:16:33.273765
+http://websitescreatorshub.com/,Success,Crawl completed,2026-06-27T04:16:44.238879
+https://websitedesigningagencyindelhi.aiinsightblog.com/?source=gmb,Failed,"HTTPSConnectionPool(host='websitedesigningagencyindelhi.aiinsightblog.com', port=443): Max retries exceeded with url: /?source=gmb (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10a559e50>: Failed to resolve 'websitedesigningagencyindelhi.aiinsightblog.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-27T04:16:44.569648
+https://www.digiinfoexpert.com/,Success,Crawl completed,2026-06-27T04:16:48.452216
+https://enyowebservices.com/,Success,Crawl completed,2026-06-27T04:16:50.598574
+https://www.webultras.com/,Failed,"HTTPSConnectionPool(host='www.webultras.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1032)')))",2026-06-27T04:16:52.693299
+https://cliffcoderz.com/,Success,Crawl completed,2026-06-27T04:16:55.497909
+https://netcreator.co.in/website-design-development.php,Success,Crawl completed,2026-06-27T04:16:58.863010
+https://miraiwebsitedesigning.com/,Success,Crawl completed,2026-06-27T04:17:07.679196
+https://digitalrajat.io/,Success,Crawl completed,2026-06-27T04:17:08.999599
+http://www.digiproit.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-06-27T04:17:12.537952
+http://www.centdigital.in/,Success,Crawl completed,2026-06-27T04:17:15.375852
+https://soham.showcasingportfolio.com/,Failed,"HTTPSConnectionPool(host='soham.showcasingportfolio.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')))",2026-06-27T04:17:16.294779
+https://forms.gle/zLNERRaBphec5Pyk9,Failed,Website does not appear to be a valid business website,2026-06-27T04:17:18.893160
+https://www.webearth.in/,Success,Crawl completed,2026-06-27T04:17:21.885832
+https://designandrank.com/,Success,Crawl completed,2026-06-27T04:17:35.514438
+https://www.daybreaksocial.in/,Failed,404 Client Error: Not Found for url: https://www.daybreaksocial.in/,2026-06-27T04:17:36.325020
+http://deuscreation.com/,Success,Crawl completed,2026-06-27T04:17:37.766230
+https://eisolutions.in/,Success,Crawl completed,2026-06-27T04:17:44.667420
+https://www.webdevelopershub.in/,Success,Crawl completed,2026-06-27T04:17:51.634422
+https://whitewebagency.in/,Success,Crawl completed,2026-06-27T04:17:54.112357
+https://technoiconic.com/,Success,Crawl completed,2026-06-27T04:17:56.652163
+https://www.webmartindia.in/,Success,Crawl completed,2026-06-27T04:18:05.549562
+https://kiiwebdigitalsolutions.com/,Success,Crawl completed,2026-06-27T04:18:07.136406
+https://www.skillforever.com/,Success,Crawl completed,2026-06-27T04:18:14.392191
+https://www.technicalindia.com/,Success,Crawl completed,2026-06-27T04:18:16.443775
+https://www.paradigminfoweb.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:18:17.839220
+https://www.shreeyawebsolutions.com/,Success,Crawl completed,2026-06-27T04:18:22.694129
+http://vatshayantechnologies.com/,Success,Crawl completed,2026-06-27T04:18:27.603285
+https://www.windsong.co.in/,Success,Crawl completed,2026-06-27T04:18:44.033359
+https://onepercentweb.com/,Success,Crawl completed,2026-06-27T04:18:45.325801
+https://www.ankdevelopment.in/,Success,Crawl completed,2026-06-27T04:18:46.219789
+https://davidwebsolution.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:18:48.826287
+https://rpwebtrack.com/,Success,Crawl completed,2026-06-27T04:18:50.684084
+https://sushantatri.satisfiedlook.com/,Success,Crawl completed,2026-06-27T04:18:51.724371
+https://www.ajaykumarthakur.in/,Success,Crawl completed,2026-06-27T04:18:54.203212
+https://www.godigipro.com/website-design,Success,Crawl completed,2026-06-27T04:18:58.637363
+http://www.dezitek.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:19:04.092118
+https://codellinfosolution.com/,Success,Crawl completed,2026-06-27T04:19:05.400850
+https://www.arihantwebtech.com/?utm_source=gbp&utm_medium=g_organic&utm_campaign=g_visit&utm_id=g1,Success,Crawl completed,2026-06-27T04:19:07.620066
+https://aniketgupta.in/services/wesbite-designing,Failed,404 Client Error: Not Found for url: https://aniketgupta.in/services/wesbite-designing,2026-06-27T04:19:09.058707
+http://wa.me/+919717167690,Success,Crawl completed,2026-06-27T04:19:12.777075
+https://visionstarve.com/,Success,Crawl completed,2026-06-27T04:19:14.222639
+https://www.deldes.in/,Success,Crawl completed,2026-06-27T04:19:17.752852
+https://megawebdesign.in/,Success,Crawl completed,2026-06-27T04:19:22.622675
+http://www.thedigitalwebhost.in/,Success,Crawl completed,2026-06-27T04:19:38.469213
+https://webomediatechnology.com/,Success,Crawl completed,2026-06-27T04:20:42.295835
+https://digispot24.com/,Success,Crawl completed,2026-06-27T04:20:48.168047
+https://needawebsitedeveloper.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:27:33.911303
+https://www.dakshajawebsolutions.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:27:36.466478
+https://www.b2binfosoft.com/,Failed,"not enough values to unpack (expected 2, got 1)",2026-06-27T04:27:42.313494
+https://arpwebs.com/,Success,Crawl completed,2026-06-27T04:27:45.634952
+http://www.digitaldezire.com/,Success,Crawl completed,2026-06-27T04:27:47.155665
+http://www.sixsoftmedia.com/services/web-design-services/e-commerce-web-designing/,Failed,404 Client Error: Not Found for url: https://sixsoftmedia.com/services/web-design-services/e-commerce-web-designing/,2026-06-27T04:27:50.179918
+https://www.profile.justlocality.com/digitalwebkey/index.php,Success,Crawl completed,2026-06-27T04:27:52.278864
+http://www.itnucleus.com/,Success,Crawl completed,2026-06-27T04:27:58.822450
+https://thedigitalroot.com/,Success,Crawl completed,2026-06-27T04:28:00.030153
+https://www.themydeveloper.com/,Success,Crawl completed,2026-06-27T04:28:00.745510
+https://www.rankpal.in/,Failed,Website does not appear to be a valid business website,2026-06-27T04:28:01.248747
+https://www.webultras.com/,Failed,"HTTPSConnectionPool(host='www.webultras.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1032)')))",2026-06-27T04:28:03.497017
+https://www.techcentrica.com/?utm_source=GMaps&utm_medium=listing&utm_campaign=Website_Click&utm_id=GMB,Success,Crawl completed,2026-06-27T04:28:09.676971
+https://codersoftech.com/,Success,Crawl completed,2026-06-27T04:28:11.240953
+https://cyboserver.com/,Success,Crawl completed,2026-06-27T04:28:20.240983
+http://www.singhsoftech.com/,Success,Crawl completed,2026-06-27T04:28:30.197794
+https://www.madhavdigitalservices.com/,Failed,"HTTPSConnectionPool(host='www.madhavdigitalservices.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x109ff5950>: Failed to resolve 'www.madhavdigitalservices.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-27T04:28:30.206742
+https://mizzeodigital.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:28:32.919309
+http://www.techusu.com/,Success,Crawl completed,2026-06-27T04:28:34.282199
+https://kumarsoft.in/,Success,Crawl completed,2026-06-27T04:28:39.210946
+https://www.thewebtycoons.com/,Success,Crawl completed,2026-06-27T04:29:00.456851
+https://www.daybreaksocial.in/,Failed,404 Client Error: Not Found for url: https://www.daybreaksocial.in/,2026-06-27T04:29:01.146481
+https://www.myapedeveloper.com/,Success,Crawl completed,2026-06-27T04:29:03.032571
+http://www.webdesigndeveloperdelhi.com/,Success,Crawl completed,2026-06-27T04:29:05.034324
+http://aaryawebsolution.in/,Success,Crawl completed,2026-06-27T04:29:21.677345
+https://aosoftwaresolution.com/,Success,Crawl completed,2026-06-27T04:29:33.896934
+https://rahuljha.dev/,Success,Crawl completed,2026-06-27T04:29:37.406579
+https://www.techalphonic.com/seo-company-in-noida/,Success,Crawl completed,2026-06-27T04:29:40.786199
+https://surajsaxena.com/,Success,Crawl completed,2026-06-27T04:29:44.426465
+https://digitalalife.com/,Success,Crawl completed,2026-06-27T04:29:45.854530
+https://www.freelancewebdeveloper.net/,Success,Crawl completed,2026-06-27T04:29:55.963902
+https://websitedesigningagencyindelhi.aiinsightblog.com/?source=gmb,Failed,"HTTPSConnectionPool(host='websitedesigningagencyindelhi.aiinsightblog.com', port=443): Max retries exceeded with url: /?source=gmb (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x109ff5bd0>: Failed to resolve 'websitedesigningagencyindelhi.aiinsightblog.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-27T04:29:55.972988
+https://itcrafterhub.com/website-developer-delhi/,Success,Crawl completed,2026-06-27T04:29:58.650835
+https://www.naiyadot.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:30:01.761493
+http://www.digitalavenue.in/,Success,Crawl completed,2026-06-27T04:30:15.418042
+https://www.acemindtech.com/,Success,Crawl completed,2026-06-27T04:30:21.183528
+http://www.laserwebmaker.com/,Success,Crawl completed,2026-06-27T04:30:23.221447
+https://webbullindia.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb,Success,Crawl completed,2026-06-27T04:30:26.818857
+https://digitaldwar.com/,Success,Crawl completed,2026-06-27T04:30:29.754086
+https://www.fahimshakir.com/,Success,Crawl completed,2026-06-27T04:30:32.676923
+https://invoidea.com/,Success,Crawl completed,2026-06-27T04:31:12.861033
+https://www.paradigminfoweb.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:31:14.426893
+https://www.syntaxcreations.com/,Failed,Website does not appear to be a valid business website,2026-06-27T04:31:16.858039
+https://forms.gle/zLNERRaBphec5Pyk9,Failed,Website does not appear to be a valid business website,2026-06-27T04:31:19.486843
+https://www.evermolpro.com/,Success,Crawl completed,2026-06-27T04:31:20.489103
+http://www.pointersoft.in/,Success,Crawl completed,2026-06-27T04:31:21.881315
+https://admoremedia.com/,Success,Crawl completed,2026-06-27T04:31:26.652954
+https://akodars.com/,Success,Crawl completed,2026-06-27T04:31:28.248139
+https://www.digiwalk.in/,Failed,403 Client Error: Forbidden for url: https://www.digiwalk.in/,2026-06-27T04:31:28.885407
+https://rubyroman.tech/,Success,Crawl completed,2026-06-27T04:31:49.427653
+https://baaztechno.com/,Failed,"HTTPSConnectionPool(host='baaztechno.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10a559e50>: Failed to resolve 'baaztechno.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-06-27T04:31:49.583400
+http://www.ravisah.in/,Success,Crawl completed,2026-06-27T04:31:53.409580
+https://www.websunindia.com/,Success,Crawl completed,2026-06-27T04:31:55.571506
+http://www.mark-design.net/,Failed,unhashable type: 'list',2026-06-27T04:32:00.235292
+https://www.corridorweb.com/,Success,Crawl completed,2026-06-27T04:32:08.503210
+https://netmaxims.com/,Success,Crawl completed,2026-07-01T02:31:09.636882
+https://www.shooratech.com/,Success,Crawl completed,2026-07-01T02:31:15.681138
+https://www.slnsoftwares.com/,Success,Crawl completed,2026-07-01T02:31:16.684016
+http://cs64.org/,Failed,Website does not appear to be a valid business website,2026-07-01T02:31:20.941675
+https://softsynthsoftware.com/,Success,Crawl completed,2026-07-01T02:31:25.640432
+https://techsteck.com/,Success,Crawl completed,2026-07-01T02:31:35.261902
+https://softkwit.in/mlm-software.php,Success,Crawl completed,2026-07-01T02:31:37.546493
+http://metafrone.com/,Failed,Website does not appear to be a valid business website,2026-07-01T02:31:39.367345
+https://webgridsolution.com/,Success,Crawl completed,2026-07-01T02:31:41.235945
+https://ureka.dev/,Success,Crawl completed,2026-07-01T02:31:44.477865
+https://www.logzerotechnologies.com/,Success,Crawl completed,2026-07-01T02:31:50.067656
+https://www.datasofttechnologies.com/,Success,Crawl completed,2026-07-01T02:31:54.939769
+https://www.webliska.com/,Failed,Website does not appear to be a valid business website,2026-07-01T02:31:56.673164
+https://www.starwebit.in/,Success,Crawl completed,2026-07-01T02:31:58.224730
+https://www.appventurez.com/?utm_source=Google&utm_medium=GMB&utm_campaign=AV-organic,Success,Crawl completed,2026-07-01T02:32:03.572319
+https://tech9logy.com/,Success,Crawl completed,2026-07-01T02:32:31.477623
+http://theallsolutions.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-07-01T02:32:32.009046
+https://www.dixinfotech.com/,Success,Crawl completed,2026-07-01T02:32:33.466254
+https://techwarezen.com/,Success,Crawl completed,2026-07-01T02:32:38.891486
+https://www.akoode.com/,Success,Crawl completed,2026-07-01T02:32:41.408475
+https://appinventiv.com/,Success,Crawl completed,2026-07-01T02:32:46.944826
+https://www.softication.com/,Success,Crawl completed,2026-07-01T02:32:53.670580
+http://www.extendcode.com/,Failed,Website does not appear to be a valid business website,2026-07-01T02:32:58.885940
+https://mlmsoftwarecompany.in/,Success,Crawl completed,2026-07-01T02:33:04.566828
+http://www.softgianttech.com/,Success,Crawl completed,2026-07-01T02:33:09.131881
+https://hashdevelopers.in/,Success,Crawl completed,2026-07-01T02:33:10.152807
+https://www.innovationm.com/?utm_source=gmb&utm_medium=organic&utm_campaign=gmb_website_click,Success,Crawl completed,2026-07-01T02:33:11.074578
+https://incoderslab.com/,Success,Crawl completed,2026-07-01T02:33:16.796832
+https://www.techwebmantra.com/,Success,Crawl completed,2026-07-01T02:33:18.772770
+https://techosoft.in/,Success,Crawl completed,2026-07-01T02:33:24.555453
+https://www.iraitech.com/,Failed,"HTTPSConnectionPool(host='www.iraitech.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1032)')))",2026-07-01T02:33:25.464687
+https://www.almondz.com/software-development.php,Success,Crawl completed,2026-07-01T02:33:28.163342
+https://www.shubhitech.com/,Success,Crawl completed,2026-07-01T02:33:34.110423
+https://www.alhadaftech.com/,Success,Crawl completed,2026-07-01T02:33:41.261120
+http://www.tapirsoft.com/,Success,Crawl completed,2026-07-01T02:33:46.858831
+https://quickipedia.in/,Failed,Website does not appear to be a valid business website,2026-07-01T02:33:47.266376
+https://www.rsk-bsl.com/,Success,Crawl completed,2026-07-01T02:34:03.149352
+https://syncapptech.com/,Success,Crawl completed,2026-07-01T02:34:09.560173
+http://www.softindia.in/,Success,Crawl completed,2026-07-01T02:34:10.434165
+https://dataslexindia.com/,Success,Crawl completed,2026-07-01T02:34:15.498174
+http://evgsoftware.in/,Success,Crawl completed,2026-07-01T02:34:24.745761
+https://www.softkingo.com/,Success,Crawl completed,2026-07-01T02:34:27.660138
+https://www.mlmwebsoftware.com/,Success,Crawl completed,2026-07-01T02:34:29.701605
+https://www.deaninfotech.com/,Success,Crawl completed,2026-07-01T02:34:36.082203
+https://www.rssindia.com/,Success,Crawl completed,2026-07-01T02:34:37.974496
+https://www.essencesoftwares.com/,Success,Crawl completed,2026-07-01T02:34:45.093040
+https://gomilestone.com/,Success,Crawl completed,2026-07-01T02:34:48.605326
+https://wa.me/917838518049?text=Hello%20Team%2C%20I%20want%20to%20schedule%20a%20meeting%20with%20you%20regarding%20mobile%20app%20development,Success,Crawl completed,2026-07-01T02:34:55.654453
+https://www.mindrops.com/?utm_source=gmb&utm_medium=organic,Success,Crawl completed,2026-07-01T02:34:59.463528
+https://www.weblyticsinfotech.com/crm-software-in-delhi.php,Success,Crawl completed,2026-07-01T02:35:04.440707
+https://bloatwareitsolutions.com/,Success,Crawl completed,2026-07-01T02:35:10.540350
+https://www.heureuxsoftware.com/,Success,Crawl completed,2026-07-01T02:35:14.928879
+https://www.revinfotech.com/,Success,Crawl completed,2026-07-01T02:35:47.575323
+https://i-softinc.com/,Success,Crawl completed,2026-07-01T02:36:03.055170
+https://www.squareboat.com/,Success,Crawl completed,2026-07-01T02:36:07.288234
+https://www.arsstech.com/,Failed,404 Client Error: Not Found for url: https://www.arsstech.com/,2026-07-01T02:36:08.657307
+https://kreatedevai.com/,Failed,Website does not appear to be a valid business website,2026-07-01T02:36:09.708845
+https://www.google.co.in/intl/en/about/products?tab=lh,Success,Crawl completed,2026-07-01T02:36:14.249283
+https://brainstacktechnologies.com/,Success,Crawl completed,2026-07-01T02:36:18.517314
+https://srchoutsoftware.com/,Success,Crawl completed,2026-07-01T02:36:20.670732
+https://www.matrixinfotechsolution.com/,Failed,Website does not appear to be a valid business website,2026-07-01T02:36:21.971719
+https://dreamsoftinfotech.com/,Success,Crawl completed,2026-07-01T02:36:26.583741
+https://hiredevpro.com/,Success,Crawl completed,2026-07-01T02:36:37.169164
+https://risingitsolutions.com/,Success,Crawl completed,2026-07-01T02:36:39.234360
+http://www.inforises.com/,Success,Crawl completed,2026-07-01T02:36:41.771610
+http://www.mindscansoftware.com/,Success,Crawl completed,2026-07-01T02:36:45.224265
+https://pasenture.in/,Success,Crawl completed,2026-07-01T02:36:48.174497
+https://dianapps.com/,Failed,Website does not appear to be a valid business website,2026-07-01T02:36:49.438327
+https://dreamertechnoland.com/,Success,Crawl completed,2026-07-01T02:36:57.082241
+http://www.advantaltechnologies.com/,Success,Crawl completed,2026-07-01T02:37:06.254335
+https://www.micromind.in/,Success,Crawl completed,2026-07-01T02:37:07.218021
+https://www.incrediblesoftwares.com/,Success,Crawl completed,2026-07-01T02:37:08.842483
+https://vedikasoft.com/,Success,Crawl completed,2026-07-01T02:37:11.259163
+https://www.eitbiz.com/,Success,Crawl completed,2026-07-01T02:37:15.552471
+https://www.bestwebs.in/,Success,Crawl completed,2026-07-01T02:37:24.252174
+https://compiledsuccessfully.in/,Success,Crawl completed,2026-07-01T02:37:30.906163
+https://rbinfosystems.com/,Failed,"HTTPSConnectionPool(host='rbinfosystems.com', port=443): Read timed out. (read timeout=15)",2026-07-01T02:38:16.908150
+https://crmtechindia.com/,Success,Crawl completed,2026-07-01T02:38:20.599140
+https://techinnovationapp.in/,Success,Crawl completed,2026-07-01T02:38:22.405250
+http://www.tamarsoftware.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-07-01T02:38:24.516024
+http://globealley.us/,Failed,Website does not appear to be a valid business website,2026-07-01T02:38:27.051983
+https://kridhaverse.com/,Success,Crawl completed,2026-07-01T02:38:31.067773
+https://www.javaonlinehelp.com/,Success,Crawl completed,2026-07-01T02:38:41.328489
+https://ashatech.co.in/,Success,Crawl completed,2026-07-01T02:38:46.087058
+https://www.kodehash.com/,Failed,Website does not appear to be a valid business website,2026-07-01T02:38:49.233773
+https://spacetotech.com/,Success,Crawl completed,2026-07-01T02:38:51.456101
+https://www.momentum-software.com/,Success,Crawl completed,2026-07-01T02:38:52.770943
+https://prismberry.com/,Success,Crawl completed,2026-07-01T02:39:07.299020
+https://www.webcorewin.com/,Success,Crawl completed,2026-07-01T02:39:10.381445
+https://www.alihacktech.in/,Failed,Website does not appear to be a valid business website,2026-07-01T02:39:13.198586
+http://www.grihsevasoftware.com/,Failed,"HTTPConnectionPool(host='www.grihsevasoftware.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x1123ebf00>: Failed to resolve 'www.grihsevasoftware.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-07-01T02:39:13.447146
+https://www.queppelin.com/,Success,Crawl completed,2026-07-01T02:39:26.172502
+https://zeabro.com/,Failed,"HTTPSConnectionPool(host='zeabro.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))",2026-07-01T02:39:29.588370
+https://www.askzenixtechnologies.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-07-01T02:39:30.461382
+https://zaidapp.com/,Success,Crawl completed,2026-07-01T02:39:42.740226
+https://softairtechnology.com/,Success,Crawl completed,2026-07-01T02:39:45.411789
+https://ashitservice.com/,Failed,404 Client Error: Not Found for url: https://ashitservice.com/,2026-07-01T02:39:46.016927
+https://www.mobiindia.in/?utm_source=locallisting&utm_medium=search&utm_content=listing,Success,Crawl completed,2026-07-01T02:39:53.522868
+https://www.notustechnologies.co.in/,Failed,"HTTPSConnectionPool(host='www.notustechnologies.co.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c293c50>: Failed to resolve 'www.notustechnologies.co.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-07-01T02:39:54.654118
+https://www.v2infotech.net/,Success,Crawl completed,2026-07-01T02:39:58.938288
+https://www.infotechagency.com/,Success,Crawl completed,2026-07-01T02:46:44.847222
+http://cs64.org/,Failed,Website does not appear to be a valid business website,2026-07-01T02:46:47.244267
+https://awapal.com/,Failed,"HTTPSConnectionPool(host='awapal.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1032)')))",2026-07-01T02:46:47.993052
+https://phpyouth.in/,Success,Crawl completed,2026-07-01T02:46:53.137745
+https://nodeascend.com/,Success,Crawl completed,2026-07-01T02:46:55.022080
+https://www.oprezoindia.com/index.php,Failed,unhashable type: 'list',2026-07-01T02:46:59.868232
+http://www.digitalagents.in/,Success,Crawl completed,2026-07-01T02:47:08.362119
+https://oneticktechnologies.com/,Success,Crawl completed,2026-07-01T02:47:09.781634
+https://weare86.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-07-01T02:47:10.195409
+http://promptit.org/,Failed,Website does not appear to be a valid business website,2026-07-01T02:47:11.021366
+http://www.greatertechhub.com/,Success,Crawl completed,2026-07-01T02:47:15.385635
+http://sorabyte.in/,Success,Crawl completed,2026-07-01T02:47:21.299802
+https://digital-saabhi-web.grexa.site/,Success,Crawl completed,2026-07-01T02:47:25.302256
+https://honeyshatech.com/,Success,Crawl completed,2026-07-01T02:47:27.261087
+https://visionsolution.in/,Success,Crawl completed,2026-07-01T02:47:31.034981
+https://www.connectinfosoft.com/,Success,Crawl completed,2026-07-01T02:47:37.173038
+http://techcapitals.com/,Success,Crawl completed,2026-07-01T02:47:45.771535
+https://www.3minfocare.in/busy.html,Failed,"HTTPSConnectionPool(host='www.3minfocare.in', port=443): Max retries exceeded with url: /busy.html (Caused by SSLError(SSLCertVerificationError(1, ""[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.3minfocare.in'. (_ssl.c:1032)"")))",2026-07-01T02:47:46.270138
+https://www.infotyke.com/,Success,Crawl completed,2026-07-01T02:47:53.482331
+http://shiryusoftware.com/,Success,Crawl completed,2026-07-01T02:47:55.944901
+https://www.techcouples.com/,Success,Crawl completed,2026-07-01T02:47:59.699233
+https://www.softwareandstudio.in/,Failed,Website does not appear to be a valid business website,2026-07-01T02:48:05.254836
+https://www.maishainfotech.com/,Success,Crawl completed,2026-07-01T02:48:09.627276
+https://iconicxmedia.com/,Success,Crawl completed,2026-07-01T02:48:15.097166
+https://seoservicessk.com/seo-services-in-ballabgarh/,Success,Crawl completed,2026-07-01T02:48:16.550126
+http://www.yatiken.com/,Success,Crawl completed,2026-07-01T02:48:22.027022
+https://www.testing-agency.com/?utm_source=google+listing&utm_medium=organic&utm_campaign=ggn,Failed,Website does not appear to be a valid business website,2026-07-01T02:48:23.577796
+https://unitbrains.com/,Failed,unhashable type: 'list',2026-07-01T02:48:27.926568
+https://www.webbyacad.net/,Success,Crawl completed,2026-07-01T02:48:30.202724
+https://whisperingchevrons.in/,Failed,Website does not appear to be a valid business website,2026-07-01T02:48:30.545484
+http://appquarterz.com/,Success,Crawl completed,2026-07-01T02:48:35.844982
+http://piratica.in/,Success,Crawl completed,2026-07-01T02:48:39.415046
+https://www.keyideasinfotech.com/,Failed,403 Client Error: Forbidden for url: https://www.keyideasinfotech.com/,2026-07-01T02:48:40.450227
+https://rpdsoftware.com/,Success,Crawl completed,2026-07-01T02:48:43.778458
+http://affablesolution.com/,Success,Crawl completed,2026-07-01T02:48:50.331491
+https://offshootagency.in/,Failed,503 Server Error: Service Unavailable for url: https://offshootagency.in/,2026-07-01T02:48:51.116049
+https://www.webority.com/,Success,Crawl completed,2026-07-01T02:48:52.663541
+https://aosoftwaresolution.com/,Success,Crawl completed,2026-07-01T02:49:03.942230
+https://guestpostsoftware.com/,Success,Crawl completed,2026-07-01T02:49:09.844395
+https://gauravitgroup.com/,Success,Crawl completed,2026-07-01T02:49:10.989036
+https://snsoftwares.com/,Success,Crawl completed,2026-07-01T02:49:12.823457
+https://www.meta11webservices.com/,Success,Crawl completed,2026-07-01T02:49:20.820794
+https://softwaresbazar.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-07-01T02:49:21.997895
+https://freelancerabhi.com/,Failed,Website does not appear to be a valid business website,2026-07-01T02:49:22.914562
+https://syncsoftsolution.com/,Success,Crawl completed,2026-07-01T02:49:25.271311
+https://www.webxera.com/,Success,Crawl completed,2026-07-01T02:49:40.448461
+https://networsys.com/,Success,Crawl completed,2026-07-01T02:49:44.481161
+https://www.softwarexprts.com/,Success,Crawl completed,2026-07-01T02:49:47.459006
+http://www.azikya.com/,Success,Crawl completed,2026-07-01T02:49:52.745338
+https://makelinkit.com/,Success,Crawl completed,2026-07-01T02:49:57.256374
+https://fixdot.in/,Success,Crawl completed,2026-07-01T02:50:01.701562
+https://itsmyservices.com/,Failed,"not enough values to unpack (expected 2, got 1)",2026-07-01T02:50:10.796558
+https://a3source.com/,Success,Crawl completed,2026-07-01T02:50:12.700041
+https://www.ikokas.com/,Success,Crawl completed,2026-07-01T02:50:16.928397
+https://codewebcreation.com/,Success,Crawl completed,2026-07-01T02:50:19.929775
+https://www.webtakersitsolutions.com/,Success,Crawl completed,2026-07-01T02:50:27.139445
+https://www.arsstech.com/,Failed,404 Client Error: Not Found for url: https://www.arsstech.com/,2026-07-01T02:50:27.465014
+https://www.qaushik.com/,Success,Crawl completed,2026-07-01T02:50:30.942675
+http://sitesign.in/,Success,Crawl completed,2026-07-01T02:50:39.549718
+https://digitalcrave.com/,Failed,403 Client Error: Forbidden for url: https://www.atom.com/name/DigitalCrave,2026-07-01T02:50:42.494923
+https://infovibes.amreshchandravanshi.co.in/,Failed,"HTTPSConnectionPool(host='infovibes.amreshchandravanshi.co.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x1125f4690>: Failed to resolve 'infovibes.amreshchandravanshi.co.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-07-01T02:50:42.647034
+https://www.aadmsa.com/,Success,Crawl completed,2026-07-01T02:50:51.537718
+https://encrobytes.com/,Success,Crawl completed,2026-07-01T02:50:51.951235
+https://netclubbed.com/,Success,Crawl completed,2026-07-01T02:50:54.654186
+https://zeabro.com/,Failed,"HTTPSConnectionPool(host='zeabro.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))",2026-07-01T02:50:56.813670
+https://www.webservicedelhi.com/,Success,Crawl completed,2026-07-01T02:51:00.128687
+https://delhisoftwares.com/,Failed,403 Client Error: Forbidden for url: https://delhisoftwares.com/,2026-07-01T02:51:00.939214
+https://dysofttech.in/,Failed,"HTTPSConnectionPool(host='dysofttech.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x1125f5450>: Failed to resolve 'dysofttech.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-07-01T02:51:03.244143
+https://digitalholder.in/,Success,Crawl completed,2026-07-01T02:51:05.354696
+https://weltcodeweb.in/,Success,Crawl completed,2026-07-01T02:51:09.244007
+http://www.appspine.info/,Failed,"HTTPConnectionPool(host='www.appspine.info', port=80): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1123e9bf0>: Failed to establish a new connection: [Errno 61] Connection refused'))",2026-07-01T02:51:09.634968
+http://www.mobikasa.com/?utm_source=google&utm_medium=organic&utm_campaign=google_busines_slisting,Success,Crawl completed,2026-07-01T02:51:22.285047
+https://www.uvdesigns.in/,Success,Crawl completed,2026-07-01T02:51:27.435108
+https://codenap.in/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-07-01T02:51:27.764579
+http://swaggyinfolabs.com/,Success,Crawl completed,2026-07-01T02:51:41.254536
+https://yuvocreations.com/,Failed,Website does not appear to be a valid business website,2026-07-01T02:51:41.794277
+https://www.digitalsdaddy.com/,Success,Crawl completed,2026-07-01T02:52:01.702889
+https://rbinfosystems.com/,Failed,"HTTPSConnectionPool(host='rbinfosystems.com', port=443): Read timed out. (read timeout=15)",2026-07-01T02:52:47.667436
+https://clickiya.com/,Success,Crawl completed,2026-07-01T02:52:49.620637
+https://www.aidigitalservice.in/,Success,Crawl completed,2026-07-01T02:59:44.892050
+https://digicrusader.com/,Success,Crawl completed,2026-07-01T02:59:48.303551
+https://aiagentstudio.org/,Success,Crawl completed,2026-07-01T02:59:50.551029
+https://aiadvertisement.in/,Success,Crawl completed,2026-07-01T02:59:52.918016
+https://growthpilot-ai-web.lovable.app/,Success,Crawl completed,2026-07-01T03:00:00.826285
+http://aiexpertmedia.com/,Success,Crawl completed,2026-07-01T03:00:06.658654
+http://www.mediaai.in/,Success,Crawl completed,2026-07-01T03:00:08.353406
+https://aimarketingwala.com/,Success,Crawl completed,2026-07-01T03:00:10.324707
+https://aiagentone.in/,Failed,"HTTPSConnectionPool(host='aiagentone.in', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x1133dc690>, 'Connection to aiagentone.in timed out. (connect timeout=15)'))",2026-07-01T03:00:55.583836
+https://futureaitechnology.com/,Success,Crawl completed,2026-07-01T03:00:56.302488
+https://aiagentservices.in/,Failed,"HTTPSConnectionPool(host='aiagentservices.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x1125f6c10>: Failed to resolve 'aiagentservices.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-07-01T03:00:57.297200
+https://gomagentic.com/,Success,Crawl completed,2026-07-01T03:01:08.542130
+https://launchefy.com/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-07-01T03:01:09.006469
+https://ayunik.com/,Success,Crawl completed,2026-07-01T03:01:11.278032
+https://mercuryai.in/,Failed,Website does not appear to be a valid business website,2026-07-01T03:01:12.498813
+https://www.itwebstream.com/,Success,Crawl completed,2026-07-01T03:01:14.103011
+https://www.himcrest.com/,Success,Crawl completed,2026-07-01T03:01:21.035036
+https://searchspot.ai/,Success,Crawl completed,2026-07-01T03:01:23.922719
+https://agenticindia.in/?utm_source=google+listing&utm_medium=organic&utm_campaign=ggn,Success,Crawl completed,2026-07-01T03:01:29.476430
+https://digitalpatron.in/,Success,Crawl completed,2026-07-01T03:01:30.848216
+https://wa.me/9211018490?utm_source=gmb_bookings,Success,Crawl completed,2026-07-01T03:01:35.442274
+https://dg10.agency/,Failed,Website does not appear to be a valid business website,2026-07-01T03:01:43.884078
+https://aidigma.com/,Failed,Website does not appear to be a valid business website,2026-07-01T03:01:45.277860
+https://businessvolunteers.online/,Success,Crawl completed,2026-07-01T03:01:47.448965
+https://trigitalsolutions.com/?utm_source=gmb&utm_medium=organic&utm_campaign=gmb_profile,Success,Crawl completed,2026-07-01T03:01:48.850202
+https://www.zebracatinida.com/,Failed,"HTTPSConnectionPool(host='www.zebracatinida.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x1129891d0>: Failed to resolve 'www.zebracatinida.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-07-01T03:01:49.078525
+https://artificialaiseo.com/,Success,Crawl completed,2026-07-01T03:02:21.125030
+https://www.aiavenue.net/,Success,Crawl completed,2026-07-01T03:02:24.405044
+https://seoservicesnearme.ai/in/,Success,Crawl completed,2026-07-01T03:03:06.906959
+https://brandhype.in/,Success,Crawl completed,2026-07-01T03:03:13.682222
+https://themarketingsutra.com/,Success,Crawl completed,2026-07-01T03:03:18.558800
+http://mysideteam.com/,Success,Crawl completed,2026-07-01T03:03:23.068074
+https://brandnatic.com/,Failed,Website does not appear to be a valid business website,2026-07-01T03:03:23.943117
+https://brandnovaai.com/?utm_source=google&utm_medium=wix_google_business_profile&utm_campaign=9728108621092052093,Failed,Website does not appear to be a valid business website,2026-07-01T03:03:27.815967
+https://vestra.ai/,Failed,Website does not appear to be a valid business website,2026-07-01T03:03:29.086641
+https://www.revenufy.com/,Success,Crawl completed,2026-07-01T03:03:35.061812
+https://optyminds.com/,Success,Crawl completed,2026-07-01T03:03:39.661458
+https://aisensy.com/,Failed,unhashable type: 'list',2026-07-01T03:03:43.609737
+https://onetapaisolutions.com/,Success,Crawl completed,2026-07-01T03:03:44.089041
+https://www.limbu.ai/,Failed,Website does not appear to be a valid business website,2026-07-01T03:03:44.607758
+https://www.worldofdigitallearning.in/,Success,Crawl completed,2026-07-01T03:03:54.952628
+https://twerkstudios.lovable.app/,Failed,Website does not appear to be a valid business website,2026-07-01T03:03:59.482717
+https://automationagencyindia.com/,Failed,"HTTPSConnectionPool(host='automationagencyindia.com', port=443): Read timed out. (read timeout=15)",2026-07-01T03:04:45.527380
+https://swetkaar.com/,Success,Crawl completed,2026-07-01T03:04:49.965358
+https://logiccircle.co/,Success,Crawl completed,2026-07-01T03:04:52.916640
+https://magicbid.ai/,Success,Crawl completed,2026-07-01T03:04:55.015508
+https://bakingai.com/,Success,Crawl completed,2026-07-01T03:04:59.687028
+https://llmcraft.in/,Success,Crawl completed,2026-07-01T03:05:03.083153
+https://radianmarketing.com/,Success,Crawl completed,2026-07-01T03:05:08.869032
+https://cre8r.ai/,Success,Crawl completed,2026-07-01T03:05:13.231880
+https://aisapiens.in/,Success,Crawl completed,2026-07-01T03:05:17.737028
+https://justbaat.com/,Failed,Website does not appear to be a valid business website,2026-07-01T03:05:18.446852
+https://www.hewto.ai/,Success,Crawl completed,2026-07-01T03:05:20.751840
+https://ailifebot.com/,Success,Crawl completed,2026-07-01T03:05:23.246904
+http://www.digitalfitindia.com/,Failed,Website does not appear to be a valid business website,2026-07-01T03:05:24.098688
+https://www.letshustl.in/,Success,Crawl completed,2026-07-01T03:05:33.182756
+http://aidtime.in/,Success,Crawl completed,2026-07-01T03:05:34.659034
+https://www.onzira.com/,Success,Crawl completed,2026-07-01T03:05:35.609602
+https://aspireads.com/,Failed,Website does not appear to be a valid business website,2026-07-01T03:05:38.511339
+https://digitalelite.in/,Success,Crawl completed,2026-07-01T03:05:51.881162
+http://trumpingstars.com/,Failed,"HTTPConnectionPool(host='trumpingstars.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPConnection object at 0x1123ea470>: Failed to resolve 'trumpingstars.com' ([Errno 8] nodename nor servname provided, or not known)""))",2026-07-01T03:05:52.055246
+http://www.vedantraai.com/,Success,Crawl completed,2026-07-01T03:05:58.210079
+https://marketingmavericks.co.uk/,Success,Crawl completed,2026-07-01T03:06:02.894119
+https://viksysai.lovable.app/,Failed,Website does not appear to be a valid business website,2026-07-01T03:06:06.457862
+https://nextdot.co.in/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-07-01T03:06:07.069836
+https://vigrotechnology.com/,Success,Crawl completed,2026-07-01T03:06:15.498066
+https://www.aiadline.com/,Failed,Website does not appear to be a valid business website,2026-07-01T03:06:16.029793
+https://www.nexusecommerce.ai/,Failed,404 Client Error: Not Found for url: https://www.nexusecommerce.ai/,2026-07-01T03:06:16.672299
+https://cartxperts.com/,Success,Crawl completed,2026-07-01T03:07:01.459046
+https://cogniagent.in/,Success,Crawl completed,2026-07-01T03:07:07.296025
+https://www.evolix.in/,Failed,"HTTPSConnectionPool(host='www.evolix.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x10c735950>: Failed to resolve 'www.evolix.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-07-01T03:07:07.585893
+https://www.eastoriadigital.com/,Success,Crawl completed,2026-07-01T03:07:17.810819
+https://www.fcrbytes.com/,Success,Crawl completed,2026-07-01T03:07:24.019333
+https://socialstalk.in/,Success,Crawl completed,2026-07-01T03:07:26.335667
+http://www.turingwheel.com/,Success,Crawl completed,2026-07-01T03:07:30.929038
+https://www.aicodemind.com/,Failed,403 Client Error: Forbidden for url: https://www.aicodemind.com/,2026-07-01T03:07:50.467574
+https://www.oxper.in/,Success,Crawl completed,2026-07-01T03:07:53.534974
+https://trippro.in/,Failed,Website does not appear to be a valid business website,2026-07-01T03:07:55.959047
+https://sixeye.in/,Failed,"HTTPSConnectionPool(host='sixeye.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x11298bc50>: Failed to resolve 'sixeye.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-07-01T03:07:56.092862
+http://www.crazychiefsdigital.com/,Success,Crawl completed,2026-07-01T03:08:02.706416
+https://drowdigital.com/,Success,Crawl completed,2026-07-01T03:08:06.492523
+https://virtualvortex.in/,Failed,"HTTPSConnectionPool(host='virtualvortex.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x11298a850>: Failed to resolve 'virtualvortex.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-07-01T03:08:06.625663
+https://basarmir.com/,Success,Crawl completed,2026-07-01T03:08:15.158578
+https://www.diginaarad.com/,Failed,Website does not appear to be a valid business website,2026-07-01T03:08:15.742666
+https://www.rightchoice.ai/,Success,Crawl completed,2026-07-01T03:08:20.001642
+http://www.softage.ai/,Success,Crawl completed,2026-07-01T03:08:22.922300
+https://thefifth.ai/,Success,Crawl completed,2026-07-01T03:08:30.900896
+https://kraver.ai/,Success,Crawl completed,2026-07-01T03:08:32.400892
+https://www.aimarketeers.in/,Failed,Website does not appear to be a valid business website,2026-07-01T03:08:38.181412
+https://www.stepforadder.com/,Success,Crawl completed,2026-07-01T03:08:43.308067
+https://digitalmarketing.training/,Failed,cannot access local variable 'title' where it is not associated with a value,2026-07-01T03:08:43.757986
+https://www.veoaistudio.com/,Failed,Website does not appear to be a valid business website,2026-07-01T03:08:44.621596
+https://komaldigitalgalaxy.in/,Failed,"HTTPSConnectionPool(host='komaldigitalgalaxy.in', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""<urllib3.connection.HTTPSConnection object at 0x1125f5a90>: Failed to resolve 'komaldigitalgalaxy.in' ([Errno 8] nodename nor servname provided, or not known)""))",2026-07-01T03:08:45.400131
+http://rankdrift.agency/,Success,Crawl completed,2026-07-01T03:09:02.662379
+https://www.getwork.org/,Failed,Website does not appear to be a valid business website,2026-07-01T03:09:03.561398
+https://www.lexailabs.com/,Failed,Website does not appear to be a valid business website,2026-07-01T03:09:11.873058
+https://www.growixai.site/,Success,Crawl completed,2026-07-01T03:09:13.396177
+https://growtonext.com/,Success,Crawl completed,2026-07-01T03:09:16.829282
