@@ -6,24 +6,20 @@ from pydantic import BaseModel, HttpUrl, EmailStr
 class LeadBase(BaseModel):
     CompanyName: str
     Website: HttpUrl
+    Headquarters: Optional[str] = None
+    CitiesServed: Optional[str] = None
     Industry: Optional[str] = None
-    Location: Optional[str] = None
-    DecisionMakerName: Optional[str] = None
-    Designation: Optional[str] = None
+    FleetSizePublic: Optional[str] = None
+    Employees: Optional[str] = None
+    RevenuePublic: Optional[str] = None
+    DecisionMakers: Optional[str] = None
+    LinkedInURL: Optional[HttpUrl] = None
     Email: Optional[EmailStr] = None
-    EmailType: Optional[str] = None
     Phone: Optional[str] = None
-    LinkedIn: Optional[HttpUrl] = None
-    Facebook: Optional[HttpUrl] = None
-    Instagram: Optional[HttpUrl] = None
-    Twitter: Optional[HttpUrl] = None
-    YouTube: Optional[HttpUrl] = None
-    ContactPage: Optional[HttpUrl] = None
-    SourceKeyword: Optional[str] = None
-    HasTestimonials: bool = False
-    HasVideoTestimonials: bool = False
-    HasCaseStudies: bool = False
-    HasGoogleReviews: bool = False
+    CRMTMSUsedPublic: Optional[str] = None
+    DeliveryVolumePublic: Optional[str] = None
+    ExistingPODSolution: Optional[str] = None
+    Notes: Optional[str] = None
 
 
 class LeadCreate(LeadBase):
@@ -32,8 +28,6 @@ class LeadCreate(LeadBase):
 
 class LeadResponse(LeadBase):
     LeadId: int
-    LeadScore: int
-    Priority: str
     CreatedDate: datetime
 
     class Config:

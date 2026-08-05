@@ -5,33 +5,30 @@ from backend.services.lead_service import LeadService
 
 router = APIRouter()
 
-EXPORT_FIELDS = [
-    "CompanyName",
-    "Industry",
-    "Website",
-    "Location",
-    "Address",
-    "DecisionMakerName",
-    "Designation",
-    "Email",
-    "EmailType",
-    "Phone",
-    "LinkedIn",
-    "ContactPage",
-    "SourceKeyword",
-    "HasTestimonials",
-    "HasVideoTestimonials",
-    "HasCaseStudies",
-    "HasGoogleReviews",
-    "LeadScore",
-    "Priority",
-]
+EXPORT_FIELDS = {
+    "Company Name": "CompanyName",
+    "Website": "Website",
+    "Headquarters": "Headquarters",
+    "Cities Served": "CitiesServed",
+    "Industry": "Industry",
+    "Fleet Size (if public)": "FleetSizePublic",
+    "Employees": "Employees",
+    "Revenue (if public)": "RevenuePublic",
+    "Decision Makers": "DecisionMakers",
+    "LinkedIn URL": "LinkedInURL",
+    "Email": "Email",
+    "Phone": "Phone",
+    "CRM/TMS Used (if public)": "CRMTMSUsedPublic",
+    "Delivery Volume (if public)": "DeliveryVolumePublic",
+    "Existing POD Solution": "ExistingPODSolution",
+    "Notes": "Notes",
+}
 
 
 def build_export_dataframe(leads):
     rows = []
     for lead in leads:
-        rows.append({field: lead.get(field) for field in EXPORT_FIELDS})
+        rows.append({label: lead.get(field) for label, field in EXPORT_FIELDS.items()})
     return pd.DataFrame(rows)
 
 

@@ -76,23 +76,27 @@ class SearchService:
                     website,
                     industry=industry or query,
                     source_keyword=query,
-                    address=business.get("Address", ""),
+                    address=business.get("Address", "") or business.get("Location", ""),
                 )
                 print("SAVED:", saved)
                 results.append({
                     "LeadId": saved["LeadId"],
                     "CompanyName": saved["CompanyName"],
                     "Website": saved["Website"],
+                    "Headquarters": saved.get("Headquarters", ""),
+                    "CitiesServed": saved.get("CitiesServed", ""),
                     "Industry": saved["Industry"],
-                    "Location": saved.get("Location", ""),
-                    "Address": saved.get("Address", ""),
-                    "DecisionMakerName": saved.get("DecisionMakerName", ""),
-                    "Designation": saved.get("Designation", ""),
+                    "FleetSizePublic": saved.get("FleetSizePublic", ""),
+                    "Employees": saved.get("Employees", ""),
+                    "RevenuePublic": saved.get("RevenuePublic", ""),
+                    "DecisionMakers": saved.get("DecisionMakers", ""),
+                    "LinkedInURL": saved.get("LinkedInURL", ""),
                     "Email": saved.get("Email", ""),
-                    "EmailType": saved.get("EmailType", ""),
                     "Phone": saved.get("Phone", ""),
-                    "LinkedIn": saved.get("LinkedIn", ""),
-                    "Priority": saved["Priority"],
+                    "CRMTMSUsedPublic": saved.get("CRMTMSUsedPublic", ""),
+                    "DeliveryVolumePublic": saved.get("DeliveryVolumePublic", ""),
+                    "ExistingPODSolution": saved.get("ExistingPODSolution", ""),
+                    "Notes": saved.get("Notes", ""),
                 })
             except Exception as exc:
                 print("FAILED:", website, exc)

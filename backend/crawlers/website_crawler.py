@@ -1,7 +1,6 @@
 import json
 import logging
 import re
-from urllib.parse import urljoin
 from typing import Any
 
 import requests
@@ -10,7 +9,6 @@ from bs4 import BeautifulSoup
 from backend.crawlers.utils import (
     choose_best_business_email,
     choose_best_phone,
-    detect_social_proof,
     extract_emails,
     extract_phones,
     extract_decision_maker,
@@ -123,6 +121,99 @@ class WebsiteCrawler:
             return parts[0]
         return title
 
+    def _extract_pattern_value(self, text: str, patterns: list[str]) -> str:
+        for pattern in patterns:
+            match = re.search(pattern, text, flags=re.IGNORECASE)
+            if match:
+                value = next((group for group in match.groups() if group), "")
+                cleaned = re.sub(r"\s+", " ", value).strip(" .:-")
+                if cleaned:
+                    return cleaned
+        return ""
+
+    def _extract_cities_served(self, text: str) -> str:
+        return self._extract_pattern_value(
+            text,
+            [
+                r"(?:serving|we serve|service areas?|coverage(?: includes)?|operating in)\s+([^.\n]{8,140})",
+                r"(?:cities served|service locations?)\s*[:\-]\s*([^.\n]{5,140})",
+            ],
+        )
+
+    def _extract_fleet_size(self, text: str) -> str:
+        return self._extract_pattern_value(
+            text,
+            [
+                r"fleet(?: size)?\s*(?:of|:)?\s*(\d[\d,\.]{0,18}\+?)",
+                r"(\d[\d,\.]{0,18}\+?)\s+(?:vehicles|trucks|vans|drivers?)",
+            ],
+        )
+
+    def _extract_employees(self, text: str) -> str:
+        return self._extract_pattern_value(
+            text,
+            [
+                r"(?:team of|staff of|employees?\s*(?:count)?\s*(?:of|:)?|workforce\s*(?:of|:)?|about)\s*(\d[\d,\.]{0,18}\+?)\s*(?:employees?|people|team members|staff)",
+                r"(\d[\d,\.]{0,18}\+?)\s*(?:employees?|team members|staff)",
+            ],
+        )
+
+    def _extract_revenue(self, text: str) -> str:
+        return self._extract_pattern_value(
+            text,
+            [
+                r"(?:annual\s+)?(?:revenue|turnover)\s*(?:of|:)?\s*([$€£]|usd|eur|inr)?\s*([\d,\.]+\s*(?:million|billion|m|bn|crore|lakh)?)",
+            ],
+        )
+
+    def _extract_delivery_volume(self, text: str) -> str:
+        return self._extract_pattern_value(
+            text,
+            [
+                r"(?:delivery volume|deliveries per (?:day|week|month|year)|shipments per (?:day|week|month|year))\s*(?:of|:)?\s*([\d,\.]+\+?\s*(?:per\s*(?:day|week|month|year))?)",
+            ],
+        )
+
+    def _extract_crm_tms(self, text: str) -> str:
+        known_tools = [
+            "Salesforce",
+            "HubSpot",
+            "Zoho",
+            "Pipedrive",
+            "Dynamics 365",
+            "NetSuite",
+            "SAP",
+            "Oracle",
+            "Manhattan",
+            "Descartes",
+            "project44",
+            "Shipwell",
+            "Onfleet",
+        ]
+        lowered = text.lower()
+        found = [tool for tool in known_tools if tool.lower() in lowered]
+        if found:
+            return ", ".join(found)
+        return self._extract_pattern_value(
+            text,
+            [r"(?:crm|tms)\s*(?:platform|software|tool|stack)?\s*(?:used|in use|:)?\s*([^.\n]{3,80})"],
+        )
+
+    def _extract_existing_pod_solution(self, text: str) -> str:
+        lowered = text.lower()
+        pod_markers = [
+            "proof of delivery",
+            "electronic pod",
+            "pod app",
+            "delivery confirmation",
+        ]
+        if any(marker in lowered for marker in pod_markers):
+            return self._extract_pattern_value(
+                text,
+                [r"(?:proof of delivery|electronic pod|pod solution)\s*(?:using|with|:)?\s*([^.\n]{3,80})"],
+            ) or "Mentioned on website"
+        return ""
+
     def extract_contact_page(self, base_url: str, soup: BeautifulSoup) -> str | None:
         page_urls = find_page_urls(base_url, soup)
         return page_urls.get("contact")
@@ -175,15 +266,26 @@ class WebsiteCrawler:
         emails = contact_emails or extract_emails(all_text)
         phones = extract_phones(all_text)
         decision_maker_name, designation = extract_decision_maker(decision_text or all_text)
-        best_email, email_type, email_confidence = choose_best_business_email(emails, website, decision_maker_name)
+        best_email, _, _ = choose_best_business_email(emails, website, decision_maker_name)
         if designation and designation not in {"Founder", "Co-Founder", "CEO", "Owner", "Managing Director", "Director"}:
             designation = "Unknown"
-        best_phone, phone_confidence = choose_best_phone(phones)
-        social_links = find_social_links(soup)
+        best_phone, _ = choose_best_phone(phones)
+        social_links = find_social_links(soup, website)
         company_name = self.extract_company_name(soup, website)
-        contact_url = normalize_url(website, contact_page) if contact_page else None
-        proof_flags = detect_social_proof(all_text)
         location = extract_location(all_text)
+        cities_served = self._extract_cities_served(all_text)
+        fleet_size_public = self._extract_fleet_size(all_text)
+        employees = self._extract_employees(all_text)
+        revenue_public = self._extract_revenue(all_text)
+        crm_tms_used_public = self._extract_crm_tms(all_text)
+        delivery_volume_public = self._extract_delivery_volume(all_text)
+        existing_pod_solution = self._extract_existing_pod_solution(all_text)
+
+        decision_makers = ""
+        if decision_maker_name and designation and designation != "Unknown":
+            decision_makers = f"{decision_maker_name} ({designation})"
+        elif decision_maker_name:
+            decision_makers = decision_maker_name
 
         if len(all_text) < 500 and any(marker in homepage_html for marker in ["<script", "window."]):
             rendered_html = self.render_page_with_selenium(website)
@@ -193,37 +295,50 @@ class WebsiteCrawler:
                 emails = extract_emails(all_text)
                 phones = extract_phones(all_text)
                 decision_maker_name, designation = extract_decision_maker(all_text)
-                best_email, email_type, email_confidence = choose_best_business_email(emails, website, decision_maker_name)
-                best_phone, phone_confidence = choose_best_phone(phones)
-                social_links = {**social_links, **find_social_links(rendered_soup)}
-                proof_flags = detect_social_proof(all_text)
+                best_email, _, _ = choose_best_business_email(emails, website, decision_maker_name)
+                best_phone, _ = choose_best_phone(phones)
+                social_links = {**social_links, **find_social_links(rendered_soup, website)}
                 location = location or extract_location(all_text)
                 decision_maker_name, designation = decision_maker_name or extract_decision_maker(all_text)
+                cities_served = cities_served or self._extract_cities_served(all_text)
+                fleet_size_public = fleet_size_public or self._extract_fleet_size(all_text)
+                employees = employees or self._extract_employees(all_text)
+                revenue_public = revenue_public or self._extract_revenue(all_text)
+                crm_tms_used_public = crm_tms_used_public or self._extract_crm_tms(all_text)
+                delivery_volume_public = delivery_volume_public or self._extract_delivery_volume(all_text)
+                existing_pod_solution = existing_pod_solution or self._extract_existing_pod_solution(all_text)
+                if not decision_makers:
+                    if decision_maker_name and designation and designation != "Unknown":
+                        decision_makers = f"{decision_maker_name} ({designation})"
+                    elif decision_maker_name:
+                        decision_makers = decision_maker_name
 
         business_page_links = bool(service_page or product_page)
         if not has_business_pages(page_urls) and not is_business_website(all_text, business_page_links):
             raise ValueError("Website does not appear to be a valid business website")
 
+        notes_parts: list[str] = []
+        if source_keyword:
+            notes_parts.append(f"Source keyword: {source_keyword}")
+        if contact_page:
+            notes_parts.append(f"Contact page: {normalize_url(website, contact_page)}")
+        notes = " | ".join(notes_parts)
+
         return {
             "CompanyName": company_name,
             "Website": website,
+            "Headquarters": address or location,
+            "CitiesServed": cities_served,
             "Industry": industry or "",
-            "Location": location,
-            "Address": address or location,
-            "DecisionMakerName": decision_maker_name or "",
-            "Designation": designation or "",
+            "FleetSizePublic": fleet_size_public,
+            "Employees": employees,
+            "RevenuePublic": revenue_public,
+            "DecisionMakers": decision_makers,
+            "LinkedInURL": social_links.get("LinkedIn"),
             "Email": best_email,
-            "EmailType": email_type or "",
             "Phone": best_phone,
-            "LinkedIn": social_links.get("LinkedIn"),
-            "Facebook": social_links.get("Facebook"),
-            "Instagram": social_links.get("Instagram"),
-            "Twitter": social_links.get("Twitter"),
-            "YouTube": social_links.get("YouTube"),
-            "ContactPage": contact_url,
-            "SourceKeyword": source_keyword or "",
-            "HasTestimonials": proof_flags["HasTestimonials"],
-            "HasVideoTestimonials": proof_flags["HasVideoTestimonials"],
-            "HasCaseStudies": proof_flags["HasCaseStudies"],
-            "HasGoogleReviews": proof_flags["HasGoogleReviews"],
+            "CRMTMSUsedPublic": crm_tms_used_public,
+            "DeliveryVolumePublic": delivery_volume_public,
+            "ExistingPODSolution": existing_pod_solution,
+            "Notes": notes,
         }

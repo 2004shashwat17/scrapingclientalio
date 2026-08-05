@@ -75,7 +75,7 @@ REJECT_PHONES = {
 }
 
 SOCIAL_PATTERNS = {
-    "LinkedIn": re.compile(r"linkedin\.com/(?:company|showcase)(?:/|$)", re.I),
+    "LinkedIn": re.compile(r"linkedin\.com/(?:company|showcase|in|pub|profile)(?:/|$)", re.I),
     "Facebook": re.compile(r"facebook\.com/", re.I),
     "Instagram": re.compile(r"instagram\.com/", re.I),
     "Twitter": re.compile(r"twitter\.com/|x\.com/", re.I),
@@ -630,12 +630,15 @@ def extract_phones(text: str) -> list[str]:
     return list(phones)
 
 
-def find_social_links(soup: BeautifulSoup) -> dict[str, str | None]:
+def find_social_links(soup: BeautifulSoup, base_url: str | None = None) -> dict[str, str | None]:
     result = {name: None for name in SOCIAL_PATTERNS}
     for anchor in soup.find_all("a", href=True):
         href = anchor["href"].strip()
         if not href or href.startswith("#"):
             continue
+        # Normalize relative URLs when a base URL is available
+        if base_url and not href.lower().startswith(("http://", "https://")):
+            href = normalize_url(base_url, href)
         for network, pattern in SOCIAL_PATTERNS.items():
             if pattern.search(href):
                 if not result[network]:

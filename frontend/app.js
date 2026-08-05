@@ -14,8 +14,8 @@ function createLeadRow(lead) {
   template.querySelector(".lead-name").textContent = lead.CompanyName;
   template.querySelector(".lead-website").textContent = lead.Website;
   template.querySelector(".lead-industry").textContent = lead.Industry || "N/A";
-  template.querySelector(".lead-score").textContent = lead.LeadScore;
-  template.querySelector(".lead-priority").textContent = lead.Priority;
+  template.querySelector(".lead-score").textContent = lead.Headquarters || "N/A";
+  template.querySelector(".lead-priority").textContent = lead.DecisionMakers || "N/A";
   template.querySelector(".view-btn").addEventListener("click", () => showDetails(lead));
   return template;
 }
@@ -25,20 +25,20 @@ function showDetails(lead) {
   content.innerHTML = `
     <h2>${lead.CompanyName}</h2>
     <p><strong>Website:</strong> <a href="${lead.Website}" target="_blank">${lead.Website}</a></p>
+    <p><strong>Headquarters:</strong> ${lead.Headquarters || "N/A"}</p>
+    <p><strong>Cities Served:</strong> ${lead.CitiesServed || "N/A"}</p>
     <p><strong>Industry:</strong> ${lead.Industry || "N/A"}</p>
+    <p><strong>Fleet Size (if public):</strong> ${lead.FleetSizePublic || "N/A"}</p>
+    <p><strong>Employees:</strong> ${lead.Employees || "N/A"}</p>
+    <p><strong>Revenue (if public):</strong> ${lead.RevenuePublic || "N/A"}</p>
+    <p><strong>Decision Makers:</strong> ${lead.DecisionMakers || "N/A"}</p>
+    <p><strong>LinkedIn URL:</strong> ${lead.LinkedInURL || "N/A"}</p>
     <p><strong>Email:</strong> ${lead.Email || "N/A"}</p>
     <p><strong>Phone:</strong> ${lead.Phone || "N/A"}</p>
-    <p><strong>LinkedIn:</strong> ${lead.LinkedIn || "N/A"}</p>
-    <p><strong>Facebook:</strong> ${lead.Facebook || "N/A"}</p>
-    <p><strong>Instagram:</strong> ${lead.Instagram || "N/A"}</p>
-    <p><strong>Twitter:</strong> ${lead.Twitter || "N/A"}</p>
-    <p><strong>Contact Page:</strong> ${lead.ContactPage || "N/A"}</p>
-    <p><strong>Has Testimonials:</strong> ${lead.HasTestimonials}</p>
-    <p><strong>Has Video Testimonials:</strong> ${lead.HasVideoTestimonials}</p>
-    <p><strong>Has Case Studies:</strong> ${lead.HasCaseStudies}</p>
-    <p><strong>Has Google Reviews:</strong> ${lead.HasGoogleReviews}</p>
-    <p><strong>Score:</strong> ${lead.LeadScore}</p>
-    <p><strong>Priority:</strong> ${lead.Priority}</p>
+    <p><strong>CRM/TMS Used (if public):</strong> ${lead.CRMTMSUsedPublic || "N/A"}</p>
+    <p><strong>Delivery Volume (if public):</strong> ${lead.DeliveryVolumePublic || "N/A"}</p>
+    <p><strong>Existing POD Solution:</strong> ${lead.ExistingPODSolution || "N/A"}</p>
+    <p><strong>Notes:</strong> ${lead.Notes || "N/A"}</p>
   `;
   document.getElementById("detail-modal").classList.remove("hidden");
 }
