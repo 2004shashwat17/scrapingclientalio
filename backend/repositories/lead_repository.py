@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from backend.storage.csv_store import LeadStore
 
 

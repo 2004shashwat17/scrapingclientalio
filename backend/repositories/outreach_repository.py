@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from backend.models.outreach_status import OutreachStatus
 from sqlalchemy.orm import Session
 

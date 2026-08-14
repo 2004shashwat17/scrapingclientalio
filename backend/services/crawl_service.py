@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import logging
 from backend.crawlers.website_crawler import WebsiteCrawler
 from backend.repositories.crawl_log_repository import CrawlLogRepository
