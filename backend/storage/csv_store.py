@@ -2,6 +2,7 @@ import csv
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+from urllib.parse import unquote
 
 from backend.utils.settings import settings
 
@@ -88,25 +89,37 @@ def _parse_int(value: Any, default: int = 0) -> int:
         return default
 
 
+def _parse_optional_text(value: Any) -> str | None:
+    text = str(value or "").strip()
+    return text or None
+
+
+def _parse_optional_email(value: Any) -> str | None:
+    text = _parse_optional_text(value)
+    if text:
+        return unquote(text).strip() or None
+    return None
+
+
 def _parse_row(row: dict[str, str]) -> dict[str, Any]:
     return {
         "LeadId": _parse_int(row.get("LeadId")),
         "CompanyName": row.get("CompanyName", ""),
         "Website": row.get("Website", ""),
-        "Headquarters": row.get("Headquarters", ""),
-        "CitiesServed": row.get("CitiesServed", ""),
-        "Industry": row.get("Industry", ""),
-        "FleetSizePublic": row.get("FleetSizePublic", ""),
-        "Employees": row.get("Employees", ""),
-        "RevenuePublic": row.get("RevenuePublic", ""),
-        "DecisionMakers": row.get("DecisionMakers", ""),
-        "LinkedInURL": row.get("LinkedInURL", ""),
-        "Email": row.get("Email", ""),
-        "Phone": row.get("Phone", ""),
-        "CRMTMSUsedPublic": row.get("CRMTMSUsedPublic", ""),
-        "DeliveryVolumePublic": row.get("DeliveryVolumePublic", ""),
-        "ExistingPODSolution": row.get("ExistingPODSolution", ""),
-        "Notes": row.get("Notes", ""),
+        "Headquarters": _parse_optional_text(row.get("Headquarters")),
+        "CitiesServed": _parse_optional_text(row.get("CitiesServed")),
+        "Industry": _parse_optional_text(row.get("Industry")),
+        "FleetSizePublic": _parse_optional_text(row.get("FleetSizePublic")),
+        "Employees": _parse_optional_text(row.get("Employees")),
+        "RevenuePublic": _parse_optional_text(row.get("RevenuePublic")),
+        "DecisionMakers": _parse_optional_text(row.get("DecisionMakers")),
+        "LinkedInURL": _parse_optional_text(row.get("LinkedInURL")),
+        "Email": _parse_optional_email(row.get("Email")),
+        "Phone": _parse_optional_text(row.get("Phone")),
+        "CRMTMSUsedPublic": _parse_optional_text(row.get("CRMTMSUsedPublic")),
+        "DeliveryVolumePublic": _parse_optional_text(row.get("DeliveryVolumePublic")),
+        "ExistingPODSolution": _parse_optional_text(row.get("ExistingPODSolution")),
+        "Notes": _parse_optional_text(row.get("Notes")),
         "CreatedDate": row.get("CreatedDate", ""),
     }
 

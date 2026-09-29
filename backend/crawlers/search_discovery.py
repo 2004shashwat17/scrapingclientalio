@@ -57,7 +57,8 @@ class SearchDiscovery:
         try:
             with sync_playwright() as pw:
                 browser = pw.chromium.launch(
-                    headless=True,
+                     headless=False,
+                    slow_mo=100,
                     args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
                 )
                 context = browser.new_context(

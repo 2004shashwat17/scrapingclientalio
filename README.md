@@ -52,5 +52,7 @@ python3 process_leads.py
 cd /Users/shashwatsaxena/Desktop/SCRAPINGCLIENTALIO
 python3 generate_email_list.py  # generates email_list.csv
 
-python3 run_search_csv.py                         
+python3 run_search_csv.py
 
+## Run the script
+- .\.venv\Scripts\python.exe run_search_csv.py 
