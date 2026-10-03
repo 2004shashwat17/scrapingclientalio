@@ -27,6 +27,45 @@ EMAIL_PATTERN = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
 
 MAPS_URL_TEMPLATE = "https://www.google.com/maps/search/{query}"
 
+# Google Maps chrome words that are not part of a real postal address.
+UI_NOISE = {
+    "saved", "save", "directions", "send to phone", "share", "photos",
+    "reviews", "about", "search", "close", "copy link", "new", "edit",
+    "claim this business", "add a missing place", "sign in", "menu",
+    "options", "back", "next", "previous", "see all", "more", "less",
+}
+
+ADDRESS_MARKERS = (
+    "street", "st", "road", "rd", "ave", "avenue", "boulevard", "blvd",
+    "lane", "ln", "drive", "dr", "way", "plaza", "suite", "office",
+    "floor", "tower", "building", "nagar", "sector", "marg", "cross",
+)
+
+
+def _looks_like_address(line: str) -> bool:
+    """Reject Google UI labels and bare numbers; require a real street word."""
+    lowered = line.lower().strip()
+    if not lowered or lowered in UI_NOISE:
+        return False
+    if any(lowered.startswith(noise) for noise in ("directions", "send to phone", "claim this")):
+        return False
+
+    # Bare numbers are ratings, review counts or phone numbers, not addresses.
+    if re.fullmatch(r"[\d.,\s:/\-()]+", lowered):
+        return False
+    if re.match(r"^\d+([.,]\d+)?\s*(stars|out of 5)?$", lowered):
+        return False
+
+    # Markers must match whole words: "st"/"rd"/"dr" are substrings of ordinary
+    # words ("Logist-ics"), which previously produced false hits.
+    tokens = set(re.findall(r"[a-z]+", lowered))
+    if not tokens & set(ADDRESS_MARKERS):
+        return False
+
+    # Keep it address-shaped: a house/floor number, or a comma-separated line.
+    return any(char.isdigit() for char in line) or "," in line
+
+
 class SearchDiscovery:
     # One browser is shared for the whole run; a fresh one per query triggers captcha.
     _session: "BrowserSession | None" = None
@@ -281,15 +320,22 @@ class SearchDiscovery:
         return ""
 
     def _find_address(self, text: str) -> str:
+        """Pull the postal address, ignoring Google UI chrome like 'Saved'."""
         lines = [line.strip() for line in text.splitlines() if line.strip()]
+
+        # Preferred: an explicit "Address" label, either inline or on the next line.
         for index, line in enumerate(lines):
             if "address" in line.lower():
-                if index + 1 < len(lines):
-                    return lines[index + 1]
-                return line
+                inline = re.split(r"address\s*:?", line, maxsplit=1, flags=re.I)
+                if len(inline) > 1 and _looks_like_address(inline[1].strip()):
+                    return inline[1].strip()
+                for candidate in lines[index + 1: index + 4]:
+                    if _looks_like_address(candidate):
+                        return candidate
 
+        # Otherwise the first line that actually reads like a postal address.
         for line in lines:
-            if any(keyword in line.lower() for keyword in ["street", "st", "road", "rd", "ave", "avenue", "boulevard", "blvd", "lane", "ln", "drive", "dr", "way", "plaza", "suite", "office"]):
+            if _looks_like_address(line):
                 return line
 
         return ""
