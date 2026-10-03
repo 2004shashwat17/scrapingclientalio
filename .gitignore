@@ -1,1 +1,7 @@
 *.pyc
+.venv/
+__pycache__/
+*.pyc
+.env
+.venv/
+data/browser_profile/

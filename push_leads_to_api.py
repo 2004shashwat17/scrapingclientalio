@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Push data/leads.csv rows to the Lead Capture API, one lead per request.
+"""Push a product's leads CSV to the Lead Capture API, one lead per request.
 
 Endpoint: POST {base_url}/api/v1/Lead/LeadCapture
 
@@ -11,6 +11,12 @@ Named targets (--target):
 A raw URL can also be passed to --target/--base-url. Multiple targets may be
 given; leads are sent to each in turn. Per-lead results are written to a
 separate file per target so the runs stay independent.
+
+Products (--product, else an interactive menu):
+    1) Clientalio  -> data/clientalio_leads.csv  (productName "Clientalio")
+    2) Dropproof   -> data/dropproof_leads.csv   (productName "Dropproof")
+
+The product decides both which CSV is read and the productName sent to the API.
 
 The endpoint returns HTTP 200 even on business failures, so every response is
 branched on the `success` field of the APIResponse envelope, not on the status
@@ -29,15 +35,66 @@ accepted without error yet not persist until the API is redeployed.
 import argparse
 import csv
 import json
+import sys
 import time
 from pathlib import Path
 
 import requests
 from email_validator import EmailNotValidError, validate_email
 
-DATA_DIR = Path(__file__).resolve().parent / "data"
-LEADS_FILE = DATA_DIR / "leads.csv"
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
+sys.path.insert(0, str(BASE_DIR))
+
+# Fail with setup instructions rather than a bare ModuleNotFoundError traceback.
+try:
+    from backend.utils.settings import PRODUCTS  # noqa: E402
+except ModuleNotFoundError as exc:
+    print(f"\nMissing dependency: {exc.name or 'a dependency'}\n")
+    print(f"You are running: {sys.executable}\n")
+    print("Set up the project environment once, then re-run:\n")
+    print("  python3 -m venv .venv")
+    print("  .venv/bin/pip install -r requirements.txt\n")
+    print(f"Then:  .venv/bin/python {Path(__file__).name}\n")
+    raise SystemExit(1) from None
+
 RESULTS_FILE = DATA_DIR / "lead_push_results.csv"
+
+# Numbered menu shown at the start of the run; matches run_search_csv.py.
+PRODUCT_MENU = {str(index): key for index, key in enumerate(PRODUCTS, start=1)}
+
+
+def prompt_product() -> dict:
+    """Ask which product's leads file to push. Returns the selected product dict."""
+    print("\nSelect the product to push:\n")
+    for number, key in PRODUCT_MENU.items():
+        product = PRODUCTS[key]
+        print(f"  {number}) {product['name']:<10} -> {product['leads_file']} (productName={product['name']})")
+
+    while True:
+        try:
+            choice = input("\nEnter 1 or 2: ").strip()
+        except KeyboardInterrupt:
+            print("\nInput cancelled. Exiting.")
+            sys.exit(1)
+        if choice in PRODUCT_MENU:
+            return PRODUCTS[PRODUCT_MENU[choice]]
+        for product in PRODUCTS.values():
+            if choice.lower() == product["key"]:
+                return product
+        print("Please enter 1 or 2.")
+
+
+def product_leads_file(product: dict) -> Path:
+    return DATA_DIR / product["leads_file"]
+
+
+def resolve_product(value: str | None) -> dict | None:
+    """Map a menu number, product key, or product name to the product dict."""
+    if not value:
+        return None
+    key = PRODUCT_MENU.get(value.strip(), value.strip().lower())
+    return PRODUCTS.get(key)
 
 API_PATH = "/api/v1/Lead/LeadCapture"
 
@@ -71,6 +128,7 @@ FIELD_MAP = {
 }
 
 # Optional UTM-style fields, settable via CLI so every lead carries attribution.
+# productName is intentionally absent: it is derived from the selected product.
 EXTRA_DEFAULTS = {
     "visitorId": None,
     "landingPage": None,
@@ -80,7 +138,6 @@ EXTRA_DEFAULTS = {
     "content": None,
     "term": None,
     "referrer": None,
-    "productName": "Dropproof",
 }
 
 MAX_LENGTHS = {
@@ -304,11 +361,16 @@ def run_target(args, label, base_url, rows, extra) -> dict:
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
+        "--product", default=None, metavar="NAME_OR_NUMBER",
+        help="Product whose leads file to push; skips the prompt. One of: "
+             f"{', '.join(PRODUCT_MENU)}, or a product name",
+    )
+    parser.add_argument(
         "--target", action="append", nargs="+", metavar="NAME_OR_URL",
         help=f"Environment to post to; repeatable. One of: {', '.join(TARGETS)}, or a full URL. Default: {DEFAULT_TARGET}",
     )
     parser.add_argument("--base-url", default=None, help="Override --target with a single URL")
-    parser.add_argument("--leads-file", type=Path, default=LEADS_FILE)
+    parser.add_argument("--leads-file", type=Path, default=None, help="Override the product's leads CSV")
     parser.add_argument("--results-file", type=Path, default=RESULTS_FILE)
     parser.add_argument("--limit", type=int, default=0, help="0 = all rows")
     parser.add_argument("--delay", type=float, default=0.3, help="Seconds between requests")
@@ -323,12 +385,22 @@ def main():
     parser.add_argument("--content")
     parser.add_argument("--term")
     parser.add_argument("--referrer")
-    parser.add_argument("--product-name", default=EXTRA_DEFAULTS["productName"])
+    parser.add_argument("--product-name", default=None, help="Override the productName sent to the API")
     args = parser.parse_args()
 
-    if not args.leads_file.exists():
-        print(f"Leads file not found: {args.leads_file}")
+    product = resolve_product(args.product)
+    if product is None:
+        product = prompt_product()
+
+    leads_file = args.leads_file or product_leads_file(product)
+    if not leads_file.exists():
+        print(f"Leads file not found: {leads_file}")
+        print("Run the search first: python run_search_csv.py")
         return 1
+
+    print(f"\nSelected product: {product['name']}")
+    print(f"  Leads file:   {leads_file.name}")
+    print(f"  productName:  {args.product_name or product['name']}")
 
     extra = {
         "visitorId": args.visitor_id,
@@ -339,10 +411,11 @@ def main():
         "content": args.content,
         "term": args.term,
         "referrer": args.referrer,
-        "productName": args.product_name,
+        # Derived from the selected product so leads are attributed correctly.
+        "productName": args.product_name or product["name"],
     }
 
-    with args.leads_file.open(newline="", encoding="utf-8-sig") as handle:
+    with leads_file.open(newline="", encoding="utf-8-sig") as handle:
         rows = list(csv.DictReader(handle))
     if args.limit:
         rows = rows[: args.limit]

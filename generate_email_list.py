@@ -1,6 +1,10 @@
 import csv
+import sys
 from pathlib import Path
 from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from backend.storage.csv_store import get_leads_file  # noqa: E402
 
 CATEGORY_FILES = [
     "agency_founders.csv",
@@ -12,7 +16,8 @@ CATEGORY_FILES = [
     "designers.csv",
     "freelancers.csv",
 ]
-LEADS_FILE = Path("data/leads.csv")
+# Follows the active product: clientalio_leads.csv or dropproof_leads.csv.
+LEADS_FILE = get_leads_file()
 
 OUTPUT_FILE = Path("email_list.csv")
 OUTPUT_HEADERS = ["Email"]

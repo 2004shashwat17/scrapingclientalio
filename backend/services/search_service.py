@@ -1,10 +1,11 @@
 import logging
 from urllib.parse import urlparse
 
+from backend.crawlers.browser import BrowserSession
 from backend.crawlers.search_discovery import SearchDiscovery
 from backend.crawlers.utils import is_blacklisted_domain, parse_domain
 from backend.repositories.lead_repository import LeadRepository
-from backend.services.crawl_service import CrawlService
+from backend.services.enrichment_service import EnrichmentService
 from backend.utils.settings import settings
 
 logger = logging.getLogger("clientalio.search")
@@ -39,10 +40,37 @@ def is_directory_site(url: str) -> bool:
 class SearchService:
     def __init__(self):
         self.discovery = SearchDiscovery()
-        self.crawl_service = CrawlService()
+        self.enricher = EnrichmentService()
         self.lead_repo = LeadRepository()
+        # One browser for the whole run; sharing it keeps cookies and the
+        # fingerprint consistent, which is what keeps the captcha away.
+        self._session: BrowserSession | None = None
+
+    def _ensure_session(self) -> BrowserSession:
+        if self._session is None:
+            self._session = BrowserSession()
+            self._session.start()
+            self.discovery._session = self._session
+            self.enricher.web_search.set_session(self._session)
+        return self._session
+
+    def close(self) -> None:
+        """Release the shared browser. Call this at the end of a run."""
+        self.discovery.close()
+        if self._session is not None:
+            self._session.close()
+            self._session = None
+
+    def __enter__(self):
+        self._ensure_session()
+        return self
+
+    def __exit__(self, *exc_info) -> None:
+        self.close()
 
     def search_and_save(self, query: str, limit: int = 200, country: str | None = None, industry: str | None = None) -> list[dict]:
+        # Open the shared browser before any request so all scraping reuses it.
+        self._ensure_session()
         businesses = self.discovery.discover(
             query,
             limit=limit,
@@ -52,53 +80,56 @@ class SearchService:
         results: list[dict] = []
         visited: set[str] = set()
         for business in businesses:
-            website = business.get("Website")
-            if not website:
+            company_name = business.get("CompanyName", "")
+            website = business.get("Website", "")
+            location = business.get("Location") or business.get("Address", "")
+
+            # Cards without a website are kept: the enrichment chain looks the
+            # company up on Google instead of throwing the lead away.
+            identity = parse_domain(website) if website else f"name:{company_name.lower().strip()}"
+            if not identity or identity == "name:":
+                logger.info("Skipping card with no website and no company name")
                 continue
-            domain = parse_domain(website)
-            if domain in visited:
+            if identity in visited:
                 continue
-            visited.add(domain)
-            if is_directory_site(website):
+            visited.add(identity)
+
+            if website and is_directory_site(website):
                 logger.info("Skipping directory listing site: %s", website)
                 continue
-            if is_blacklisted_domain(website):
+            if website and is_blacklisted_domain(website):
                 logger.info("Skipping blacklisted domain: %s", website)
                 continue
 
-            print("FOUND BUSINESS:", business.get("CompanyName"), website)
-            if self.lead_repo.find_duplicates(website, None, business.get("CompanyName", "")) is not None:
-                logger.info("Skipping duplicate site: %s", website)
+            print("FOUND BUSINESS:", company_name, website or "(no website yet)")
+            if self.lead_repo.find_duplicates(website or None, None, company_name) is not None:
+                logger.info("Skipping duplicate lead: %s", company_name or website)
+                continue
+
+            lead = self.enricher.enrich(business, industry=industry or query, source_keyword=query)
+            website = lead.get("Website", "")
+
+            if website and is_directory_site(website):
+                logger.info("Enriched website is a directory listing, skipping: %s", website)
+                continue
+            if website and is_blacklisted_domain(website):
+                logger.info("Enriched website is blacklisted, skipping: %s", website)
+                continue
+
+            lead["Headquarters"] = lead.get("Headquarters") or location
+            if not lead.get("IsUseful", True):
+                # Too empty to be worth storing; the card told us nothing usable.
+                logger.info("Discarding unusable lead: %s", company_name or "(unnamed)")
                 continue
 
             try:
-                saved = self.crawl_service.execute_crawl(
-                    website,
-                    industry=industry or query,
-                    source_keyword=query,
-                    address=business.get("Address", "") or business.get("Location", ""),
-                )
-                print("SAVED:", saved)
-                results.append({
-                    "LeadId": saved["LeadId"],
-                    "CompanyName": saved["CompanyName"],
-                    "Website": saved["Website"],
-                    "Headquarters": saved.get("Headquarters", ""),
-                    "CitiesServed": saved.get("CitiesServed", ""),
-                    "Industry": saved["Industry"],
-                    "FleetSizePublic": saved.get("FleetSizePublic", ""),
-                    "Employees": saved.get("Employees", ""),
-                    "RevenuePublic": saved.get("RevenuePublic", ""),
-                    "DecisionMakers": saved.get("DecisionMakers", ""),
-                    "LinkedInURL": saved.get("LinkedInURL", ""),
-                    "Email": saved.get("Email", ""),
-                    "Phone": saved.get("Phone", ""),
-                    "CRMTMSUsedPublic": saved.get("CRMTMSUsedPublic", ""),
-                    "DeliveryVolumePublic": saved.get("DeliveryVolumePublic", ""),
-                    "ExistingPODSolution": saved.get("ExistingPODSolution", ""),
-                    "Notes": saved.get("Notes", ""),
-                })
+                saved = self.lead_repo.create_or_update(lead)
             except Exception as exc:
-                print("FAILED:", website, exc)
-                logger.warning("Failed to crawl %s: %s", website, exc)
+                print("FAILED:", company_name, exc)
+                logger.warning("Failed to save lead %s: %s", website or company_name, exc)
+                continue
+
+            print("SAVED:", saved.get("CompanyName"), saved.get("Email"))
+            results.append(saved)
+
         return results

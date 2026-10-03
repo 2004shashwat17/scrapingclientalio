@@ -1,15 +1,53 @@
 import csv
 import json
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
 
-from backend.services.search_service import SearchService
-from backend.storage.csv_store import DATA_DIR
-from backend.utils.settings import settings
+BASE_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(BASE_DIR))
 
-CSV_FILENAME = "clientalio_6000_search_keywords.csv"
+# Fail with setup instructions rather than a bare ModuleNotFoundError traceback.
+try:
+    from backend.services.search_service import SearchService
+    from backend.storage.csv_store import DATA_DIR, set_active_product
+    from backend.utils.settings import PRODUCTS, settings
+except ModuleNotFoundError as exc:
+    missing = exc.name or "a dependency"
+    print(f"\nMissing dependency: {missing}\n")
+    print(f"You are running: {sys.executable}\n")
+    print("Set up the project environment once, then re-run:\n")
+    print("  python3 -m venv .venv")
+    print("  .venv/bin/pip install -r requirements.txt")
+    print("  .venv/bin/python -m playwright install chromium\n")
+    print(f"Then:  .venv/bin/python {Path(__file__).name}\n")
+    raise SystemExit(1) from None
+
+# Numbered menu shown at the start of the run.
+PRODUCT_MENU = {str(index): key for index, key in enumerate(PRODUCTS, start=1)}
 PROGRESS_FILENAME = "search_progress.json"
+
+
+def prompt_product() -> dict:
+    """Ask which product's keyword list to scrape. Returns the selected product dict."""
+    print("\nSelect the product to scrape:\n")
+    for number, key in PRODUCT_MENU.items():
+        product = PRODUCTS[key]
+        print(f"  {number}) {product['name']:<10} -> {product['keywords_file']}")
+
+    while True:
+        try:
+            choice = input("\nEnter 1 or 2: ").strip()
+        except KeyboardInterrupt:
+            print("\nInput cancelled. Exiting.")
+            sys.exit(1)
+        if choice in PRODUCT_MENU:
+            return PRODUCTS[PRODUCT_MENU[choice]]
+        for product in PRODUCTS.values():
+            if choice.lower() == product["key"]:
+                return product
+        print("Please enter 1 or 2.")
 
 
 def load_keywords(csv_path: Path) -> list[str]:
@@ -112,8 +150,26 @@ def prompt_resume(progress: dict) -> bool:
 
 
 def main() -> None:
-    csv_path = Path(__file__).resolve().parent / CSV_FILENAME
-    progress_path = DATA_DIR / PROGRESS_FILENAME
+    # Optional first CLI arg skips the prompt, e.g. `python run_search_csv.py dropproof`.
+    selected_arg = sys.argv[1] if len(sys.argv) > 1 else None
+    if selected_arg:
+        product = next((p for p in PRODUCTS.values() if p["key"] == selected_arg.lower()), None)
+        if product is None:
+            print(f"Unknown product '{selected_arg}'. Choose one of: {', '.join(PRODUCT_MENU)}")
+            sys.exit(1)
+    else:
+        product = prompt_product()
+
+    # Everything downstream (LeadStore, LeadRepository) writes to the product's CSV.
+    set_active_product(product["key"])
+
+    csv_path = BASE_DIR / product["keywords_file"]
+    # Per-product progress file so the two keyword lists never resume into each other.
+    progress_path = DATA_DIR / f"{product['key']}_{PROGRESS_FILENAME}"
+
+    print(f"\nSelected product: {product['name']}")
+    print(f"  Keywords: {csv_path.name}")
+    print(f"  Leads:    {product['leads_file']}")
 
     try:
         keywords = load_keywords(csv_path)
@@ -159,11 +215,17 @@ def main() -> None:
                 print(f"  Error on '{current_keyword}': {exc}")
             next_index = index + 1
             save_progress(progress_path, csv_path, next_index, current_keyword, len(keywords))
+            # Pause between keywords so Google sees a human, not a burst.
+            if index + 1 < end_index:
+                time.sleep(settings.browser_request_delay * 2)
     except KeyboardInterrupt:
         resume_index = current_index + 1
         save_progress(progress_path, csv_path, resume_index, current_keyword, len(keywords))
         print(f"\nInterrupted. Progress saved at keyword index {resume_index}. Restart to continue.")
         sys.exit(1)
+    finally:
+        # Always close the browser, even on Ctrl+C, so the profile unlocks.
+        search_service.close()
 
     if end_index >= len(keywords):
         if progress_path.exists():

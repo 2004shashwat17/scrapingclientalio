@@ -1,12 +1,17 @@
 import csv
 import re
+import sys
 from pathlib import Path
 from typing import Any
 
 from email_validator import EmailNotValidError, validate_email
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from backend.storage.csv_store import get_leads_file  # noqa: E402
+
 DATA_DIR = Path(__file__).resolve().parent / "data"
-LEADS_FILE = DATA_DIR / "leads.csv"
+# Follows the active product: clientalio_leads.csv or dropproof_leads.csv.
+LEADS_FILE = get_leads_file()
 OUTPUT_FILES = {
     "agency_founders.csv": "agency_founders.csv",
     "saas_founders.csv": "saas_founders.csv",

@@ -5,9 +5,11 @@ import time
 from typing import List
 from urllib.parse import quote
 
-from playwright.sync_api import TimeoutError as PlaywrightTimeoutError, sync_playwright
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 
+from backend.crawlers.browser import BrowserSession, CaptchaEncountered
 from backend.crawlers.utils import is_blacklisted_domain, parse_domain
+from backend.utils.settings import settings
 
 logger = logging.getLogger("clientalio.search")
 
@@ -21,10 +23,14 @@ USER_AGENTS = [
 
 PHONE_PATTERN = re.compile(r"\+?[0-9][0-9\s\-().]{6,}[0-9]")
 REVIEW_PATTERN = re.compile(r"([0-9]\.[0-9])\s*[·•]\s*([0-9,]+)\s*reviews?", re.I)
+EMAIL_PATTERN = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
 
 MAPS_URL_TEMPLATE = "https://www.google.com/maps/search/{query}"
 
 class SearchDiscovery:
+    # One browser is shared for the whole run; a fresh one per query triggers captcha.
+    _session: "BrowserSession | None" = None
+
     def rotate_user_agent(self) -> str:
         return random.choice(USER_AGENTS)
 
@@ -51,65 +57,77 @@ class SearchDiscovery:
         return search_query
 
     def scrape_google_maps(self, search_query: str, limit: int) -> List[dict]:
-        url = MAPS_URL_TEMPLATE.format(query=quote(search_query))
         businesses: list[dict] = []
 
+        session = self._session
         try:
-            with sync_playwright() as pw:
-                browser = pw.chromium.launch(
-                     headless=False,
-                    slow_mo=100,
-                    args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
-                )
-                context = browser.new_context(
-                    user_agent=self.rotate_user_agent(),
-                    viewport={"width": 1400, "height": 900},
-                    locale="en-US",
-                )
-                page = context.new_page()
-                page.goto(url, wait_until="domcontentloaded", timeout=45000)
-                self._accept_cookies(page)
-                self._wait_for_results(page)
-                self._scroll_results(page, limit)
+            if session is None:
+                session = self._open_session()
+                self._session = session
 
-                cards_selector = "div[role='feed'] div[role='article']"
-                cards = page.locator(cards_selector)
-                count = cards.count()
-                print("Business cards found:", count)
+            page = session.new_page()
+            page.goto(MAPS_URL_TEMPLATE.format(query=quote(search_query)),
+                      wait_until="domcontentloaded", timeout=45000)
+            self._accept_cookies(page)
+            session.wait_out_captcha(page, f"Maps '{search_query}'")
+            self._wait_for_results(page)
+            self._scroll_results(page, limit)
 
-                place_urls: list[str] = []
-                for index in range(min(count, limit * 2)):
-                    print("Inspecting business card", index + 1, "of", count)
-                    page.wait_for_selector(cards_selector, timeout=15000)
-                    card = cards.nth(index)
-                    place_url = self._find_card_place_url(card)
-                    if not place_url:
-                        continue
-                    if place_url in place_urls:
-                        continue
-                    place_urls.append(place_url)
-                    if len(place_urls) >= limit:
-                        break
+            cards_selector = "div[role='feed'] div[role='article']"
+            cards = page.locator(cards_selector)
+            count = cards.count()
+            print("Business cards found:", count)
 
-                for index, place_url in enumerate(place_urls, start=1):
-                    print("Processing business detail", index, "of", len(place_urls), place_url)
-                    business = self._extract_business_from_place_url(context, place_url)
-                    if not business or not business.get("Website"):
-                        continue
-                    if is_blacklisted_domain(parse_domain(business["Website"])):
-                        continue
-                    businesses.append(business)
-                    if len(businesses) >= limit:
-                        break
+            place_urls: list[str] = []
+            for index in range(min(count, limit * 2)):
+                print("Inspecting business card", index + 1, "of", count)
+                page.wait_for_selector(cards_selector, timeout=15000)
+                card = cards.nth(index)
+                place_url = self._find_card_place_url(card)
+                if not place_url:
+                    continue
+                if place_url in place_urls:
+                    continue
+                place_urls.append(place_url)
+                if len(place_urls) >= limit:
+                    break
 
-                context.close()
-                browser.close()
+            for index, place_url in enumerate(place_urls, start=1):
+                print("Processing business detail", index, "of", len(place_urls), place_url)
+                # One page reused for every place, paced to look human.
+                session.throttle()
+                business = self._extract_business_from_place_url(session, place_url)
+                if not business:
+                    continue
+                website = business.get("Website") or ""
+                if website and is_blacklisted_domain(parse_domain(website)):
+                    continue
+                businesses.append(business)
+                if len(businesses) >= limit:
+                    break
+
+            page.close()
+        except CaptchaEncountered as exc:
+            logger.warning("Maps blocked by captcha for '%s': %s", search_query, exc)
+            print(f"  Stopping this keyword: {exc}")
         except PlaywrightTimeoutError as exc:
             logger.warning("Google Maps timeout for '%s': %s", search_query, exc)
         except Exception as exc:
             logger.warning("Google Maps scraping failed for '%s': %s", search_query, exc)
 
         return businesses
+
+    def _open_session(self):
+        """Create the shared browser session; closed by SearchDiscovery.close()."""
+        session = BrowserSession()
+        session.start()
+        return session
+
+    def close(self) -> None:
+        """Release the shared browser at the end of a run."""
+        if self._session is not None:
+            self._session.close()
+            self._session = None
 
     def _accept_cookies(self, page) -> None:
         labels = ["I agree", "Accept all", "Agree", "Accept"]
@@ -158,23 +176,28 @@ class SearchDiscovery:
             pass
         return None
 
-    def _extract_business_from_place_url(self, context, place_url: str) -> dict | None:
-        page = context.new_page()
+    def _extract_business_from_place_url(self, session, place_url: str) -> dict | None:
+        # Reuse one page for every place instead of opening a fresh context;
+        # new contexts per request are a strong bot signal.
+        page = session.new_page()
         try:
             page.goto(place_url, wait_until="domcontentloaded", timeout=45000)
             page.wait_for_timeout(2500)
+            session.wait_out_captcha(page, f"place {place_url[-30:]}")
             page.wait_for_selector("h1, a:has-text('Website')", timeout=20000)
             body_text = page.inner_text("body")
+            # A card without a website is still useful: name, phone and address
+            # feed the enrichment chain, which searches Google for the site.
             website = self._find_website(page)
             if not website:
-                logger.debug("No website found for place URL: %s", place_url)
-                return None
+                logger.debug("No website on Maps card; will try to resolve it later")
 
             return {
                 "CompanyName": self._find_business_name(page, body_text),
                 "Website": website,
                 "Phone": self._find_phone(body_text),
                 "Location": self._find_address(body_text),
+                "Email": self._find_email(body_text),
                 "GoogleRating": self._find_rating(body_text),
                 "GoogleReviewCount": self._find_review_count(body_text),
             }
@@ -244,6 +267,11 @@ class SearchDiscovery:
             pass
 
         return ""
+
+    def _find_email(self, text: str) -> str:
+        """Maps rarely shows an email, but some listings do."""
+        match = EMAIL_PATTERN.search(text or "")
+        return match.group(0).strip() if match else ""
 
     def _find_phone(self, text: str) -> str:
         for match in PHONE_PATTERN.findall(text):

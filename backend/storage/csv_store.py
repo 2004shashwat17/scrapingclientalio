@@ -4,16 +4,29 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import unquote
 
-from backend.utils.settings import settings
+from backend.utils.settings import PRODUCTS, settings
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 DATA_DIR = Path(settings.data_dir)
 if not DATA_DIR.is_absolute():
     DATA_DIR = BASE_DIR / DATA_DIR
 DATA_DIR = DATA_DIR.resolve()
-LEADS_FILE = DATA_DIR / "leads.csv"
 CRAWL_LOG_FILE = DATA_DIR / "crawl_log.csv"
 FAILED_SITES_FILE = DATA_DIR / "failed_sites.csv"
+
+
+def get_leads_file(product_key: str | None = None) -> Path:
+    """Resolve the leads CSV for a product, e.g. data/clientalio_leads.csv."""
+    key = product_key or settings.active_product
+    product = PRODUCTS.get(key, PRODUCTS["clientalio"])
+    return DATA_DIR / product["leads_file"]
+
+
+def set_active_product(product_key: str) -> None:
+    """Switch which product's leads CSV the store reads and writes."""
+    if product_key not in PRODUCTS:
+        raise ValueError(f"Unknown product '{product_key}'. Choose from: {', '.join(PRODUCTS)}")
+    settings.active_product = product_key
 
 LEAD_FIELDS = [
     "LeadId",
@@ -43,7 +56,7 @@ FAILED_SITE_FIELDS = ["Website", "Status", "Message", "CreatedDate"]
 def _ensure_data_files() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     for path, headers in (
-        (LEADS_FILE, LEAD_FIELDS),
+        *[(get_leads_file(key), LEAD_FIELDS) for key in PRODUCTS],
         (CRAWL_LOG_FILE, CRAWL_LOG_FIELDS),
         (FAILED_SITES_FILE, FAILED_SITE_FIELDS),
     ):
@@ -147,23 +160,25 @@ def _append_csv(file_path: Path, row: dict[str, Any], headers: list[str]) -> Non
 
 
 class LeadStore:
-    def __init__(self) -> None:
+    def __init__(self, product_key: str | None = None) -> None:
         _ensure_data_files()
+        self.product_key = product_key or settings.active_product
+        self.leads_file = get_leads_file(self.product_key)
 
     def list(self, offset: int = 0, limit: int = 200) -> list[dict[str, Any]]:
-        raw = _read_csv(LEADS_FILE, LEAD_FIELDS)
+        raw = _read_csv(self.leads_file, LEAD_FIELDS)
         parsed = [_parse_row(row) for row in raw]
         return parsed[offset : offset + limit]
 
     def get_by_id(self, lead_id: int) -> dict[str, Any] | None:
-        for row in _read_csv(LEADS_FILE, LEAD_FIELDS):
+        for row in _read_csv(self.leads_file, LEAD_FIELDS):
             parsed = _parse_row(row)
             if parsed["LeadId"] == lead_id:
                 return parsed
         return None
 
     def find_duplicates(self, website: str, email: str | None, company_name: str) -> dict[str, Any] | None:
-        for row in _read_csv(LEADS_FILE, LEAD_FIELDS):
+        for row in _read_csv(self.leads_file, LEAD_FIELDS):
             parsed = _parse_row(row)
             if parsed["Website"] == website:
                 return parsed
@@ -174,7 +189,7 @@ class LeadStore:
         return None
 
     def save(self, payload: dict[str, Any]) -> dict[str, Any]:
-        rows = _read_csv(LEADS_FILE, LEAD_FIELDS)
+        rows = _read_csv(self.leads_file, LEAD_FIELDS)
         parsed_rows = [_parse_row(row) for row in rows]
         existing = None
         for row in parsed_rows:
@@ -192,7 +207,7 @@ class LeadStore:
                 "CreatedDate": existing["CreatedDate"],
             }
             new_rows = [updated if row["LeadId"] == existing["LeadId"] else row for row in parsed_rows]
-            _write_csv(LEADS_FILE, [_serialize_lead(row) for row in new_rows], LEAD_FIELDS)
+            _write_csv(self.leads_file, [_serialize_lead(row) for row in new_rows], LEAD_FIELDS)
             return updated
 
         next_id = max((row["LeadId"] for row in parsed_rows), default=0) + 1
@@ -217,7 +232,7 @@ class LeadStore:
             "Notes": payload.get("Notes", ""),
             "CreatedDate": now,
         }
-        _append_csv(LEADS_FILE, _serialize_lead(lead), LEAD_FIELDS)
+        _append_csv(self.leads_file, _serialize_lead(lead), LEAD_FIELDS)
         return lead
 
 
