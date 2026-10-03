@@ -39,6 +39,37 @@ This MVP stores leads and crawl logs in CSV files for fast setup and Excel-nativ
 - `GET /export/csv`
 - `GET /export/excel`
 
+## Push leads to the Lead Capture API
+
+`push_leads_to_api.py` posts each row of `data/leads.csv` to
+`POST {base_url}/api/v1/Lead/LeadCapture`, one lead per request.
+
+Targets (pass one or more to `--target`):
+
+| Name | Base URL |
+|---|---|
+| `deployed` | `https://apiclientalio.azurewebsites.net` (default) |
+| `local` | `http://localhost:5023` — local dev, plain HTTP |
+| `local-https` | `https://localhost:7293` — local dev cert, must be trusted |
+
+```bash
+python push_leads_to_api.py --dry-run                        # preview against deployed
+python push_leads_to_api.py --target local --limit 20         # send to local dev
+python push_leads_to_api.py --target deployed local --delay 1.5 --resume
+python push_leads_to_api.py --target https://api.example.com  # any other URL
+```
+
+Results are appended per target — `data/lead_push_results_<target>.csv` — so local
+and deployed runs stay independent. Each run first probes the API root and aborts
+that target if it is unreachable. The endpoint returns HTTP 200 even for business
+failures, so the script branches on the `success` field of the response envelope
+rather than on the status code.
+
+Caveat: the currently deployed build predates the newer payload fields, and
+ASP.NET Core drops unknown JSON properties silently — enrichment fields such as
+`companyName` will be accepted but not persisted until the API is redeployed and
+`DBScript/MarketingLead.sql` is applied.
+
 ## Notes
 
 - Uses requests + BeautifulSoup for standard crawling

@@ -20,6 +20,10 @@ class Settings(BaseSettings):
                                "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36")
     max_crawl_retries: int = 2
     batch_workers: int = 8
+    # Remote Lead Capture API (POST {lead_api_base_url}/api/v1/Lead/LeadCapture)
+    lead_api_base_url: str = Field(
+        default="https://apiclientalio.azurewebsites.net", env="LEAD_API_BASE_URL"
+    )
 
     class Config:
         env_file = ".env"
