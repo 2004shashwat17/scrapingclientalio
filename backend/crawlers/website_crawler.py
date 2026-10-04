@@ -6,12 +6,12 @@ from typing import Any
 import requests
 from bs4 import BeautifulSoup
 
+from backend.crawlers.contact_extraction import (
+    extract_contact_candidates,
+    infer_phone_region,
+    select_contacts,
+)
 from backend.crawlers.utils import (
-    choose_best_business_email,
-    choose_best_phone,
-    collect_all_contacts,
-    extract_emails,
-    extract_phones,
     extract_decision_maker,
     extract_location,
     find_page_urls,
@@ -265,14 +265,19 @@ class WebsiteCrawler:
             if page_contents.get(key)
         )
         all_text = "\n".join(page_contents.values())
-        contact_emails = extract_emails(page_contents.get("ContactPage", ""))
-        emails = contact_emails or extract_emails(all_text)
-        phones = extract_phones(all_text)
+        # Contacts come from each page's DOM (links, schema.org, visible text), never raw HTML.
+        region = infer_phone_region(website, address)
+        phone_candidates: list = []
+        email_candidates: list = []
+        for label, html in page_contents.items():
+            page_phones, page_emails = extract_contact_candidates(
+                html, page_label=label, region=region, website=website
+            )
+            phone_candidates += page_phones
+            email_candidates += page_emails
         decision_maker_name, designation = extract_decision_maker(decision_text or all_text)
-        best_email, _, _ = choose_best_business_email(emails, website, decision_maker_name)
         if designation and designation not in {"Founder", "Co-Founder", "CEO", "Owner", "Managing Director", "Director"}:
             designation = "Unknown"
-        best_phone, _ = choose_best_phone(phones)
         social_links = find_social_links(soup, website)
         company_name = self.extract_company_name(soup, website)
         location = extract_location(all_text)
@@ -295,11 +300,12 @@ class WebsiteCrawler:
             if rendered_html:
                 rendered_soup = self.parse_page(rendered_html, website)
                 all_text = rendered_soup.get_text(separator=" \n")
-                emails = extract_emails(all_text)
-                phones = extract_phones(all_text)
+                rendered_phones, rendered_emails = extract_contact_candidates(
+                    rendered_html, page_label="homepage", region=region, website=website
+                )
+                phone_candidates += rendered_phones
+                email_candidates += rendered_emails
                 decision_maker_name, designation = extract_decision_maker(all_text)
-                best_email, _, _ = choose_best_business_email(emails, website, decision_maker_name)
-                best_phone, _ = choose_best_phone(phones)
                 social_links = {**social_links, **find_social_links(rendered_soup, website)}
                 location = location or extract_location(all_text)
                 decision_maker_name, designation = decision_maker_name or extract_decision_maker(all_text)
@@ -320,11 +326,8 @@ class WebsiteCrawler:
         if not has_business_pages(page_urls) and not is_business_website(all_text, business_page_links):
             raise ValueError("Website does not appear to be a valid business website")
 
-        # Keep every contact found, not just the single best one.
-        all_emails, all_phones = collect_all_contacts(
-            emails, phones, website,
-            primary_email=best_email, primary_phone=best_phone,
-        )
+        # Primary Phone/Email only from high-confidence sources; All* only validated values.
+        contacts = select_contacts(phone_candidates, email_candidates, website, decision_maker_name)
 
         notes_parts: list[str] = []
         if source_keyword:
@@ -344,12 +347,12 @@ class WebsiteCrawler:
             "RevenuePublic": revenue_public,
             "DecisionMakers": decision_makers,
             "LinkedInURL": social_links.get("LinkedIn"),
-            "Email": best_email,
-            "Phone": best_phone,
-            "AllEmails": all_emails,
-            "AllPhones": all_phones,
+            **contacts,
             "CRMTMSUsedPublic": crm_tms_used_public,
             "DeliveryVolumePublic": delivery_volume_public,
             "ExistingPODSolution": existing_pod_solution,
             "Notes": notes,
+            # Raw candidates so enrichment can merge them with Maps/snippet contacts.
+            "_phone_candidates": phone_candidates,
+            "_email_candidates": email_candidates,
         }

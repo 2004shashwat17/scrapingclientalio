@@ -2,18 +2,8 @@ import re
 from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 
-EMAIL_PATTERN = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
-PHONE_PATTERN = re.compile(r"\+?[0-9][0-9 \-().]{6,}[0-9]")
-
-EMAIL_REJECT_PATTERNS = [
-    re.compile(r"^test@", re.I),
-    re.compile(r"^example@", re.I),
-    re.compile(r"^noreply@", re.I),
-    re.compile(r"^no-?reply@", re.I),
-    re.compile(r"@example\.", re.I),
-    re.compile(r"@test\.", re.I),
-    re.compile(r"@invalid\.", re.I),
-]
+from backend.crawlers import contact_extraction as contacts
+from backend.crawlers.contact_extraction import MAX_ALL_EMAILS, MAX_ALL_PHONES
 
 PREFERRED_EMAIL_PREFIXES = [
     "info",
@@ -65,14 +55,6 @@ LOCATION_PATTERNS = [
 ]
 
 PERSON_NAME_PATTERN = re.compile(r"\b[A-Z][a-z]+(?: [A-Z][a-z]+){1,4}\b")
-
-REJECT_PHONES = {
-    "+0000000000",
-    "+000000000",
-    "+1234567890",
-    "1234567890",
-    "0000000000",
-}
 
 SOCIAL_PATTERNS = {
     "LinkedIn": re.compile(r"linkedin\.com/(?:company|showcase|in|pub|profile)(?:/|$)", re.I),
@@ -396,20 +378,11 @@ def parse_domain(url: str) -> str:
 
 
 def clean_email(email: str) -> str:
-    email = email.strip().lower()
-    if email.startswith("mailto:"):
-        email = email.split("mailto:", 1)[1].split("?")[0]
-    return email
+    return contacts.normalize_email(email) or ""
 
 
 def is_valid_email(email: str) -> bool:
-    email = clean_email(email)
-    if not EMAIL_PATTERN.match(email):
-        return False
-    for pattern in EMAIL_REJECT_PATTERNS:
-        if pattern.search(email):
-            return False
-    return True
+    return contacts.is_valid_email(email)
 
 
 def email_confidence(email: str, website: str | None = None) -> int:
@@ -429,16 +402,9 @@ def email_confidence(email: str, website: str | None = None) -> int:
     return max(0, min(score, 100))
 
 
-def extract_emails(text: str) -> list[str]:
-    emails = {clean_email(email) for email in EMAIL_PATTERN.findall(text)}
-    soup = BeautifulSoup(text, "lxml")
-    for anchor in soup.find_all("a", href=True):
-        href = anchor["href"].strip()
-        if href.lower().startswith("mailto:"):
-            email = clean_email(href)
-            if email:
-                emails.add(email)
-    return [email for email in emails if is_valid_email(email)]
+def extract_emails(html: str) -> list[str]:
+    """Validated emails from mailto links, schema.org and visible text (never scripts/attributes)."""
+    return [item.value for item in contacts.extract_contact_candidates(html)[1]]
 
 
 def is_generic_email(email: str) -> bool:
@@ -586,23 +552,13 @@ def choose_best_phone(phones: list[str]) -> tuple[str | None, int]:
     return best_phone, best_score
 
 
-def clean_phone(phone: str) -> str | None:
-    digits = re.sub(r"[^0-9+]+", "", phone)
-    if digits.startswith("00"):
-        digits = "+" + digits[2:]
-    if not digits:
-        return None
-    if digits in REJECT_PHONES:
-        return None
-    normalized = digits
-    count = len(re.sub(r"[^0-9]", "", normalized))
-    if count < 7 or count > 15:
-        return None
-    return normalized
+def clean_phone(phone: str, region: str | None = None) -> str | None:
+    """E.164 form of a validated phone number, or None for anything invalid/placeholder."""
+    return contacts.normalize_phone(phone, region)
 
 
-def is_valid_phone(phone: str) -> bool:
-    return clean_phone(phone) is not None
+def is_valid_phone(phone: str, region: str | None = None) -> bool:
+    return clean_phone(phone, region) is not None
 
 
 def phone_confidence(phone: str) -> int:
@@ -620,20 +576,9 @@ def phone_confidence(phone: str) -> int:
     return min(score, 100)
 
 
-def extract_phones(text: str) -> list[str]:
-    found = PHONE_PATTERN.findall(text)
-    phones = set()
-    for phone in found:
-        cleaned = clean_phone(phone)
-        if cleaned:
-            phones.add(cleaned)
-    return list(phones)
-
-
-# Field sizes for the "all contacts" columns, matching the Lead Capture API
-# so nothing we store is silently cut off by the API's max lengths.
-MAX_ALL_EMAILS = 256
-MAX_ALL_PHONES = 128
+def extract_phones(html: str, region: str | None = None) -> list[str]:
+    """Validated E.164 phones from tel: links, schema.org and labelled visible text."""
+    return [item.value for item in contacts.extract_contact_candidates(html, region=region)[0]]
 
 
 def collect_all_contacts(
@@ -647,8 +592,8 @@ def collect_all_contacts(
     """
     unique_emails: list[str] = []
     for email in emails:
-        cleaned = clean_email(email).lower()
-        if cleaned and cleaned not in unique_emails:
+        cleaned = clean_email(email)
+        if cleaned and is_valid_email(cleaned) and cleaned not in unique_emails:
             unique_emails.append(cleaned)
 
     unique_phones: list[str] = []

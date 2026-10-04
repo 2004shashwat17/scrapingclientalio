@@ -13,12 +13,20 @@ whatever the card did provide.
 import logging
 import re
 
+from backend.crawlers.contact_extraction import (
+    SOURCE_CONFIDENCE,
+    ContactCandidate,
+    extract_contact_candidates,
+    extract_text_candidates,
+    infer_phone_region,
+    is_valid_email,
+    normalize_email,
+    normalize_phone,
+    phone_from_whatsapp_url,
+    select_contacts,
+)
 from backend.crawlers.google_web_search import GoogleWebSearch, company_search_queries
 from backend.crawlers.utils import (
-    choose_best_business_email,
-    choose_best_phone,
-    extract_emails,
-    extract_phones,
     is_blacklisted_domain,
     parse_domain,
 )
@@ -37,8 +45,10 @@ DIRECTORY_DOMAINS = {
 # A lead needs at least one of these plus one contact route to be worth keeping.
 MIN_USEFUL_FIELDS = ["Email", "Phone", "Website"]
 
-SNIPPET_EMAIL = re.compile(r"[\w.\-+]+@[\w\-]+\.[\w.\-]{2,}")
-SNIPPET_PHONE = re.compile(r"\+?[0-9][0-9\s\-().]{6,}[0-9]")
+CONTACT_FIELDS = {
+    "Email", "Phone", "AllEmails", "AllPhones",
+    "PhoneSource", "PhoneConfidence", "EmailSource", "EmailConfidence",
+}
 
 
 def is_directory_url(url: str) -> bool:
@@ -62,8 +72,32 @@ LEAD_FIELDS = [
     "CompanyName", "Website", "Headquarters", "CitiesServed", "Industry",
     "FleetSizePublic", "Employees", "RevenuePublic", "DecisionMakers",
     "LinkedInURL", "Email", "Phone", "AllEmails", "AllPhones",
+    "PhoneSource", "PhoneConfidence", "EmailSource", "EmailConfidence",
     "CRMTMSUsedPublic", "DeliveryVolumePublic", "ExistingPODSolution", "Notes",
 ]
+
+
+def _candidates_from_fields(record: dict, region: str, default_source: str) -> tuple[list, list]:
+    """Re-validate contact fields from a card/crawl dict that carries no candidate list."""
+    phones: list[ContactCandidate] = []
+    emails: list[ContactCandidate] = []
+    phone_source = record.get("PhoneSource") or default_source
+    email_source = record.get("EmailSource") or default_source
+    all_phones = [part.strip() for part in str(record.get("AllPhones") or "").split(",")]
+    all_emails = [part.strip() for part in str(record.get("AllEmails") or "").split(",")]
+    for raw in [record.get("Phone")] + all_phones:
+        phone = normalize_phone(raw, region) if raw else None
+        if phone:
+            source = phone_source if raw == record.get("Phone") else "visible_text"
+            phones.append(ContactCandidate(phone, source, SOURCE_CONFIDENCE.get(source, 0.5)))
+    for raw in [record.get("Email")] + all_emails:
+        email = normalize_email(raw) if raw else None
+        if email and is_valid_email(email):
+            source = email_source if raw == record.get("Email") else "visible_text"
+            emails.append(ContactCandidate(email, source, SOURCE_CONFIDENCE.get(source, 0.5)))
+    return phones, emails
+
+
 class EnrichmentService:
     """Card -> website -> contact page -> snippets -> social."""
 
@@ -82,14 +116,18 @@ class EnrichmentService:
 
     def enrich(self, card: dict, industry: str | None = None, source_keyword: str | None = None) -> dict:
         """Return a full lead dict, using the card data as the starting point."""
-        lead = {field: (card.get(field) or "") for field in LEAD_FIELDS}
+        lead = {field: (card.get(field) or "") for field in LEAD_FIELDS if field not in CONTACT_FIELDS}
         lead["CompanyName"] = lead.get("CompanyName") or card.get("CompanyName", "")
         lead["Industry"] = lead.get("Industry") or industry or ""
         lead["Website"] = lead.get("Website") or card.get("Website", "")
-        lead["Phone"] = lead.get("Phone") or card.get("Phone", "")
         lead["Headquarters"] = (
             lead.get("Headquarters") or card.get("Location", "") or card.get("Address", "")
         )
+        lead["_region"] = infer_phone_region(lead["Website"], lead["Headquarters"])
+        lead["_phone_candidates"], lead["_email_candidates"] = _candidates_from_fields(
+            card, lead["_region"], "google_maps"
+        )
+        self._apply_contacts(lead)
         sources: list[str] = ["Maps card"]
 
         company_name = lead["CompanyName"]
@@ -121,6 +159,19 @@ class EnrichmentService:
     def _has_enough(self, lead: dict) -> bool:
         """True once there is a website plus some way to contact the company."""
         return bool(lead.get("Website")) and bool(lead.get("Email") or lead.get("Phone"))
+
+    def _add_candidates(self, lead: dict, phones: list, emails: list) -> None:
+        lead["_phone_candidates"] += phones
+        lead["_email_candidates"] += emails
+        self._apply_contacts(lead)
+
+    def _apply_contacts(self, lead: dict) -> None:
+        """Recompute primary/all contact fields from every validated candidate so far."""
+        decision_maker = (lead.get("DecisionMakers") or "").split("(")[0].strip()
+        lead.update(select_contacts(
+            lead["_phone_candidates"], lead["_email_candidates"],
+            lead.get("Website") or None, decision_maker or None,
+        ))
 
     def _search_for_company(self, company_name: str, location: str) -> list[dict]:
         for query in company_search_queries(company_name, location):
@@ -174,10 +225,16 @@ class EnrichmentService:
             )
             sources.append("Website crawl")
             for field, value in crawled.items():
-                if field == "Notes" or not value:
+                if field == "Notes" or field in CONTACT_FIELDS or field.startswith("_") or not value:
                     continue
                 if not lead.get(field):
                     lead[field] = value
+            if "_phone_candidates" in crawled:
+                self._add_candidates(lead, crawled["_phone_candidates"], crawled["_email_candidates"])
+            else:
+                self._add_candidates(lead, *_candidates_from_fields(
+                    crawled, lead["_region"], "visible_contact_text"
+                ))
         except Exception as exc:
             logger.info("Crawl failed for %s: %s", website, exc)
             sources.append("Website crawl failed")
@@ -197,44 +254,34 @@ class EnrichmentService:
             html = self.crawler.fetch(website)
             page_urls = find_page_urls(website, BeautifulSoup(html, "lxml"))
             targets = [
-                url for label, url in page_urls.items()
+                (label, url) for label, url in page_urls.items()
                 if label in {"contact", "about", "team"} and url
-            ] or [website]
+            ] or [("homepage", website)]
 
-            blob = ""
-            for url in targets:
+            had_email = bool(lead.get("Email"))
+            for label, url in targets:
                 try:
-                    blob += "\n" + self.crawler.fetch(url)
+                    html = self.crawler.fetch(url)
                 except Exception:
                     logger.debug("Could not fetch %s", url)
-
-            if not lead.get("Email"):
-                best, _, _ = choose_best_business_email(extract_emails(blob), website)
-                if best:
-                    lead["Email"] = best
-                    if "Contact page" not in sources:
-                        sources.append("Contact page")
-            if not lead.get("Phone"):
-                phone, _ = choose_best_phone(extract_phones(blob))
-                if phone:
-                    lead["Phone"] = phone
+                    continue
+                self._add_candidates(lead, *extract_contact_candidates(
+                    html, page_label=label, region=lead["_region"], website=website
+                ))
+            if lead.get("Email") and not had_email and "Contact page" not in sources:
+                sources.append("Contact page")
         except Exception as exc:
             logger.debug("Contact scrape failed for %s: %s", website, exc)
 
     def _enrich_from_snippets(self, lead: dict, results: list[dict], sources: list[str]) -> None:
         """Harvest emails/phones that Google itself printed in the result snippets."""
         blob = "\n".join(f"{r.get('title', '')} {r.get('snippet', '')}" for r in results)
-        if not lead.get("Email"):
-            candidates = [e for e in SNIPPET_EMAIL.findall(blob) if "." in e.split("@")[-1]]
-            best, _, _ = choose_best_business_email(candidates)
-            if best:
-                lead["Email"] = best
-                sources.append("Email from search snippet")
-        if not lead.get("Phone"):
-            phone, _ = choose_best_phone(SNIPPET_PHONE.findall(blob))
-            if phone:
-                lead["Phone"] = phone
-                sources.append("Phone from search snippet")
+        had_email, had_phone = bool(lead.get("Email")), bool(lead.get("Phone"))
+        self._add_candidates(lead, *extract_text_candidates(blob, lead["_region"]))
+        if lead.get("Email") and not had_email:
+            sources.append("Email from search snippet")
+        if lead.get("Phone") and not had_phone:
+            sources.append("Phone from search snippet")
         if not lead.get("Website"):
             website = self._pick_website(results, lead.get("CompanyName", ""))
             if website:
@@ -253,18 +300,19 @@ class EnrichmentService:
         if not lead.get("Phone"):
             for item in results:
                 if GoogleWebSearch.social_kind(item.get("url", "")) == "WhatsApp":
-                    lead["Phone"] = item["url"]
-                    sources.append("WhatsApp from search")
-                    break
+                    phone = phone_from_whatsapp_url(item["url"])
+                    if phone:
+                        self._add_candidates(lead, [ContactCandidate(
+                            phone, "whatsapp_link", SOURCE_CONFIDENCE["whatsapp_link"]
+                        )], [])
+                        sources.append("WhatsApp from search")
+                        break
 
     def _finish(self, lead: dict, sources: list[str]) -> dict:
         """Attach a provenance note and flag whether the lead is worth keeping."""
-        # The primary contact must always appear in the "all contacts" list,
-        # even when it came from the Maps card rather than a crawl.
-        if lead.get("Email") and lead["Email"].lower() not in lead.get("AllEmails", "").lower():
-            lead["AllEmails"] = ", ".join(filter(None, [lead["Email"], lead.get("AllEmails", "")]))
-        if lead.get("Phone") and lead["Phone"] not in lead.get("AllPhones", ""):
-            lead["AllPhones"] = ", ".join(filter(None, [lead["Phone"], lead.get("AllPhones", "")]))
+        self._apply_contacts(lead)
+        for key in ("_phone_candidates", "_email_candidates", "_region"):
+            lead.pop(key, None)
         found = [field for field in MIN_USEFUL_FIELDS if lead.get(field)]
         notes = f"Discovery: {', '.join(dict.fromkeys(sources))}"
         if len(found) < 2:

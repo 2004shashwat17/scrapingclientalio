@@ -8,6 +8,11 @@ from urllib.parse import quote
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 
 from backend.crawlers.browser import BrowserSession, CaptchaEncountered
+from backend.crawlers.contact_extraction import (
+    emails_in_text,
+    infer_phone_region,
+    normalize_phone,
+)
 from backend.crawlers.utils import is_blacklisted_domain, parse_domain
 from backend.utils.settings import settings
 
@@ -21,9 +26,8 @@ USER_AGENTS = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
 ]
 
-PHONE_PATTERN = re.compile(r"\+?[0-9][0-9\s\-().]{6,}[0-9]")
+PHONE_LINE_PATTERN = re.compile(r"^\+?[0-9][0-9\s\-().]{6,20}[0-9]$")
 REVIEW_PATTERN = re.compile(r"([0-9]\.[0-9])\s*[·•]\s*([0-9,]+)\s*reviews?", re.I)
-EMAIL_PATTERN = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
 
 MAPS_URL_TEMPLATE = "https://www.google.com/maps/search/{query}"
 
@@ -231,12 +235,18 @@ class SearchDiscovery:
             if not website:
                 logger.debug("No website on Maps card; will try to resolve it later")
 
+            address = self._find_address(body_text)
+            region = infer_phone_region(website, address)
+            phone = self._find_phone_from_page(page, region) or self._find_phone(body_text, region)
+            email = self._find_email(body_text)
             return {
                 "CompanyName": self._find_business_name(page, body_text),
                 "Website": website,
-                "Phone": self._find_phone(body_text),
-                "Location": self._find_address(body_text),
-                "Email": self._find_email(body_text),
+                "Phone": phone,
+                "PhoneSource": "google_maps" if phone else "",
+                "Location": address,
+                "Email": email,
+                "EmailSource": "google_maps" if email else "",
                 "GoogleRating": self._find_rating(body_text),
                 "GoogleReviewCount": self._find_review_count(body_text),
             }
@@ -308,15 +318,31 @@ class SearchDiscovery:
         return ""
 
     def _find_email(self, text: str) -> str:
-        """Maps rarely shows an email, but some listings do."""
-        match = EMAIL_PATTERN.search(text or "")
-        return match.group(0).strip() if match else ""
+        """Maps rarely shows an email, but some listings do. Validated, never a placeholder."""
+        found = emails_in_text(text or "")
+        return found[0][0] if found else ""
 
-    def _find_phone(self, text: str) -> str:
-        for match in PHONE_PATTERN.findall(text):
-            cleaned = re.sub(r"[^0-9+]+", "", match)
-            if len(cleaned) >= 7:
-                return match.strip()
+    def _find_phone_from_page(self, page, region: str | None = None) -> str:
+        """The listing's phone button carries the number as data-item-id='phone:tel:...'."""
+        try:
+            buttons = page.locator("[data-item-id^='phone:tel:']")
+            for index in range(min(buttons.count(), 3)):
+                item_id = buttons.nth(index).get_attribute("data-item-id") or ""
+                phone = normalize_phone(item_id.removeprefix("phone:tel:"), region)
+                if phone:
+                    return phone
+        except Exception:
+            pass
+        return ""
+
+    def _find_phone(self, text: str, region: str | None = None) -> str:
+        """Fallback: a body-text line that is entirely a phone number and validates."""
+        for line in (text or "").splitlines():
+            line = line.strip()
+            if PHONE_LINE_PATTERN.match(line):
+                phone = normalize_phone(line, region)
+                if phone:
+                    return phone
         return ""
 
     def _find_address(self, text: str) -> str:

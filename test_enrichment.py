@@ -22,14 +22,14 @@ class FakeCrawler:
         return {
             "CompanyName": "Acme Logistics",
             "Email": "info@acme.com",
-            "Phone": "+91 98123 45678",
+            "Phone": "+91 98450 71236",
             "LinkedInURL": "https://linkedin.com/company/acme",
             "CitiesServed": "Mumbai, Pune",
             "Notes": "Source keyword: x",
         }
 
     def fetch(self, url):
-        return "<html>contact us info@acme.com +91 98123 45678</html>"
+        return "<html>contact us info@acme.com +91 98450 71236</html>"
 
 
 def check(label, condition):
@@ -52,7 +52,7 @@ lead = svc.enrich({"CompanyName": "Acme Logistics", "Location": "Mumbai"}, indus
 ok &= check("case1 picked own site, not directory/social",
             lead["Website"] == "https://acmelogistics.in/")
 ok &= check("case1 filled email", lead["Email"] == "info@acme.com")
-ok &= check("case1 kept crawl phone", lead["Phone"] == "+91 98123 45678")
+ok &= check("case1 kept crawl phone (E.164)", lead["Phone"] == "+919845071236")
 ok &= check("case1 marked useful", lead["IsUseful"] is True)
 print("      queries tried:", svc.web_search.calls)
 print("      notes:", lead["Notes"])
@@ -77,7 +77,7 @@ ok &= check("case3 flagged unusable", lead3["IsUseful"] is False)
 # Case 4: card already has a website AND a phone -> no Google search at all.
 svc4 = EnrichmentService(crawler=FakeCrawler(), web_search=FakeSearch([]))
 lead4 = svc4.enrich({"CompanyName": "Acme Logistics", "Website": "https://acmelogistics.in/",
-                     "Phone": "+91 98123 45678"})
+                     "Phone": "+91 98450 71236"})
 ok &= check("case4 skipped google lookup", svc4.web_search.calls == [])
 ok &= check("case4 still crawled", lead4["Email"] == "info@acme.com")
 

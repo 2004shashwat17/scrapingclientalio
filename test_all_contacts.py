@@ -45,8 +45,11 @@ check("primary email listed first", all_emails.startswith("info@acme.com"))
 check("primary phone listed first", all_phones.startswith("+919811112345"))
 
 # 2. Duplicates must not be repeated.
-dupes = collect_all_contacts(["a@x.com", "a@x.com", "b@x.com"], [], None, "a@x.com", None)
-check("duplicate emails collapsed", dupes[0] == "a@x.com, b@x.com")
+# Case-insensitive duplicates must not be repeated.
+dupes = collect_all_contacts(
+    ["ravi@acme.com", "Ravi@Acme.com", "sales@acme.com"], [], None, "ravi@acme.com", None
+)
+check("duplicate emails collapsed", dupes[0] == "ravi@acme.com, sales@acme.com")
 
 # 3. Over-long lists are trimmed on a word boundary, never mid-address.
 many = [f"person{i}@site{i}.com" for i in range(60)]
