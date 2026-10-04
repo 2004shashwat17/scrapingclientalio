@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, HttpUrl, EmailStr
+from pydantic import BaseModel, HttpUrl
 
 
 class LeadBase(BaseModel):
@@ -14,7 +14,8 @@ class LeadBase(BaseModel):
     RevenuePublic: Optional[str] = None
     DecisionMakers: Optional[str] = None
     LinkedInURL: Optional[HttpUrl] = None
-    Email: Optional[EmailStr] = None
+    # Comma-separated list; first value is the primary email.
+    Email: Optional[str] = None
     Phone: Optional[str] = None
     CRMTMSUsedPublic: Optional[str] = None
     DeliveryVolumePublic: Optional[str] = None

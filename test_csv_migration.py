@@ -60,7 +60,7 @@ with tempfile.TemporaryDirectory() as tmp:
 
     rows = list(csv.DictReader(leads.open(encoding="utf-8")))
     check("all 5 data rows kept", len(rows) == 5)
-    check("new columns present", "AllEmails" in rows[0] and "AllPhones" in rows[0])
+    check("contact provenance columns present", "PhoneSource" in rows[0] and "EmailSource" in rows[0])
     check("no row is a header row", rows[0]["CompanyName"] == "Company 1")
     check("emails preserved", rows[0]["Email"] == "a1@c1.example")
     check("phones preserved", rows[0]["Phone"] == "+91981110001")

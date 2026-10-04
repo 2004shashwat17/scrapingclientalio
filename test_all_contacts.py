@@ -63,13 +63,17 @@ with tempfile.TemporaryDirectory() as tmp:
     csv_store.DATA_DIR = Path(tmp)
     repo = csv_store.LeadStore("clientalio")
     repo.save({
-        "CompanyName": "Acme", "Email": "info@acme.com", "Phone": "+91 98111 12345",
+        "CompanyName": "Acme", "Email": "info@acme.com", "Phone": "+919811112345",
         "AllEmails": all_emails, "AllPhones": all_phones,
     })
     row = repo.list(limit=10)[0]
-    check("AllEmails persisted to CSV", row["AllEmails"] == all_emails)
-    check("AllPhones persisted to CSV", row["AllPhones"] == all_phones)
-    check("primary Email still set", row["Email"] == "info@acme.com")
+    check("all emails stored in Email column", row["Email"] == all_emails)
+    check("all phones stored in Phone column", row["Phone"] == all_phones)
+    check("primary email listed first in Email", row["Email"].startswith("info@acme.com"))
+    check("no AllEmails/AllPhones columns", "AllEmails" not in csv_store.LEAD_FIELDS
+          and "AllPhones" not in csv_store.LEAD_FIELDS)
+    check("duplicate detection uses primary email",
+          repo.find_duplicates("https://other.example", "info@acme.com", "Other") is not None)
 
 # 5. The push payload carries the extras in Notes.
 from push_leads_to_api import append_all_contacts
@@ -82,6 +86,14 @@ check("extra emails in notes", "sales@acme.com" in payload["notes"])
 check("extra phones in notes", "020 6720 0000" in payload["notes"])
 check("primary not duplicated in notes", "info@acme.com," not in payload["notes"])
 check("original notes preserved", payload["notes"].startswith("Source keyword: x"))
+
+# 6. A comma-separated Email/Phone row still sends one email + one phone to the API.
+from push_leads_to_api import build_payload
+api = build_payload({"Email": "info@acme.com, sales@acme.com",
+                     "Phone": "+919811112345, +912067200000"}, {})
+check("API email is the primary", api["email"] == "info@acme.com")
+check("API phone is the primary", api["phone"] == "+919811112345")
+check("other contacts go to notes", "sales@acme.com" in api["notes"] and "+912067200000" in api["notes"])
 
 print("\nALL PASS" if ok else "\nSOME CHECKS FAILED")
 raise SystemExit(0 if ok else 1)

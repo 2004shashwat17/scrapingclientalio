@@ -58,7 +58,7 @@ def build_output_rows() -> list[dict[str, Any]]:
     for filename in CATEGORY_FILES:
         file_path = Path(filename)
         for row in read_rows(file_path):
-            email = row.get("Email", "").strip()
+            email = row.get("Email", "").split(",")[0].strip()
             if not is_valid_email(email):
                 continue
             key = (email.lower(), row.get("Website", "").strip().lower())

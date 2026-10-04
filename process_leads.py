@@ -348,7 +348,7 @@ def calculate_lead_score(row: dict[str, Any]) -> int:
         score += 10
     if row.get("LinkedIn"):
         score += 10
-    if row.get("Email") and is_valid_email(row["Email"]):
+    if row.get("Email") and is_valid_email(row["Email"].split(",")[0].strip()):
         score += 10
     if is_service_business_model(row):
         score += 10

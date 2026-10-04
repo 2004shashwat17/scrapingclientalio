@@ -42,7 +42,7 @@ def revalidate(rows: list[dict]) -> None:
         stats["before_both"] += had_phone and had_email
 
         valid_phones: list[str] = []
-        for raw in [row.get("Phone", "")] + split_values(row.get("AllPhones", "")):
+        for raw in split_values(row.get("Phone", "")) + split_values(row.get("AllPhones", "")):
             raw = raw.strip()
             if not raw:
                 continue
@@ -58,7 +58,7 @@ def revalidate(rows: list[dict]) -> None:
                 accepted_phones[raw] = phone
 
         valid_emails: list[str] = []
-        for raw in [row.get("Email", "")] + split_values(row.get("AllEmails", "")):
+        for raw in split_values(row.get("Email", "")) + split_values(row.get("AllEmails", "")):
             raw = raw.strip()
             if not raw:
                 continue
@@ -88,8 +88,8 @@ def revalidate(rows: list[dict]) -> None:
     after_usable = sum(
         1 for r in rows
         if any(normalize_phone(v, infer_phone_region(r.get("Website"), r.get("Headquarters")))
-               for v in [r.get("Phone", "")] + split_values(r.get("AllPhones", "")) if v.strip())
-        or any(is_valid_email(v) for v in [r.get("Email", "")] + split_values(r.get("AllEmails", "")) if v.strip())
+               for v in split_values(r.get("Phone", "")) + split_values(r.get("AllPhones", "")))
+        or any(is_valid_email(v) for v in split_values(r.get("Email", "")) + split_values(r.get("AllEmails", "")))
     )
     print(f"{'% leads with usable contact':<38}{100 * before_usable / total:>9.1f}%{100 * after_usable / total:>9.1f}%")
     print(f"\nphone values seen: {stats['phones_seen']}, invalid removed: {stats['phones_invalid']}, "

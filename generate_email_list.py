@@ -45,7 +45,7 @@ def main() -> None:
     for filename in CATEGORY_FILES:
         path = Path(filename)
         for row in read_rows(path):
-            email = str(row.get("Email", "")).strip()
+            email = str(row.get("Email", "")).split(",")[0].strip()
             if not is_valid_email(email):
                 continue
             email_lower = email.lower()
@@ -55,7 +55,7 @@ def main() -> None:
             rows.append({"Email": email})
 
     for row in read_rows(LEADS_FILE):
-        email = str(row.get("Email", "")).strip()
+        email = str(row.get("Email", "")).split(",")[0].strip()
         if not is_valid_email(email):
             continue
         email_lower = email.lower()

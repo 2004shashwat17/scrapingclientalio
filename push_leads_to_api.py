@@ -260,8 +260,26 @@ def append_all_contacts(payload: dict, row: dict) -> dict:
     return payload
 
 
+def split_contacts(*values) -> list[str]:
+    parts = [p.strip() for value in values for p in str(value or "").replace(";", ",").split(",")]
+    return list(dict.fromkeys(p for p in parts if p))
+
+
+def primary_email(row) -> str:
+    emails = split_contacts(row.get("Email"))
+    return emails[0] if emails else ""
+
+
 def build_payload(row, extra, user_stage=DEFAULT_USER_STAGE):
     """Map a CSV row to a LeadCaptureRequest body. Returns None if no valid email."""
+    # Email/Phone columns hold comma-separated lists; the API takes one of each.
+    emails = split_contacts(row.get("Email"), row.get("AllEmails"))
+    phones = split_contacts(row.get("Phone"), row.get("AllPhones"))
+    row = {
+        **row,
+        "Email": emails[0] if emails else "", "Phone": phones[0] if phones else "",
+        "AllEmails": ", ".join(emails), "AllPhones": ", ".join(phones),
+    }
     payload = {}
     for column, field in FIELD_MAP.items():
         value = clean(row.get(column), field)
@@ -322,7 +340,7 @@ class LivePusher:
         payload = build_payload(lead, self.extra)
         if payload is None:
             status, email, message, error_type, already = (
-                "invalid_email", (lead.get("Email") or "").strip(), "Missing or invalid email", "Validation", ""
+                "invalid_email", primary_email(lead), "Missing or invalid email", "Validation", ""
             )
         elif payload["email"] in self.done:
             self.counters["skipped"] += 1
@@ -433,7 +451,7 @@ def print_dry_run(rows, extra, user_stage=DEFAULT_USER_STAGE) -> dict:
     """Build and print payloads without sending or touching the results file."""
     counters = {"success": 0, "error": 0, "invalid_email": 0, "skipped": 0}
     for index, row in enumerate(rows, start=1):
-        raw_email = (row.get("Email") or "").strip()
+        raw_email = primary_email(row)
         payload = build_payload(row, extra, user_stage)
         if payload is None:
             counters["invalid_email"] += 1
@@ -468,7 +486,7 @@ def run_target(args, label, base_url, rows, extra) -> dict:
 
     with results_file.open("a", newline="", encoding="utf-8") as results:
         for index, row in enumerate(rows, start=1):
-            raw_email = (row.get("Email") or "").strip()
+            raw_email = primary_email(row)
             if raw_email and raw_email.lower() in done:
                 counters["skipped"] += 1
                 continue

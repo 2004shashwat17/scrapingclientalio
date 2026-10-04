@@ -40,11 +40,9 @@ LEAD_FIELDS = [
     "RevenuePublic",
     "DecisionMakers",
     "LinkedInURL",
+    # Comma separated; the first value is the best (primary) contact.
     "Email",
     "Phone",
-    # Every contact found, not just the best: comma separated.
-    "AllEmails",
-    "AllPhones",
     # Where the primary Phone/Email came from and how much we trust it (0-1).
     "PhoneSource",
     "PhoneConfidence",
@@ -59,6 +57,40 @@ LEAD_FIELDS = [
 
 CRAWL_LOG_FIELDS = ["Website", "Status", "Message", "CreatedDate"]
 FAILED_SITE_FIELDS = ["Website", "Status", "Message", "CreatedDate"]
+
+
+def merge_contacts(*values: Any, normalize=None) -> str:
+    """Join comma-separated contact values, de-duplicated, first value first."""
+    merged: list[str] = []
+    for value in values:
+        for part in str(value or "").replace(";", ",").split(","):
+            part = part.strip()
+            if normalize:
+                part = normalize(part) or ""
+            if part and part not in merged:
+                merged.append(part)
+    return ", ".join(merged)
+
+
+def primary_contact(value: Any) -> str:
+    return str(value or "").split(",", 1)[0].strip()
+
+
+def _migrate_contact_columns(row: dict[str, str]) -> None:
+    """Fold the old AllEmails/AllPhones columns into Email/Phone, keeping only valid values."""
+    from backend.crawlers.contact_extraction import (
+        infer_phone_region, is_valid_email, normalize_email, normalize_phone,
+    )
+
+    region = infer_phone_region(row.get("Website"), row.get("Headquarters"))
+    row["Email"] = merge_contacts(
+        row.get("Email"), row.get("AllEmails"),
+        normalize=lambda value: normalize_email(value) if is_valid_email(value) else None,
+    )
+    row["Phone"] = merge_contacts(
+        row.get("Phone"), row.get("AllPhones"),
+        normalize=lambda value: normalize_phone(value, region),
+    )
 
 
 def _ensure_data_files() -> None:
@@ -91,6 +123,9 @@ def _ensure_data_files() -> None:
                 # which duplicated the header on every migration.
                 reader = csv.DictReader(handle)
                 rows = [row for row in reader]
+            if headers is LEAD_FIELDS and {"AllEmails", "AllPhones"} & set(existing_header):
+                for row in rows:
+                    _migrate_contact_columns(row)
             with path.open("w", newline="", encoding="utf-8") as handle:
                 writer = csv.DictWriter(handle, fieldnames=headers)
                 writer.writeheader()
@@ -140,8 +175,6 @@ def _parse_row(row: dict[str, str]) -> dict[str, Any]:
         "LinkedInURL": _parse_optional_text(row.get("LinkedInURL")),
         "Email": _parse_optional_email(row.get("Email")),
         "Phone": _parse_optional_text(row.get("Phone")),
-        "AllEmails": _parse_optional_text(row.get("AllEmails")),
-        "AllPhones": _parse_optional_text(row.get("AllPhones")),
         "PhoneSource": _parse_optional_text(row.get("PhoneSource")),
         "PhoneConfidence": _parse_optional_text(row.get("PhoneConfidence")),
         "EmailSource": _parse_optional_text(row.get("EmailSource")),
@@ -199,19 +232,27 @@ class LeadStore:
             parsed = _parse_row(row)
             if parsed["Website"] == website:
                 return parsed
-            if email and parsed["Email"] == email:
+            if email and primary_contact(parsed["Email"]) == primary_contact(email):
                 return parsed
             if parsed["CompanyName"] == company_name:
                 return parsed
         return None
 
     def save(self, payload: dict[str, Any]) -> dict[str, Any]:
+        payload = dict(payload)
+        all_emails, all_phones = payload.pop("AllEmails", None), payload.pop("AllPhones", None)
+        if payload.get("Email") or all_emails:
+            payload["Email"] = merge_contacts(payload.get("Email"), all_emails)
+        if payload.get("Phone") or all_phones:
+            payload["Phone"] = merge_contacts(payload.get("Phone"), all_phones)
+
         rows = _read_csv(self.leads_file, LEAD_FIELDS)
         parsed_rows = [_parse_row(row) for row in rows]
         existing = None
         for row in parsed_rows:
             if row["Website"] == payload.get("Website") or (
-                payload.get("Email") and row["Email"] == payload.get("Email")
+                payload.get("Email")
+                and primary_contact(row["Email"]) == primary_contact(payload.get("Email"))
             ) or row["CompanyName"] == payload.get("CompanyName"):
                 existing = row
                 break
@@ -243,8 +284,6 @@ class LeadStore:
             "LinkedInURL": payload.get("LinkedInURL", ""),
             "Email": payload.get("Email", ""),
             "Phone": payload.get("Phone", ""),
-            "AllEmails": payload.get("AllEmails", ""),
-            "AllPhones": payload.get("AllPhones", ""),
             "PhoneSource": payload.get("PhoneSource", ""),
             "PhoneConfidence": payload.get("PhoneConfidence", ""),
             "EmailSource": payload.get("EmailSource", ""),
@@ -274,8 +313,6 @@ def _serialize_lead(row: dict[str, Any]) -> dict[str, Any]:
         "LinkedInURL": row.get("LinkedInURL", ""),
         "Email": row.get("Email", ""),
         "Phone": row.get("Phone", ""),
-        "AllEmails": row.get("AllEmails", ""),
-        "AllPhones": row.get("AllPhones", ""),
         "PhoneSource": row.get("PhoneSource", ""),
         "PhoneConfidence": row.get("PhoneConfidence", ""),
         "EmailSource": row.get("EmailSource", ""),
