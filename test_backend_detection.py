@@ -16,7 +16,10 @@ def check(label, condition):
     ok = ok and bool(condition)
 
 
-check("default target is auto", push.DEFAULT_TARGET == "auto")
+check("default target is local-https", push.DEFAULT_TARGET == "local-https")
+check("local-https URL is port 7293", push.TARGETS["local-https"] == "https://localhost:7293")
+check("dev cert not verified on localhost", push.verify_tls("https://localhost:7293") is False)
+check("TLS still verified for deployed", push.verify_tls(push.TARGETS["deployed"]) is True)
 check("local URL is port 5023", push.TARGETS["local"] == "http://localhost:5023")
 check("deployed URL is the Azure host",
       push.TARGETS["deployed"] == "https://apiclientalio.azurewebsites.net")

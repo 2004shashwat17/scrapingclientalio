@@ -4,10 +4,10 @@
 Endpoint: POST {base_url}/api/v1/Lead/LeadCapture
 
 Named targets (--target):
-    auto         probe local first, fall back to deployed (default)
+    local-https  https://localhost:7293                    local dev over the dev cert (default)
+    auto         probe local first, fall back to deployed
     deployed     https://apiclientalio.azurewebsites.net   production Azure App Service
-    local        http://localhost:5023                     local dev, plain HTTP (preferred)
-    local-https  https://localhost:7293                    local dev over the dev cert
+    local        http://localhost:5023                     local dev, plain HTTP
 
 A raw URL can also be passed to --target/--base-url. Multiple targets may be
 given; leads are sent to each in turn. Per-lead results are written to a
@@ -42,7 +42,12 @@ import time
 from pathlib import Path
 
 import requests
+import urllib3
 from email_validator import EmailNotValidError, validate_email
+from urllib.parse import urlparse
+
+# The local dev cert is not verified (see verify_tls); don't spam a warning per request.
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -113,8 +118,15 @@ TARGETS = {
 
 # Preference order for "auto": local first, deployed as the fallback.
 AUTO_ORDER = ["local", "local-https", "deployed"]
-DEFAULT_TARGET = "auto"
+DEFAULT_TARGET = "local-https"
 FALLBACK_TARGET = "deployed"
+
+LOCAL_HOSTS = {"localhost", "127.0.0.1"}
+
+
+def verify_tls(base_url: str) -> bool:
+    """Python's certifi bundle does not trust the ASP.NET dev cert, so skip checks for localhost only."""
+    return urlparse(base_url).hostname not in LOCAL_HOSTS
 
 
 def is_reachable(base_url: str, timeout: float = 3.0) -> bool:
@@ -122,7 +134,7 @@ def is_reachable(base_url: str, timeout: float = 3.0) -> bool:
     if not base_url:
         return False
     try:
-        requests.get(f"{base_url.rstrip('/')}/", timeout=timeout)
+        requests.get(f"{base_url.rstrip('/')}/", timeout=timeout, verify=verify_tls(base_url))
         return True
     except requests.RequestException:
         return False
@@ -396,6 +408,7 @@ def run_target(args, label, base_url, rows, extra) -> dict:
     print(f"\n=== {label} -> {url} (results: {results_file.name}) ===")
 
     session = requests.Session()
+    session.verify = verify_tls(base_url)
     session.headers.update({
         "Content-Type": "application/json",
         "User-Agent": "clientalio-lead-pusher/1.0",
@@ -450,7 +463,7 @@ def main():
     parser.add_argument(
         "--target", action="append", nargs="+", metavar="NAME_OR_URL",
         help=f"Environment to post to; repeatable. One of: {', '.join(TARGETS)}, or a full URL. "
-             f"Default: {DEFAULT_TARGET} (local if running, else deployed)",
+             f"Default: {DEFAULT_TARGET} ({TARGETS[DEFAULT_TARGET]})",
     )
     parser.add_argument("--base-url", default=None, help="Override --target with a single URL")
     parser.add_argument("--leads-file", type=Path, default=None, help="Override the product's leads CSV")
