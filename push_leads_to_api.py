@@ -17,6 +17,7 @@ Products (--product, else an interactive menu):
     2) Dropproof   -> data/dropproof_leads.csv   (productName "Dropproof")
 
 The product decides both which CSV is read and the productName sent to the API.
+Every payload also carries `userStage: "Prospect"` (override with --user-stage).
 
 The endpoint returns HTTP 200 even on business failures, so every response is
 branched on the `success` field of the APIResponse envelope, not on the status
@@ -97,6 +98,9 @@ def resolve_product(value: str | None) -> dict | None:
     return PRODUCTS.get(key)
 
 API_PATH = "/api/v1/Lead/LeadCapture"
+
+# Scraped leads are prospects; the funnel stage is sent with every payload.
+DEFAULT_USER_STAGE = "Prospect"
 
 # Named environments. Keep in sync with Properties/launchSettings.json.
 TARGETS = {
@@ -207,7 +211,7 @@ def append_all_contacts(payload: dict, row: dict) -> dict:
     return payload
 
 
-def build_payload(row, extra):
+def build_payload(row, extra, user_stage=DEFAULT_USER_STAGE):
     """Map a CSV row to a LeadCaptureRequest body. Returns None if no valid email."""
     payload = {}
     for column, field in FIELD_MAP.items():
@@ -218,6 +222,10 @@ def build_payload(row, extra):
     for field, value in extra.items():
         if value:
             payload[field] = value
+
+    # Every scraped lead enters the funnel as a prospect.
+    if user_stage:
+        payload["userStage"] = user_stage
 
     email = payload.get("email")
     if not email:
@@ -323,12 +331,12 @@ def preflight(session, label, base_url) -> bool:
         return False
 
 
-def print_dry_run(rows, extra) -> dict:
+def print_dry_run(rows, extra, user_stage=DEFAULT_USER_STAGE) -> dict:
     """Build and print payloads without sending or touching the results file."""
     counters = {"success": 0, "error": 0, "invalid_email": 0, "skipped": 0}
     for index, row in enumerate(rows, start=1):
         raw_email = (row.get("Email") or "").strip()
-        payload = build_payload(row, extra)
+        payload = build_payload(row, extra, user_stage)
         if payload is None:
             counters["invalid_email"] += 1
             print(f"[{index}/{len(rows)}] invalid_email  {raw_email or '<blank>'}")
@@ -357,7 +365,7 @@ def run_target(args, label, base_url, rows, extra) -> dict:
         return counters
 
     if args.dry_run:
-        return print_dry_run(rows, extra)
+        return print_dry_run(rows, extra, args.user_stage)
 
     with results_file.open("a", newline="", encoding="utf-8") as results:
         for index, row in enumerate(rows, start=1):
@@ -366,7 +374,7 @@ def run_target(args, label, base_url, rows, extra) -> dict:
                 counters["skipped"] += 1
                 continue
 
-            payload = build_payload(row, extra)
+            payload = build_payload(row, extra, args.user_stage)
             if payload is None:
                 counters["invalid_email"] += 1
                 append_result(results, {
@@ -420,6 +428,8 @@ def main():
     parser.add_argument("--term")
     parser.add_argument("--referrer")
     parser.add_argument("--product-name", default=None, help="Override the productName sent to the API")
+    parser.add_argument("--user-stage", default=DEFAULT_USER_STAGE,
+                        help=f"Value sent as userStage. Default: {DEFAULT_USER_STAGE}. Pass empty to omit.")
     args = parser.parse_args()
 
     product = resolve_product(args.product)
