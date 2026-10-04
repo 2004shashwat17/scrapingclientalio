@@ -150,8 +150,11 @@ def prompt_resume(progress: dict) -> bool:
 
 
 def main() -> None:
+    # `--push` sends every saved lead to the Lead Capture API immediately.
+    push_live = "--push" in sys.argv
+    positional = [arg for arg in sys.argv[1:] if not arg.startswith("--")]
     # Optional first CLI arg skips the prompt, e.g. `python run_search_csv.py dropproof`.
-    selected_arg = sys.argv[1] if len(sys.argv) > 1 else None
+    selected_arg = positional[0] if positional else None
     if selected_arg:
         product = next((p for p in PRODUCTS.values() if p["key"] == selected_arg.lower()), None)
         if product is None:
@@ -196,7 +199,13 @@ def main() -> None:
     count = prompt_count(remaining)
     end_index = min(start_index + count, len(keywords))
 
-    search_service = SearchService()
+    pusher = None
+    if push_live:
+        from push_leads_to_api import LivePusher
+
+        pusher = LivePusher(product["name"])
+
+    search_service = SearchService(on_saved=pusher.push if pusher else None)
     current_index = start_index
     current_keyword = ""
 

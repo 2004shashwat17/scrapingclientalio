@@ -298,6 +298,52 @@ def load_done_emails(path):
     return done
 
 
+class LivePusher:
+    """Posts each lead to the API the moment the scraper saves it."""
+
+    def __init__(self, product_name: str, target: str = DEFAULT_TARGET, retries: int = 2) -> None:
+        label, base_url = resolve_auto() if target == "auto" else (target, TARGETS[target])
+        self.url = base_url.rstrip("/") + API_PATH
+        self.retries = retries
+        self.extra = {**EXTRA_DEFAULTS, "productName": product_name}
+        self.results_path = results_path_for(RESULTS_FILE, label)
+        self.done = load_done_emails(self.results_path)
+        self.counters = {"success": 0, "error": 0, "invalid_email": 0, "skipped": 0}
+        self.session = requests.Session()
+        self.session.verify = verify_tls(base_url)
+        self.session.headers.update({
+            "Content-Type": "application/json",
+            "User-Agent": "clientalio-lead-pusher/1.0",
+        })
+        reachable = is_reachable(base_url)
+        print(f"Live API push -> {self.url} ({'up' if reachable else 'NOT reachable, leads still saved to CSV'})")
+
+    def push(self, lead: dict) -> str:
+        payload = build_payload(lead, self.extra)
+        if payload is None:
+            status, email, message, error_type, already = (
+                "invalid_email", (lead.get("Email") or "").strip(), "Missing or invalid email", "Validation", ""
+            )
+        elif payload["email"] in self.done:
+            self.counters["skipped"] += 1
+            print(f"  API: skipped (already pushed) {payload['email']}")
+            return "skipped"
+        else:
+            email = payload["email"]
+            status, message, error_type, already = post_lead(self.session, self.url, payload, self.retries)
+            if status == "success":
+                self.done.add(email)
+
+        self.counters[status] += 1
+        with self.results_path.open("a", newline="", encoding="utf-8") as handle:
+            append_result(handle, {
+                "Email": email, "Status": status, "Message": message,
+                "ErrorType": error_type, "AlreadyCompleted": already,
+            })
+        print(f"  API: {status} {email or '<no email>'} - {message}")
+        return status
+
+
 def append_result(handle, record):
     writer = csv.DictWriter(handle, fieldnames=RESULT_FIELDS)
     if handle.tell() == 0:

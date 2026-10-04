@@ -202,3 +202,6 @@ python push_leads_to_api.py --product 1                      # send
 Honest caveat: I've verified the code compiles, imports, and passes offline tests, but I have **not** run the scraper end-to-end against live Google — that would burn search traffic and write real rows. The Google SERP parser in particular is the part most likely to need a tweak once you see real results. Stop with `Ctrl+C`; progress saves and the next run offers to resume.
 
 .venv/bin/python run_search_csv.py
+
+
+.venv/bin/python run_search_csv.py clientalio --push

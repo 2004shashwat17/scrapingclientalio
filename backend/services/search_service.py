@@ -38,10 +38,12 @@ def is_directory_site(url: str) -> bool:
 
 
 class SearchService:
-    def __init__(self):
+    def __init__(self, on_saved=None):
         self.discovery = SearchDiscovery()
         self.enricher = EnrichmentService()
         self.lead_repo = LeadRepository()
+        # Optional callback run with every saved lead (e.g. live API push).
+        self.on_saved = on_saved
         # One browser for the whole run; sharing it keeps cookies and the
         # fingerprint consistent, which is what keeps the captcha away.
         self._session: BrowserSession | None = None
@@ -131,5 +133,10 @@ class SearchService:
 
             print("SAVED:", saved.get("CompanyName"), saved.get("Email"))
             results.append(saved)
+            if self.on_saved:
+                try:
+                    self.on_saved(saved)
+                except Exception as exc:
+                    logger.warning("on_saved hook failed for %s: %s", company_name, exc)
 
         return results
