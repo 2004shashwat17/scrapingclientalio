@@ -4,9 +4,10 @@
 Endpoint: POST {base_url}/api/v1/Lead/LeadCapture
 
 Named targets (--target):
-    deployed  https://apiclientalio.azurewebsites.net   production Azure App Service
-    local     http://localhost:5023                     local dev, plain HTTP (preferred)
-    local-https https://localhost:7293                  local dev over the dev cert
+    auto         probe local first, fall back to deployed (default)
+    deployed     https://apiclientalio.azurewebsites.net   production Azure App Service
+    local        http://localhost:5023                     local dev, plain HTTP (preferred)
+    local-https  https://localhost:7293                    local dev over the dev cert
 
 A raw URL can also be passed to --target/--base-url. Multiple targets may be
 given; leads are sent to each in turn. Per-lead results are written to a
@@ -104,11 +105,47 @@ DEFAULT_USER_STAGE = "Prospect"
 
 # Named environments. Keep in sync with Properties/launchSettings.json.
 TARGETS = {
+    "auto": None,  # resolved at run time: local if up, else deployed
     "deployed": "https://apiclientalio.azurewebsites.net",
     "local": "http://localhost:5023",
     "local-https": "https://localhost:7293",
 }
-DEFAULT_TARGET = "deployed"
+
+# Preference order for "auto": local first, deployed as the fallback.
+AUTO_ORDER = ["local", "local-https", "deployed"]
+DEFAULT_TARGET = "auto"
+FALLBACK_TARGET = "deployed"
+
+
+def is_reachable(base_url: str, timeout: float = 3.0) -> bool:
+    """True if the API root responds at all (any status code means it is up)."""
+    if not base_url:
+        return False
+    try:
+        requests.get(f"{base_url.rstrip('/')}/", timeout=timeout)
+        return True
+    except requests.RequestException:
+        return False
+
+
+def resolve_auto(label: str = "auto") -> tuple[str, str]:
+    """Pick the local backend when it is running, otherwise the deployed one.
+
+    Returns (target_label, base_url). A localhost backend that is not running
+    should never silently become a production push, so an explicit --target or
+    --base-url is still honoured verbatim.
+    """
+    print("Detecting backend...")
+    for candidate in AUTO_ORDER:
+        base_url = TARGETS[candidate]
+        if is_reachable(base_url):
+            chosen = candidate if candidate != "local-https" else "local"
+            print(f"  {candidate:<12} is up -> using it ({base_url})")
+            return chosen, base_url
+        print(f"  {candidate:<12} not reachable, skipping")
+    fallback = TARGETS[FALLBACK_TARGET]
+    print(f"  falling back to {FALLBACK_TARGET} ({fallback})")
+    return FALLBACK_TARGET, fallback
 
 # CSV column -> LeadCaptureRequest field. Columns not listed here (LeadId,
 # CreatedDate) are server-managed and never sent.
@@ -308,7 +345,10 @@ def resolve_targets(args) -> list:
         requested = [args.base_url]
     targets = []
     for item in requested:
-        if item in TARGETS:
+        if item == "auto":
+            targets.append(resolve_auto())
+            continue
+        if item in TARGETS and TARGETS[item]:
             targets.append((item, TARGETS[item]))
         elif "://" in item:
             label = item.split("://", 1)[1].replace("/", "_").replace(":", "_")
@@ -409,7 +449,8 @@ def main():
     )
     parser.add_argument(
         "--target", action="append", nargs="+", metavar="NAME_OR_URL",
-        help=f"Environment to post to; repeatable. One of: {', '.join(TARGETS)}, or a full URL. Default: {DEFAULT_TARGET}",
+        help=f"Environment to post to; repeatable. One of: {', '.join(TARGETS)}, or a full URL. "
+             f"Default: {DEFAULT_TARGET} (local if running, else deployed)",
     )
     parser.add_argument("--base-url", default=None, help="Override --target with a single URL")
     parser.add_argument("--leads-file", type=Path, default=None, help="Override the product's leads CSV")

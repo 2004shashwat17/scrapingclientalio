@@ -112,9 +112,20 @@ Targets (pass one or more to `--target`):
 
 | Name | Base URL |
 |---|---|
-| `deployed` | `https://apiclientalio.azurewebsites.net` (default) |
+| `auto` *(default)* | Picks `local` if it's running, otherwise `deployed` |
+| `deployed` | `https://apiclientalio.azurewebsites.net` |
 | `local` | `http://localhost:5023` — local dev, plain HTTP |
 | `local-https` | `https://localhost:7293` — local dev cert, must be trusted |
+
+With no `--target`, the script probes each backend and prints which one it chose:
+
+```
+Detecting backend...
+  local        is up -> using it (http://localhost:5023)
+```
+
+An explicit `--target` or `--base-url` skips detection entirely and is used
+verbatim — useful when you want to force production.
 
 ```bash
 python push_leads_to_api.py --dry-run                        # preview against deployed
