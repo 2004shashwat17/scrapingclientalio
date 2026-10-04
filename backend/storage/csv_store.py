@@ -42,6 +42,9 @@ LEAD_FIELDS = [
     "LinkedInURL",
     "Email",
     "Phone",
+    # Every contact found, not just the best: comma separated.
+    "AllEmails",
+    "AllPhones",
     "CRMTMSUsedPublic",
     "DeliveryVolumePublic",
     "ExistingPODSolution",
@@ -78,7 +81,10 @@ def _ensure_data_files() -> None:
 
         if existing_header != headers:
             with path.open("r", newline="", encoding="utf-8") as handle:
-                reader = csv.DictReader(handle, fieldnames=existing_header)
+                # No explicit fieldnames: DictReader must consume the header row
+                # itself. Passing fieldnames=... makes it read the header as data,
+                # which duplicated the header on every migration.
+                reader = csv.DictReader(handle)
                 rows = [row for row in reader]
             with path.open("w", newline="", encoding="utf-8") as handle:
                 writer = csv.DictWriter(handle, fieldnames=headers)
@@ -129,6 +135,8 @@ def _parse_row(row: dict[str, str]) -> dict[str, Any]:
         "LinkedInURL": _parse_optional_text(row.get("LinkedInURL")),
         "Email": _parse_optional_email(row.get("Email")),
         "Phone": _parse_optional_text(row.get("Phone")),
+        "AllEmails": _parse_optional_text(row.get("AllEmails")),
+        "AllPhones": _parse_optional_text(row.get("AllPhones")),
         "CRMTMSUsedPublic": _parse_optional_text(row.get("CRMTMSUsedPublic")),
         "DeliveryVolumePublic": _parse_optional_text(row.get("DeliveryVolumePublic")),
         "ExistingPODSolution": _parse_optional_text(row.get("ExistingPODSolution")),
@@ -226,6 +234,8 @@ class LeadStore:
             "LinkedInURL": payload.get("LinkedInURL", ""),
             "Email": payload.get("Email", ""),
             "Phone": payload.get("Phone", ""),
+            "AllEmails": payload.get("AllEmails", ""),
+            "AllPhones": payload.get("AllPhones", ""),
             "CRMTMSUsedPublic": payload.get("CRMTMSUsedPublic", ""),
             "DeliveryVolumePublic": payload.get("DeliveryVolumePublic", ""),
             "ExistingPODSolution": payload.get("ExistingPODSolution", ""),
@@ -251,6 +261,8 @@ def _serialize_lead(row: dict[str, Any]) -> dict[str, Any]:
         "LinkedInURL": row.get("LinkedInURL", ""),
         "Email": row.get("Email", ""),
         "Phone": row.get("Phone", ""),
+        "AllEmails": row.get("AllEmails", ""),
+        "AllPhones": row.get("AllPhones", ""),
         "CRMTMSUsedPublic": row.get("CRMTMSUsedPublic", ""),
         "DeliveryVolumePublic": row.get("DeliveryVolumePublic", ""),
         "ExistingPODSolution": row.get("ExistingPODSolution", ""),

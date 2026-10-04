@@ -61,8 +61,8 @@ def company_name_matches(candidate: str, target: str) -> bool:
 LEAD_FIELDS = [
     "CompanyName", "Website", "Headquarters", "CitiesServed", "Industry",
     "FleetSizePublic", "Employees", "RevenuePublic", "DecisionMakers",
-    "LinkedInURL", "Email", "Phone", "CRMTMSUsedPublic",
-    "DeliveryVolumePublic", "ExistingPODSolution", "Notes",
+    "LinkedInURL", "Email", "Phone", "AllEmails", "AllPhones",
+    "CRMTMSUsedPublic", "DeliveryVolumePublic", "ExistingPODSolution", "Notes",
 ]
 class EnrichmentService:
     """Card -> website -> contact page -> snippets -> social."""
@@ -249,6 +249,7 @@ class EnrichmentService:
                     lead["LinkedInURL"] = item["url"]
                     sources.append("LinkedIn from search")
                     break
+
         if not lead.get("Phone"):
             for item in results:
                 if GoogleWebSearch.social_kind(item.get("url", "")) == "WhatsApp":
@@ -258,6 +259,12 @@ class EnrichmentService:
 
     def _finish(self, lead: dict, sources: list[str]) -> dict:
         """Attach a provenance note and flag whether the lead is worth keeping."""
+        # The primary contact must always appear in the "all contacts" list,
+        # even when it came from the Maps card rather than a crawl.
+        if lead.get("Email") and lead["Email"].lower() not in lead.get("AllEmails", "").lower():
+            lead["AllEmails"] = ", ".join(filter(None, [lead["Email"], lead.get("AllEmails", "")]))
+        if lead.get("Phone") and lead["Phone"] not in lead.get("AllPhones", ""):
+            lead["AllPhones"] = ", ".join(filter(None, [lead["Phone"], lead.get("AllPhones", "")]))
         found = [field for field in MIN_USEFUL_FIELDS if lead.get(field)]
         notes = f"Discovery: {', '.join(dict.fromkeys(sources))}"
         if len(found) < 2:

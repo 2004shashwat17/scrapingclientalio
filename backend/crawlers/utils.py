@@ -630,6 +630,59 @@ def extract_phones(text: str) -> list[str]:
     return list(phones)
 
 
+# Field sizes for the "all contacts" columns, matching the Lead Capture API
+# so nothing we store is silently cut off by the API's max lengths.
+MAX_ALL_EMAILS = 256
+MAX_ALL_PHONES = 128
+
+
+def collect_all_contacts(
+    emails: list[str], phones: list[str], website: str | None = None,
+    primary_email: str | None = None, primary_phone: str | None = None,
+) -> tuple[str, str]:
+    """Join every usable email and phone into two compact, de-duplicated strings.
+
+    Nothing found on the site is thrown away: personal, generic and role-based
+    addresses all survive, with the chosen primary listed first.
+    """
+    unique_emails: list[str] = []
+    for email in emails:
+        cleaned = clean_email(email).lower()
+        if cleaned and cleaned not in unique_emails:
+            unique_emails.append(cleaned)
+
+    unique_phones: list[str] = []
+    for phone in phones:
+        cleaned = clean_phone(phone)
+        if cleaned and cleaned not in unique_phones:
+            unique_phones.append(cleaned)
+
+    # Put the primary first so the best contact leads the list. Both sides are
+    # normalised identically, otherwise a differently-formatted primary never matches.
+    def promote(primary, values, normalise):
+        if not primary:
+            return
+        target = normalise(primary)
+        if target and target in values:
+            values.remove(target)
+            values.insert(0, target)
+
+    promote(primary_email, unique_emails,
+            lambda value: clean_email(value).lower() if value else "")
+    promote(primary_phone, unique_phones, clean_phone)
+
+    email_field = ", ".join(unique_emails)
+    phone_field = ", ".join(unique_phones)
+
+    # The CSV mirrors the Lead Capture API's field limits, so keep it bounded.
+    if len(email_field) > MAX_ALL_EMAILS:
+        email_field = email_field[:MAX_ALL_EMAILS].rsplit(",", 1)[0]
+    if len(phone_field) > MAX_ALL_PHONES:
+        phone_field = phone_field[:MAX_ALL_PHONES].rsplit(",", 1)[0]
+
+    return email_field, phone_field
+
+
 def find_social_links(soup: BeautifulSoup, base_url: str | None = None) -> dict[str, str | None]:
     result = {name: None for name in SOCIAL_PATTERNS}
     for anchor in soup.find_all("a", href=True):

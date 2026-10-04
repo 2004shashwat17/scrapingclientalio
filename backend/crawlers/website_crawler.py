@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from backend.crawlers.utils import (
     choose_best_business_email,
     choose_best_phone,
+    collect_all_contacts,
     extract_emails,
     extract_phones,
     extract_decision_maker,
@@ -319,6 +320,12 @@ class WebsiteCrawler:
         if not has_business_pages(page_urls) and not is_business_website(all_text, business_page_links):
             raise ValueError("Website does not appear to be a valid business website")
 
+        # Keep every contact found, not just the single best one.
+        all_emails, all_phones = collect_all_contacts(
+            emails, phones, website,
+            primary_email=best_email, primary_phone=best_phone,
+        )
+
         notes_parts: list[str] = []
         if source_keyword:
             notes_parts.append(f"Source keyword: {source_keyword}")
@@ -339,6 +346,8 @@ class WebsiteCrawler:
             "LinkedInURL": social_links.get("LinkedIn"),
             "Email": best_email,
             "Phone": best_phone,
+            "AllEmails": all_emails,
+            "AllPhones": all_phones,
             "CRMTMSUsedPublic": crm_tms_used_public,
             "DeliveryVolumePublic": delivery_volume_public,
             "ExistingPODSolution": existing_pod_solution,

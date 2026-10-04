@@ -173,6 +173,40 @@ def clean(value, field):
     return value[:limit] if limit else value
 
 
+def append_all_contacts(payload: dict, row: dict) -> dict:
+    """Fold every extra email/phone into Notes.
+
+    The Lead Capture API has a single Email and a single Phone field, so the
+    full contact list rides along in Notes rather than being dropped.
+    """
+    extra_emails = []
+    for candidate in (row.get("AllEmails") or "").replace(";", ",").split(","):
+        candidate = candidate.strip().lower()
+        # Skip anything that duplicates the primary address we already send.
+        if candidate and candidate != payload.get("email", "").lower() and "@" in candidate:
+            extra_emails.append(candidate)
+
+    extra_phones = []
+    for candidate in (row.get("AllPhones") or "").replace(";", ",").split(","):
+        candidate = candidate.strip()
+        if candidate and candidate != payload.get("phone"):
+            extra_phones.append(candidate)
+
+    if not extra_emails and not extra_phones:
+        return payload
+
+    lines = []
+    if extra_emails:
+        lines.append(f"Other emails: {', '.join(dict.fromkeys(extra_emails))}")
+    if extra_phones:
+        lines.append(f"Other phones: {', '.join(dict.fromkeys(extra_phones))}")
+
+    notes = payload.get("notes", "")
+    combined = " | ".join(filter(None, [notes] + lines))
+    payload["notes"] = combined[:MAX_LENGTHS["notes"]]
+    return payload
+
+
 def build_payload(row, extra):
     """Map a CSV row to a LeadCaptureRequest body. Returns None if no valid email."""
     payload = {}
@@ -193,7 +227,7 @@ def build_payload(row, extra):
         payload["email"] = validate_email(email, check_deliverability=False).normalized.lower()
     except EmailNotValidError:
         return None
-    return payload
+    return append_all_contacts(payload, row)
 
 
 def load_done_emails(path):
