@@ -1,3 +1,4 @@
+import argparse
 import csv
 import json
 import sys
@@ -150,11 +151,20 @@ def prompt_resume(progress: dict) -> bool:
 
 
 def main() -> None:
-    # `--push` sends every saved lead to the Lead Capture API immediately.
-    push_live = "--push" in sys.argv
-    positional = [arg for arg in sys.argv[1:] if not arg.startswith("--")]
-    # Optional first CLI arg skips the prompt, e.g. `python run_search_csv.py dropproof`.
-    selected_arg = positional[0] if positional else None
+    parser = argparse.ArgumentParser(description="Search keywords and optionally push leads to the Lead Capture API.")
+    parser.add_argument("product", nargs="?", help="Product key, e.g. clientalio or dropproof")
+    parser.add_argument(
+        "--push", action="store_true",
+        help="Push this keyword's saved leads to the API after the keyword finishes",
+    )
+    parser.add_argument(
+        "--target", choices=("auto", "deployed", "local", "local-https"), default="local-https",
+        help="API target used with --push (default: local-https)",
+    )
+    args = parser.parse_args()
+
+    # Optional product argument skips the prompt, e.g. `python run_search_csv.py dropproof`.
+    selected_arg = args.product
     if selected_arg:
         product = next((p for p in PRODUCTS.values() if p["key"] == selected_arg.lower()), None)
         if product is None:
@@ -200,12 +210,13 @@ def main() -> None:
     end_index = min(start_index + count, len(keywords))
 
     pusher = None
-    if push_live:
+    if args.push:
         from push_leads_to_api import LivePusher
 
-        pusher = LivePusher(product["name"])
+        pusher = LivePusher(product["name"], target=args.target)
 
-    search_service = SearchService(on_saved=pusher.push if pusher else None)
+    keyword_leads = []
+    search_service = SearchService(on_saved=keyword_leads.append if pusher else None)
     current_index = start_index
     current_keyword = ""
 
@@ -222,6 +233,12 @@ def main() -> None:
                 print(f"  Completed. Saved {len(results)} results for keyword: '{current_keyword}'")
             except Exception as exc:
                 print(f"  Error on '{current_keyword}': {exc}")
+            finally:
+                if pusher and keyword_leads:
+                    print(f"  Pushing {len(keyword_leads)} saved lead(s) for this keyword...")
+                    for lead in keyword_leads:
+                        pusher.push(lead)
+                    keyword_leads.clear()
             next_index = index + 1
             save_progress(progress_path, csv_path, next_index, current_keyword, len(keywords))
             # Pause between keywords so Google sees a human, not a burst.

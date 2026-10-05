@@ -18,7 +18,7 @@ Products (--product, else an interactive menu):
     2) Dropproof   -> data/dropproof_leads.csv   (productName "Dropproof")
 
 The product decides both which CSV is read and the productName sent to the API.
-Every payload also carries `userStage: "Prospect"` (override with --user-stage).
+Every payload carries the hard-coded `userStage: "PROSPECT"`.
 
 The endpoint returns HTTP 200 even on business failures, so every response is
 branched on the `success` field of the APIResponse envelope, not on the status
@@ -106,7 +106,7 @@ def resolve_product(value: str | None) -> dict | None:
 API_PATH = "/api/v1/Lead/LeadCapture"
 
 # Scraped leads are prospects; the funnel stage is sent with every payload.
-DEFAULT_USER_STAGE = "Prospect"
+DEFAULT_USER_STAGE = "PROSPECT"
 
 # Named environments. Keep in sync with Properties/launchSettings.json.
 TARGETS = {
@@ -205,7 +205,7 @@ MAX_LENGTHS = {
     "revenuePublic": 128,
     "decisionMakers": 512,
     "linkedinURL": 256,
-    "phone": 32,
+    "phone": 128,
     "crmtmsUsedPublic": 128,
     "deliveryVolumePublic": 128,
     "existingPODSolution": 256,
@@ -227,36 +227,26 @@ def clean(value, field):
 
 
 def append_all_contacts(payload: dict, row: dict) -> dict:
-    """Fold every extra email/phone into Notes.
+    """Put all valid email addresses and phone numbers in their API fields."""
+    emails = split_contacts(row.get("Email"), row.get("AllEmails"))
+    phones = split_contacts(row.get("Phone"), row.get("AllPhones"))
 
-    The Lead Capture API has a single Email and a single Phone field, so the
-    full contact list rides along in Notes rather than being dropped.
-    """
-    extra_emails = []
-    for candidate in (row.get("AllEmails") or "").replace(";", ",").split(","):
-        candidate = candidate.strip().lower()
-        # Skip anything that duplicates the primary address we already send.
-        if candidate and candidate != payload.get("email", "").lower() and "@" in candidate:
-            extra_emails.append(candidate)
+    valid_emails = []
+    seen_emails = set()
+    for candidate in emails:
+        try:
+            normalized = validate_email(candidate, check_deliverability=False).normalized.lower()
+        except EmailNotValidError:
+            continue
+        if normalized not in seen_emails:
+            valid_emails.append(normalized)
+            seen_emails.add(normalized)
 
-    extra_phones = []
-    for candidate in (row.get("AllPhones") or "").replace(";", ",").split(","):
-        candidate = candidate.strip()
-        if candidate and candidate != payload.get("phone"):
-            extra_phones.append(candidate)
-
-    if not extra_emails and not extra_phones:
-        return payload
-
-    lines = []
-    if extra_emails:
-        lines.append(f"Other emails: {', '.join(dict.fromkeys(extra_emails))}")
-    if extra_phones:
-        lines.append(f"Other phones: {', '.join(dict.fromkeys(extra_phones))}")
-
-    notes = payload.get("notes", "")
-    combined = " | ".join(filter(None, [notes] + lines))
-    payload["notes"] = combined[:MAX_LENGTHS["notes"]]
+    if not valid_emails:
+        return None
+    payload["email"] = clean(", ".join(valid_emails), "email")
+    if phones:
+        payload["phone"] = clean(", ".join(phones), "phone")
     return payload
 
 
@@ -266,18 +256,18 @@ def split_contacts(*values) -> list[str]:
 
 
 def primary_email(row) -> str:
-    emails = split_contacts(row.get("Email"))
+    emails = split_contacts(row.get("Email"), row.get("AllEmails"))
     return emails[0] if emails else ""
 
 
-def build_payload(row, extra, user_stage=DEFAULT_USER_STAGE):
+def build_payload(row, extra):
     """Map a CSV row to a LeadCaptureRequest body. Returns None if no valid email."""
-    # Email/Phone columns hold comma-separated lists; the API takes one of each.
+    # Preserve every discovered contact as a comma-separated API field value.
     emails = split_contacts(row.get("Email"), row.get("AllEmails"))
     phones = split_contacts(row.get("Phone"), row.get("AllPhones"))
     row = {
         **row,
-        "Email": emails[0] if emails else "", "Phone": phones[0] if phones else "",
+        "Email": ", ".join(emails), "Phone": ", ".join(phones),
         "AllEmails": ", ".join(emails), "AllPhones": ", ".join(phones),
     }
     payload = {}
@@ -290,18 +280,9 @@ def build_payload(row, extra, user_stage=DEFAULT_USER_STAGE):
         if value:
             payload[field] = value
 
-    # Every scraped lead enters the funnel as a prospect.
-    if user_stage:
-        payload["userStage"] = user_stage
+    # Always send the API's prospect stage, regardless of CSV or CLI input.
+    payload["userStage"] = DEFAULT_USER_STAGE
 
-    email = payload.get("email")
-    if not email:
-        return None
-    try:
-        # check_deliverability=False: syntax only, no DNS/MX round-trip.
-        payload["email"] = validate_email(email, check_deliverability=False).normalized.lower()
-    except EmailNotValidError:
-        return None
     return append_all_contacts(payload, row)
 
 
@@ -342,15 +323,15 @@ class LivePusher:
             status, email, message, error_type, already = (
                 "invalid_email", primary_email(lead), "Missing or invalid email", "Validation", ""
             )
-        elif payload["email"] in self.done:
+        elif payload["email"].split(",", 1)[0].strip().lower() in self.done:
             self.counters["skipped"] += 1
-            print(f"  API: skipped (already pushed) {payload['email']}")
+            print(f"  API: skipped (already pushed) {payload['email'].split(',', 1)[0].strip()}")
             return "skipped"
         else:
-            email = payload["email"]
+            email = payload["email"].split(",", 1)[0].strip()
             status, message, error_type, already = post_lead(self.session, self.url, payload, self.retries)
             if status == "success":
-                self.done.add(email)
+                self.done.add(email.lower())
 
         self.counters[status] += 1
         with self.results_path.open("a", newline="", encoding="utf-8") as handle:
@@ -447,12 +428,12 @@ def preflight(session, label, base_url) -> bool:
         return False
 
 
-def print_dry_run(rows, extra, user_stage=DEFAULT_USER_STAGE) -> dict:
+def print_dry_run(rows, extra) -> dict:
     """Build and print payloads without sending or touching the results file."""
     counters = {"success": 0, "error": 0, "invalid_email": 0, "skipped": 0}
     for index, row in enumerate(rows, start=1):
         raw_email = primary_email(row)
-        payload = build_payload(row, extra, user_stage)
+        payload = build_payload(row, extra)
         if payload is None:
             counters["invalid_email"] += 1
             print(f"[{index}/{len(rows)}] invalid_email  {raw_email or '<blank>'}")
@@ -482,7 +463,7 @@ def run_target(args, label, base_url, rows, extra) -> dict:
         return counters
 
     if args.dry_run:
-        return print_dry_run(rows, extra, args.user_stage)
+        return print_dry_run(rows, extra)
 
     with results_file.open("a", newline="", encoding="utf-8") as results:
         for index, row in enumerate(rows, start=1):
@@ -491,7 +472,7 @@ def run_target(args, label, base_url, rows, extra) -> dict:
                 counters["skipped"] += 1
                 continue
 
-            payload = build_payload(row, extra, args.user_stage)
+            payload = build_payload(row, extra)
             if payload is None:
                 counters["invalid_email"] += 1
                 append_result(results, {
@@ -504,13 +485,14 @@ def run_target(args, label, base_url, rows, extra) -> dict:
                 continue
 
             status, message, error_type, already = post_lead(session, url, payload, args.retries)
+            result_email = payload["email"].split(",", 1)[0].strip()
             counters[status] += 1
             append_result(results, {
-                "Email": payload["email"], "Status": status, "Message": message,
+                "Email": result_email, "Status": status, "Message": message,
                 "ErrorType": error_type, "AlreadyCompleted": already,
             })
             results.flush()
-            print(f"[{index}/{len(rows)}] {status:<12} {payload['email']} - {message}")
+            print(f"[{index}/{len(rows)}] {status:<12} {result_email} - {message}")
             if args.delay:
                 time.sleep(args.delay)
 
@@ -546,8 +528,6 @@ def main():
     parser.add_argument("--term")
     parser.add_argument("--referrer")
     parser.add_argument("--product-name", default=None, help="Override the productName sent to the API")
-    parser.add_argument("--user-stage", default=DEFAULT_USER_STAGE,
-                        help=f"Value sent as userStage. Default: {DEFAULT_USER_STAGE}. Pass empty to omit.")
     args = parser.parse_args()
 
     product = resolve_product(args.product)

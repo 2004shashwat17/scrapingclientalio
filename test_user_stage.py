@@ -1,4 +1,4 @@
-"""UserStage must be sent as 'Prospect' on every payload."""
+"""UserStage must be hard-coded as 'PROSPECT' on every payload."""
 
 import sys
 from pathlib import Path
@@ -18,17 +18,14 @@ def check(label, condition):
 
 ROW = {"Email": "info@acme.com", "CompanyName": "Acme", "Phone": "+919811112345"}
 
-check("default constant is Prospect", DEFAULT_USER_STAGE == "Prospect")
+check("default constant is uppercase PROSPECT", DEFAULT_USER_STAGE == "PROSPECT")
 
 payload = build_payload(ROW, {"productName": "Clientalio"})
-check("userStage sent by default", payload.get("userStage") == "Prospect")
+check("userStage sent by default", payload.get("userStage") == "PROSPECT")
 
 payload = build_payload(ROW, {"productName": "Dropproof"})
-check("userStage sent for dropproof too", payload.get("userStage") == "Prospect")
-
-# Overridable, and omittable when explicitly blank.
-check("stage can be overridden", build_payload(ROW, {}, "Customer")["userStage"] == "Customer")
-check("stage omitted when empty", "userStage" not in build_payload(ROW, {}, ""))
+check("userStage sent for dropproof too", payload.get("userStage") == "PROSPECT")
+check("extra input cannot override stage", build_payload(ROW, {"userStage": "lead"})["userStage"] == "PROSPECT")
 
 # Must not interfere with the other fields.
 payload = build_payload(ROW, {"productName": "Clientalio"})

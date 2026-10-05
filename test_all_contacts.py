@@ -75,25 +75,20 @@ with tempfile.TemporaryDirectory() as tmp:
     check("duplicate detection uses primary email",
           repo.find_duplicates("https://other.example", "info@acme.com", "Other") is not None)
 
-# 5. The push payload carries the extras in Notes.
-from push_leads_to_api import append_all_contacts
-payload = append_all_contacts(
-    {"email": "info@acme.com", "phone": "+91 98111 12345", "notes": "Source keyword: x"},
-    {"AllEmails": "info@acme.com, sales@acme.com, ravi@acme.com",
-     "AllPhones": "+91 98111 12345, 020 6720 0000"},
-)
-check("extra emails in notes", "sales@acme.com" in payload["notes"])
-check("extra phones in notes", "020 6720 0000" in payload["notes"])
-check("primary not duplicated in notes", "info@acme.com," not in payload["notes"])
-check("original notes preserved", payload["notes"].startswith("Source keyword: x"))
-
-# 6. A comma-separated Email/Phone row still sends one email + one phone to the API.
+# 5. Every contact goes to the corresponding comma-separated API field.
 from push_leads_to_api import build_payload
 api = build_payload({"Email": "info@acme.com, sales@acme.com",
-                     "Phone": "+919811112345, +912067200000"}, {})
-check("API email is the primary", api["email"] == "info@acme.com")
-check("API phone is the primary", api["phone"] == "+919811112345")
-check("other contacts go to notes", "sales@acme.com" in api["notes"] and "+912067200000" in api["notes"])
+               "AllEmails": "info@acme.com, ravi@acme.com",
+               "Phone": "+919811112345, +912067200000",
+               "AllPhones": "+919811112345, +442087318653",
+               "Notes": "Source keyword: x"}, {})
+check("all emails are comma-separated in API email",
+    api["email"] == "info@acme.com, sales@acme.com, ravi@acme.com")
+check("all phones are comma-separated in API phone",
+    api["phone"] == "+919811112345, +912067200000, +442087318653")
+check("notes are unchanged", api["notes"] == "Source keyword: x")
+check("primary email remains first for resume tracking",
+    api["email"].split(",", 1)[0] == "info@acme.com")
 
 print("\nALL PASS" if ok else "\nSOME CHECKS FAILED")
 raise SystemExit(0 if ok else 1)

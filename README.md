@@ -203,5 +203,14 @@ Honest caveat: I've verified the code compiles, imports, and passes offline test
 
 .venv/bin/python run_search_csv.py
 
-.venv/bin/python run_search_csv.py clientalio --push
-.venv/bin/python push_leads_to_api.py --product clientalio --limit 5
+```bash
+.venv/bin/python run_search_csv.py dropproof --push --target deployed
+.venv/bin/python run_search_csv.py clientalio --push --target deployed
+```
+
+With `--push`, each keyword's saved leads are posted to the selected API after
+that keyword finishes. The scraper prompts for the number of keywords to run.
+
+
+
+.venv/bin/python run_search_csv.py dropproof --push --target deployed 
