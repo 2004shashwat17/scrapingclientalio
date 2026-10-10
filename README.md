@@ -210,7 +210,3 @@ Honest caveat: I've verified the code compiles, imports, and passes offline test
 
 With `--push`, each keyword's saved leads are posted to the selected API after
 that keyword finishes. The scraper prompts for the number of keywords to run.
-
-
-
-.venv/bin/python run_search_csv.py dropproof --push --target deployed 

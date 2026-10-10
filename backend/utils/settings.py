@@ -20,6 +20,8 @@ class Settings(BaseSettings):
                                "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36")
     max_crawl_retries: int = 2
     batch_workers: int = 8
+    # Concurrent requests for pages discovered on one company website.
+    website_page_workers: int = 3
     # False keeps the browser window visible while scraping/searching.
     headless: bool = Field(default=False, env="HEADLESS")
     # Slow down Playwright actions so a visible run is easy to follow.

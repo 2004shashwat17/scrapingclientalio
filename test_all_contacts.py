@@ -90,5 +90,15 @@ check("notes are unchanged", api["notes"] == "Source keyword: x")
 check("primary email remains first for resume tracking",
     api["email"].split(",", 1)[0] == "info@acme.com")
 
+# .NET counts emoji as two UTF-16 units, unlike Python's len().
+emoji_payload = build_payload({
+    "Email": "info@acme.com",
+    "Headquarters": ("🏠" * 80),
+}, {})
+check("emoji headquarters stays within API UTF-16 limit",
+    len(emoji_payload["headquarters"].encode("utf-16-le")) // 2 <= 128)
+check("emoji truncation keeps whole characters",
+    not emoji_payload["headquarters"].endswith("\ud83c"))
+
 print("\nALL PASS" if ok else "\nSOME CHECKS FAILED")
 raise SystemExit(0 if ok else 1)

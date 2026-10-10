@@ -1,6 +1,8 @@
 import json
 import logging
 import re
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any
 
 import requests
@@ -30,11 +32,13 @@ class WebsiteCrawler:
     def __init__(self) -> None:
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": settings.user_agent})
+        self._thread_sessions = threading.local()
 
     def fetch(self, url: str) -> str:
+        session = getattr(self._thread_sessions, "session", self.session)
         for attempt in range(settings.max_crawl_retries + 1):
             try:
-                response = self.session.get(url, timeout=settings.request_timeout)
+                response = session.get(url, timeout=settings.request_timeout)
                 response.raise_for_status()
                 return response.text
             except Exception as exc:
@@ -42,6 +46,13 @@ class WebsiteCrawler:
                 if attempt == settings.max_crawl_retries:
                     raise
         raise RuntimeError("Unable to fetch page")
+
+    def _fetch_candidate_page(self, url: str) -> str:
+        if not hasattr(self._thread_sessions, "session"):
+            session = requests.Session()
+            session.headers.update({"User-Agent": settings.user_agent})
+            self._thread_sessions.session = session
+        return self.fetch(url)
 
     def render_page_with_selenium(self, url: str) -> str | None:
         try:
@@ -252,12 +263,23 @@ class WebsiteCrawler:
         }
 
         page_contents = {"homepage": homepage_html}
-        for label, page_url in candidate_pages.items():
-            if page_url:
-                try:
-                    page_contents[label] = self.fetch(page_url)
-                except Exception:
-                    logger.info("Could not fetch page: %s", page_url)
+        pages_to_fetch = [
+            (label, page_url)
+            for label, page_url in candidate_pages.items()
+            if page_url and page_url != website
+        ]
+        worker_count = min(max(settings.website_page_workers, 1), len(pages_to_fetch))
+        if worker_count:
+            with ThreadPoolExecutor(max_workers=worker_count) as executor:
+                futures = [
+                    (label, page_url, executor.submit(self._fetch_candidate_page, page_url))
+                    for label, page_url in pages_to_fetch
+                ]
+                for label, page_url, future in futures:
+                    try:
+                        page_contents[label] = future.result()
+                    except Exception:
+                        logger.info("Could not fetch page: %s", page_url)
 
         decision_text = "\n".join(
             page_contents.get(key, "")

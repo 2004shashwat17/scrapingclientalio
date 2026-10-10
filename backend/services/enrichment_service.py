@@ -216,6 +216,7 @@ class EnrichmentService:
                          source_keyword: str | None, sources: list[str]) -> None:
         """Full crawl first; the homepage usually carries hero + footer contacts."""
         website = lead["Website"]
+        crawl_succeeded = False
         try:
             crawled = self.crawler.crawl(
                 website,
@@ -223,6 +224,7 @@ class EnrichmentService:
                 source_keyword=source_keyword,
                 address=lead.get("Headquarters", ""),
             )
+            crawl_succeeded = True
             sources.append("Website crawl")
             for field, value in crawled.items():
                 if field == "Notes" or field in CONTACT_FIELDS or field.startswith("_") or not value:
@@ -239,7 +241,10 @@ class EnrichmentService:
             logger.info("Crawl failed for %s: %s", website, exc)
             sources.append("Website crawl failed")
 
-        if not lead.get("Email") or not lead.get("Phone"):
+        # A successful full crawl already fetched the homepage and discovered
+        # contact/about/team pages. Re-fetching them here duplicates requests.
+        # Keep the targeted pass only as recovery when the full crawl failed.
+        if not crawl_succeeded and (not lead.get("Email") or not lead.get("Phone")):
             self._scrape_contact_only(lead, website, sources)
 
     def _scrape_contact_only(self, lead: dict, website: str, sources: list[str]) -> None:

@@ -214,6 +214,56 @@ class LeadStore:
         _ensure_data_files()
         self.product_key = product_key or settings.active_product
         self.leads_file = get_leads_file(self.product_key)
+        self._rows_cache: list[dict[str, Any]] | None = None
+        self._cache_signature: tuple[int, int] | None = None
+        self._identity_index: dict[str, dict[Any, tuple[int, dict[str, Any]]]] = {}
+
+    def _file_signature(self) -> tuple[int, int]:
+        stat = self.leads_file.stat()
+        return stat.st_mtime_ns, stat.st_size
+
+    def _load_parsed_rows(self) -> list[dict[str, Any]]:
+        signature = self._file_signature()
+        if self._rows_cache is None or signature != self._cache_signature:
+            self._rows_cache = [
+                _parse_row(row) for row in _read_csv(self.leads_file, LEAD_FIELDS)
+            ]
+            self._cache_signature = self._file_signature()
+            self._rebuild_identity_index()
+        return self._rows_cache
+
+    def _rebuild_identity_index(self) -> None:
+        self._identity_index = {
+            "Website": {},
+            "Email": {},
+            "CompanyName": {},
+        }
+        for index, row in enumerate(self._rows_cache or []):
+            for field, value in (
+                ("Website", row["Website"]),
+                ("Email", primary_contact(row["Email"])),
+                ("CompanyName", row["CompanyName"]),
+            ):
+                self._identity_index[field].setdefault(value, (index, row))
+
+    def _find_matching_row(
+        self, website: str | None, email: str | None, company_name: str | None
+    ) -> dict[str, Any] | None:
+        self._load_parsed_rows()
+        matches = []
+        for field, value in (
+            ("Website", website),
+            ("Email", primary_contact(email) if email else None),
+            ("CompanyName", company_name),
+        ):
+            if value is not None and value in self._identity_index[field]:
+                matches.append(self._identity_index[field][value])
+        return min(matches, key=lambda match: match[0])[1] if matches else None
+
+    def _cache_rows(self, rows: list[dict[str, Any]]) -> None:
+        self._rows_cache = rows
+        self._cache_signature = self._file_signature()
+        self._rebuild_identity_index()
 
     def list(self, offset: int = 0, limit: int = 200) -> list[dict[str, Any]]:
         raw = _read_csv(self.leads_file, LEAD_FIELDS)
@@ -221,22 +271,14 @@ class LeadStore:
         return parsed[offset : offset + limit]
 
     def get_by_id(self, lead_id: int) -> dict[str, Any] | None:
-        for row in _read_csv(self.leads_file, LEAD_FIELDS):
-            parsed = _parse_row(row)
+        for parsed in self._load_parsed_rows():
             if parsed["LeadId"] == lead_id:
-                return parsed
+                return dict(parsed)
         return None
 
     def find_duplicates(self, website: str, email: str | None, company_name: str) -> dict[str, Any] | None:
-        for row in _read_csv(self.leads_file, LEAD_FIELDS):
-            parsed = _parse_row(row)
-            if parsed["Website"] == website:
-                return parsed
-            if email and primary_contact(parsed["Email"]) == primary_contact(email):
-                return parsed
-            if parsed["CompanyName"] == company_name:
-                return parsed
-        return None
+        match = self._find_matching_row(website, email, company_name)
+        return dict(match) if match else None
 
     def save(self, payload: dict[str, Any]) -> dict[str, Any]:
         payload = dict(payload)
@@ -246,16 +288,10 @@ class LeadStore:
         if payload.get("Phone") or all_phones:
             payload["Phone"] = merge_contacts(payload.get("Phone"), all_phones)
 
-        rows = _read_csv(self.leads_file, LEAD_FIELDS)
-        parsed_rows = [_parse_row(row) for row in rows]
-        existing = None
-        for row in parsed_rows:
-            if row["Website"] == payload.get("Website") or (
-                payload.get("Email")
-                and primary_contact(row["Email"]) == primary_contact(payload.get("Email"))
-            ) or row["CompanyName"] == payload.get("CompanyName"):
-                existing = row
-                break
+        parsed_rows = [dict(row) for row in self._load_parsed_rows()]
+        existing = self._find_matching_row(
+            payload.get("Website"), payload.get("Email"), payload.get("CompanyName")
+        )
 
         if existing:
             updated = {
@@ -266,6 +302,7 @@ class LeadStore:
             }
             new_rows = [updated if row["LeadId"] == existing["LeadId"] else row for row in parsed_rows]
             _write_csv(self.leads_file, [_serialize_lead(row) for row in new_rows], LEAD_FIELDS)
+            self._cache_rows(new_rows)
             return updated
 
         next_id = max((row["LeadId"] for row in parsed_rows), default=0) + 1
@@ -295,6 +332,8 @@ class LeadStore:
             "CreatedDate": now,
         }
         _append_csv(self.leads_file, _serialize_lead(lead), LEAD_FIELDS)
+        parsed_rows.append(lead)
+        self._cache_rows(parsed_rows)
         return lead
 
 

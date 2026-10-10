@@ -18,7 +18,8 @@ Products (--product, else an interactive menu):
     2) Dropproof   -> data/dropproof_leads.csv   (productName "Dropproof")
 
 The product decides both which CSV is read and the productName sent to the API.
-Every payload carries the hard-coded `userStage: "PROSPECT"`.
+Every payload carries a product-specific userStage: Dropproof sends `Prospects`,
+while other products send `PROSPECT`.
 
 The endpoint returns HTTP 200 even on business failures, so every response is
 branched on the `success` field of the APIResponse envelope, not on the status
@@ -105,8 +106,11 @@ def resolve_product(value: str | None) -> dict | None:
 
 API_PATH = "/api/v1/Lead/LeadCapture"
 
-# Scraped leads are prospects; the funnel stage is sent with every payload.
+# The API expects Dropproof submissions to use its plural stage label.
 DEFAULT_USER_STAGE = "PROSPECT"
+DROPPROOF_USER_STAGE = "Prospects"
+DEFAULT_SOURCE = "scraper"
+DEFAULT_SIGNUP_COMPLETED = 0
 
 # Named environments. Keep in sync with Properties/launchSettings.json.
 TARGETS = {
@@ -185,7 +189,7 @@ FIELD_MAP = {
 EXTRA_DEFAULTS = {
     "visitorId": None,
     "landingPage": None,
-    "source": None,
+    "source": DEFAULT_SOURCE,
     "medium": None,
     "campaign": None,
     "content": None,
@@ -216,14 +220,28 @@ RESULT_FIELDS = ["Email", "Status", "Message", "ErrorType", "AlreadyCompleted"]
 
 
 def clean(value, field):
-    """Strip whitespace and enforce the API's max length by truncation."""
+    """Strip whitespace and enforce API string limits measured in UTF-16 units."""
     if value is None:
         return None
     value = str(value).strip()
     if not value:
         return None
     limit = MAX_LENGTHS.get(field)
-    return value[:limit] if limit else value
+    if not limit:
+        return value
+
+    # The deployed API is .NET, where String.Length counts UTF-16 code units.
+    # Python counts Unicode code points, so slicing to `limit` can still exceed
+    # the server's limit when the text contains emoji or other non-BMP symbols.
+    truncated = []
+    units = 0
+    for character in value:
+        character_units = 2 if ord(character) > 0xFFFF else 1
+        if units + character_units > limit:
+            break
+        truncated.append(character)
+        units += character_units
+    return "".join(truncated)
 
 
 def append_all_contacts(payload: dict, row: dict) -> dict:
@@ -280,8 +298,21 @@ def build_payload(row, extra):
         if value:
             payload[field] = value
 
-    # Always send the API's prospect stage, regardless of CSV or CLI input.
-    payload["userStage"] = DEFAULT_USER_STAGE
+    # Attribute all scraper-created submissions consistently unless a caller
+    # explicitly supplies another source.
+    payload["source"] = clean(extra.get("source") or DEFAULT_SOURCE, "source")
+
+    # Scraped prospects have not completed signup, regardless of product or
+    # any caller-provided value.
+    payload["signUpCompleted"] = DEFAULT_SIGNUP_COMPLETED
+    payload["signUpDate"] = None
+
+    # Dropproof uses the API's plural stage label; keep the existing stage for
+    # other products, regardless of any stage value in the CSV or extra fields.
+    product_name = str(extra.get("productName") or "").strip().lower()
+    payload["userStage"] = (
+        DROPPROOF_USER_STAGE if product_name == "dropproof" else DEFAULT_USER_STAGE
+    )
 
     return append_all_contacts(payload, row)
 
@@ -521,7 +552,7 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Build payloads, do not send")
     parser.add_argument("--visitor-id")
     parser.add_argument("--landing-page")
-    parser.add_argument("--source")
+    parser.add_argument("--source", default=DEFAULT_SOURCE, help=f"Attribution source (default: {DEFAULT_SOURCE})")
     parser.add_argument("--medium")
     parser.add_argument("--campaign")
     parser.add_argument("--content")
