@@ -374,6 +374,8 @@ class WebsiteCrawler:
             "DeliveryVolumePublic": delivery_volume_public,
             "ExistingPODSolution": existing_pod_solution,
             "Notes": notes,
+            # Internal classification evidence; removed before CSV persistence.
+            "_qualification_text": all_text,
             # Raw candidates so enrichment can merge them with Maps/snippet contacts.
             "_phone_candidates": phone_candidates,
             "_email_candidates": email_candidates,

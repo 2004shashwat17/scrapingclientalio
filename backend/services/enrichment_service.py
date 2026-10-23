@@ -226,6 +226,8 @@ class EnrichmentService:
             )
             crawl_succeeded = True
             sources.append("Website crawl")
+            if crawled.get("_qualification_text"):
+                lead["_qualification_text"] = crawled["_qualification_text"]
             for field, value in crawled.items():
                 if field == "Notes" or field in CONTACT_FIELDS or field.startswith("_") or not value:
                     continue

@@ -1,4 +1,5 @@
 import logging
+import re
 from urllib.parse import urlparse
 
 from backend.crawlers.browser import BrowserSession
@@ -6,6 +7,7 @@ from backend.crawlers.search_discovery import SearchDiscovery
 from backend.crawlers.utils import is_blacklisted_domain, parse_domain
 from backend.repositories.lead_repository import LeadRepository
 from backend.services.enrichment_service import EnrichmentService
+from backend.services.company_qualification import qualify_dropproof_company
 from backend.utils.settings import settings
 
 logger = logging.getLogger("clientalio.search")
@@ -33,8 +35,15 @@ DIRECTORY_DOMAINS = {
 
 def is_directory_site(url: str) -> bool:
     parsed = urlparse(url)
-    domain = parsed.netloc.lower().removeprefix("www.")
-    return any(directory in domain for directory in DIRECTORY_DOMAINS)
+    domain = parsed.netloc.lower().removeprefix("www.").split(":", 1)[0].rstrip(".")
+    return any(domain == directory or domain.endswith("." + directory)
+               for directory in DIRECTORY_DOMAINS)
+
+
+def _company_identity(name: str) -> str:
+    normalized = re.sub(r"[^a-z0-9]+", " ", (name or "").lower()).strip()
+    normalized = re.sub(r"\b(private limited|pvt ltd|pvt limited|limited|ltd|llp|incorporated|inc|corp|corporation)\b", " ", normalized)
+    return " ".join(normalized.split())
 
 
 class SearchService:
@@ -88,13 +97,17 @@ class SearchService:
 
             # Cards without a website are kept: the enrichment chain looks the
             # company up on Google instead of throwing the lead away.
-            identity = parse_domain(website) if website else f"name:{company_name.lower().strip()}"
-            if not identity or identity == "name:":
+            domain_identity = parse_domain(website).split(":", 1)[0].rstrip(".") if website else ""
+            name_identity = _company_identity(company_name)
+            if not domain_identity and not name_identity:
                 logger.info("Skipping card with no website and no company name")
                 continue
-            if identity in visited:
+            identities = {f"domain:{domain_identity}"} if domain_identity else set()
+            if name_identity:
+                identities.add(f"name:{name_identity}")
+            if identities & visited:
                 continue
-            visited.add(identity)
+            visited.update(identities)
 
             if website and is_directory_site(website):
                 logger.info("Skipping directory listing site: %s", website)
@@ -117,6 +130,16 @@ class SearchService:
             if website and is_blacklisted_domain(website):
                 logger.info("Enriched website is blacklisted, skipping: %s", website)
                 continue
+
+            if settings.active_product == "dropproof":
+                qualified, reason = qualify_dropproof_company(
+                    lead.get("CompanyName") or company_name,
+                    website,
+                    lead.get("_qualification_text", ""),
+                )
+                if not qualified:
+                    logger.info("Skipping unqualified DropProof prospect %s: %s", company_name, reason)
+                    continue
 
             lead["Headquarters"] = lead.get("Headquarters") or location
             if not lead.get("IsUseful", True):

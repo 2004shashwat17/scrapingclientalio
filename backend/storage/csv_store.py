@@ -1,4 +1,5 @@
 import csv
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -74,6 +75,27 @@ def merge_contacts(*values: Any, normalize=None) -> str:
 
 def primary_contact(value: Any) -> str:
     return str(value or "").split(",", 1)[0].strip()
+
+
+def _identity_key(field: str, value: Any) -> str:
+    text = str(value or "").strip().lower()
+    if not text:
+        return ""
+    if field == "Website":
+        from urllib.parse import urlparse
+
+        parsed = urlparse(text if "://" in text else f"//{text}")
+        return parsed.netloc.removeprefix("www.").split(":", 1)[0].rstrip(".")
+    if field == "Email":
+        return text
+    if field == "CompanyName":
+        text = re.sub(r"[^a-z0-9]+", " ", text)
+        text = re.sub(
+            r"\b(private limited|pvt ltd|pvt limited|limited|ltd|llp|incorporated|inc|corp|corporation)\b",
+            " ", text,
+        )
+        return " ".join(text.split())
+    return text
 
 
 def _migrate_contact_columns(row: dict[str, str]) -> None:
@@ -244,7 +266,9 @@ class LeadStore:
                 ("Email", primary_contact(row["Email"])),
                 ("CompanyName", row["CompanyName"]),
             ):
-                self._identity_index[field].setdefault(value, (index, row))
+                key = _identity_key(field, value)
+                if key:
+                    self._identity_index[field].setdefault(key, (index, row))
 
     def _find_matching_row(
         self, website: str | None, email: str | None, company_name: str | None
@@ -256,8 +280,9 @@ class LeadStore:
             ("Email", primary_contact(email) if email else None),
             ("CompanyName", company_name),
         ):
-            if value is not None and value in self._identity_index[field]:
-                matches.append(self._identity_index[field][value])
+            key = _identity_key(field, value)
+            if key and key in self._identity_index[field]:
+                matches.append(self._identity_index[field][key])
         return min(matches, key=lambda match: match[0])[1] if matches else None
 
     def _cache_rows(self, rows: list[dict[str, Any]]) -> None:

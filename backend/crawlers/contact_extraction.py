@@ -15,8 +15,6 @@ import phonenumbers
 from bs4 import BeautifulSoup
 from email_validator import EmailNotValidError, validate_email
 
-DEFAULT_REGION = "IN"
-
 SOURCE_CONFIDENCE = {
     "tel_link": 0.98,
     "mailto_link": 0.98,
@@ -133,6 +131,8 @@ def is_placeholder_phone(raw: str) -> bool:
 def normalize_phone(raw: str, region: str | None = None, strict: bool = False) -> str | None:
     """Return the E.164 form of a valid phone number, or None.
 
+    `region` must be supported by reliable location evidence for national-format
+    numbers. International numbers with a '+' country calling code need no region.
     `strict` is used for low-confidence free-text matches and additionally rejects
     bare unformatted digit runs that only parse as landlines.
     """
@@ -147,7 +147,7 @@ def normalize_phone(raw: str, region: str | None = None, strict: bool = False) -
     if not 7 <= len(digits) <= 17 or is_placeholder_phone(text):
         return None
     try:
-        number = phonenumbers.parse(text, None if text.startswith("+") else (region or DEFAULT_REGION))
+        number = phonenumbers.parse(text, None if text.startswith("+") else region)
     except phonenumbers.NumberParseException:
         return None
     if not phonenumbers.is_valid_number(number):
@@ -169,9 +169,9 @@ def phone_from_whatsapp_url(url: str) -> str | None:
     parsed = urlparse(url or "")
     host = parsed.netloc.lower()
     digits = ""
-    if host.endswith("wa.me"):
+    if host == "wa.me" or host.endswith(".wa.me"):
         digits = parsed.path.strip("/").split("/")[0]
-    elif "whatsapp.com" in host:
+    elif host == "whatsapp.com" or host.endswith(".whatsapp.com"):
         digits = (parse_qs(parsed.query).get("phone") or [""])[0]
     digits = re.sub(r"\D", "", digits)
     return normalize_phone(f"+{digits}") if digits else None
@@ -187,7 +187,7 @@ def phones_in_text(text: str, region: str | None = None) -> list[tuple[str, bool
     found: dict[str, bool] = {}
     try:
         matcher = phonenumbers.PhoneNumberMatcher(
-            text, region or DEFAULT_REGION, leniency=phonenumbers.Leniency.VALID
+            text, region or "ZZ", leniency=phonenumbers.Leniency.VALID
         )
         for match in matcher:
             before = text[max(0, match.start - _LABEL_WINDOW):match.start]
@@ -466,7 +466,8 @@ COUNTRY_HINTS = {
 _GENERIC_CCTLDS = {"co", "io", "ai", "me", "tv", "ly", "gg", "to", "fm", "cc", "ws", "so", "sh", "is", "it"}
 
 
-def infer_phone_region(website: str | None = None, address: str | None = None, default: str = DEFAULT_REGION) -> str:
+def infer_phone_region(website: str | None = None, address: str | None = None,
+                       default: str | None = None) -> str | None:
     lowered = (address or "").lower()
     for hint, region in COUNTRY_HINTS.items():
         if re.search(rf"\b{re.escape(hint)}\b", lowered):
@@ -477,6 +478,8 @@ def infer_phone_region(website: str | None = None, address: str | None = None, d
         return "GB"
     if len(tld) == 2 and tld not in _GENERIC_CCTLDS and tld.upper() in phonenumbers.SUPPORTED_REGIONS:
         return tld.upper()
+    # Never guess the country for a national-format number. The optional default
+    # remains for explicit callers that already have reliable country context.
     return default
 
 
@@ -490,17 +493,42 @@ def merge_candidates(candidates: list[ContactCandidate]) -> list[ContactCandidat
     return sorted(best.values(), key=lambda item: -item.confidence)
 
 
-_PREFERRED_LOCALS = ("info", "contact", "hello", "sales", "enquiry", "inquiry", "business", "support")
+_GENERAL_LOCALS = {
+    "info", "contact", "hello", "support", "office", "admin", "mail",
+    "enquiries", "enquiry", "inquiries", "inquiry",
+}
+_DEPARTMENT_LOCALS = {
+    "operations", "operation", "ops", "fleet", "dispatch", "logistics",
+    "transport", "procurement", "purchasing", "supplychain", "supply-chain",
+}
+_BUSINESS_LOCALS = {"sales", "business", "partnerships", "commercial", "accounts", "marketing"}
 
 
 def _email_rank(item: ContactCandidate, website: str | None, decision_maker_name: str | None):
     local = item.value.split("@", 1)[0]
-    first_name = (decision_maker_name or "").split(" ")[0].lower()
+    name_parts = re.findall(r"[a-z0-9]+", (decision_maker_name or "").lower())
+    name_parts = [part for part in name_parts if part not in {"mr", "mrs", "ms", "dr", "ceo", "founder", "owner", "director", "managing"}]
+    compact_local = re.sub(r"[^a-z0-9]", "", local)
+    matches_decision_maker = bool(name_parts) and (
+        compact_local in {"".join(name_parts[:2]), name_parts[0],
+                          "".join(name_parts[-2:]), name_parts[-1]}
+    )
+    local_label = re.sub(r"[._+-]+", "", local)
+    if local_label in _GENERAL_LOCALS or re.match(r"^(?:info|contact|hello)(?:[._+-]|$)", local):
+        priority = 0
+    elif local_label in _DEPARTMENT_LOCALS or local_label.startswith(("operations", "fleet", "dispatch", "logistics", "transport", "procurement", "purchasing")):
+        priority = 3
+    elif local_label in _BUSINESS_LOCALS or local_label.startswith(("sales", "business", "commercial")):
+        priority = 2
+    elif _email_domain_matches(item.value, website):
+        priority = 5 if matches_decision_maker else 4
+    else:
+        priority = 1
     return (
+        priority,
         _email_domain_matches(item.value, website),
+        matches_decision_maker,
         item.confidence,
-        bool(first_name) and local == first_name,
-        local.startswith(_PREFERRED_LOCALS),
     )
 
 
